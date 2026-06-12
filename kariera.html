@@ -191,6 +191,12 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
   transition:border-color .2s,box-shadow .2s;width:100%;background:#fff;color:var(--ink);
 }
 .lead-form textarea{resize:vertical;min-height:120px}
+.lead-form select{
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1rem center;
+  padding-right:2.6rem;
+}
 .lead-form :is(input,select,textarea):focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,51,251,.12)}
 .lead-form label.consent{display:flex;gap:.6rem;align-items:center;font-size:.86rem;color:var(--g500);font-weight:500}
 .consent input{accent-color:var(--blue);width:16px;height:16px;flex:none}
@@ -483,7 +489,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
             <option>Jiná / napíšu do zprávy</option>
           </select>
         </label>
-        <label class="full">Pár slov o vás <span style="color:var(--g500);font-weight:500">(nepovinné)</span>
+        <label class="full"><span>Pár slov o vás <span style="color:var(--g500);font-weight:500">(nepovinné)</span></span>
           <textarea name="message" rows="4" placeholder="Zkušenosti, škola, odkaz na CV nebo LinkedIn…"></textarea>
         </label>
         <div class="hp-field" aria-hidden="true">
