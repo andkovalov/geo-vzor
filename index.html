@@ -8,6 +8,7 @@
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://deltag.vercel.app/">
 
 <!-- Open Graph / social sharing -->
 <meta property="og:type" content="website">
@@ -15,14 +16,14 @@
 <meta property="og:locale" content="cs_CZ">
 <meta property="og:title" content="Geodet pro Prahu a Středočeský kraj | Delta G">
 <meta property="og:description" content="Rozdělení pozemků, vytyčení hranic, zaměření pro projekt i kolaudaci. Pevná cena ve smlouvě, katastr vyřídíme za vás.">
-<meta property="og:url" content="https://andkovalov.github.io/deltag/">
-<meta property="og:image" content="https://andkovalov.github.io/deltag/og-image.png">
+<meta property="og:url" content="https://deltag.vercel.app/">
+<meta property="og:image" content="https://deltag.vercel.app/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Geodet pro Prahu a Středočeský kraj | Delta G">
 <meta name="twitter:description" content="Rozdělení pozemků, vytyčení hranic, zaměření pro projekt i kolaudaci. Pevná cena ve smlouvě, katastr vyřídíme za vás.">
-<meta name="twitter:image" content="https://andkovalov.github.io/deltag/og-image.png">
+<meta name="twitter:image" content="https://deltag.vercel.app/og-image.png">
 
 <!-- Rajdhani -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -244,6 +245,8 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
   .svc-step[data-step="1"]{top:calc(var(--header-h) + 2.1rem);z-index:2}
   .svc-step[data-step="2"]{top:calc(var(--header-h) + 3rem);z-index:3}
   .svc-step[data-step="3"]{top:calc(var(--header-h) + 3.9rem);z-index:4}
+  .svc-step[data-step="4"]{top:calc(var(--header-h) + 4.8rem);z-index:5}
+  .svc-step[data-step="5"]{top:calc(var(--header-h) + 5.7rem);z-index:6}
 }
 
 /* plot svg */
@@ -361,6 +364,21 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
   .logo-set{flex-wrap:wrap;justify-content:center;padding-right:0}
   .logo-set + .logo-set{display:none}
 }
+
+/* ---------- B2C reviews ---------- */
+/* auto-fit mřížka: přidání/odebrání karty rozložení nerozbije */
+.review-grid{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.review-card{
+  border:1px solid var(--g300);border-radius:var(--radius);background:#fff;
+  padding:1.7rem 1.6rem;display:flex;flex-direction:column;gap:1rem;margin:0;
+}
+.review-stars{display:flex;gap:.25rem}
+.review-card blockquote{color:var(--ink-2);font-size:1.05rem;border:none;margin:0}
+.review-card blockquote::before{content:"„"}
+.review-card blockquote::after{content:"“"}
+.review-card figcaption{margin-top:auto;display:flex;flex-direction:column;gap:.1rem}
+.review-card figcaption b{font-size:1.05rem}
+.review-card figcaption span{color:var(--g500);font-size:.9rem;font-weight:600}
 
 /* ---------- quiz ---------- */
 .quiz{background:var(--g100)}
@@ -629,7 +647,7 @@ body.modal-open{overflow:hidden}
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">S čím vám pomůžeme</span>
-      <h2 class="h2">Čtyři situace, které za vás vyřešíme</h2>
+      <h2 class="h2">Situace, které za vás vyřešíme</h2>
       <p class="lead"><span class="line">Žádné odborné termíny navíc. Řekněte nám, co potřebujete —</span>
       <span class="line">měření v terénu, výkresy i jednání s úřady už jsou naše práce.</span></p>
     </div>
@@ -667,6 +685,24 @@ body.modal-open{overflow:hidden}
           plán pro zápis do katastru — nutný podklad pro kolaudaci, čerpání hypotéky
           i přidělení čísla popisného.</p>
           <span class="svc-price">orientačně od 8 000 Kč</span>
+        </article>
+        <article class="svc-step" data-step="4">
+          <span class="num">5</span>
+          <h3>Pasport stavby — zaměření skutečného stavu</h3>
+          <p>Nemáte k domu dokumentaci? Zaměříme skutečný stav stavby — půdorysy, řezy
+          i pohledy. Podklad pro stavební úřad, rekonstrukci, legalizaci stavby
+          i prodej nemovitosti.</p>
+          <!-- TODO: potvrdit cenu u majitele -->
+          <span class="svc-price">orientačně od 12 000 Kč</span>
+        </article>
+        <article class="svc-step" data-step="5">
+          <span class="num">6</span>
+          <h3>Vytyčení stavby před zahájením</h3>
+          <p>Máte projekt a stavební povolení? Vytyčíme dům přesně do terénu podle
+          projektu — základy, rohy i výšky. Aby stavba seděla na centimetry tam,
+          kam patří.</p>
+          <!-- TODO: potvrdit cenu u majitele -->
+          <span class="svc-price">orientačně od 7 500 Kč</span>
         </article>
       </div>
 
@@ -736,6 +772,37 @@ body.modal-open{overflow:hidden}
                 <text x="424" y="161" text-anchor="middle" font-size="16" font-weight="700" fill="#101828">ZAPSÁNO</text>
                 <text x="424" y="178" text-anchor="middle" font-size="11" font-weight="600" fill="#344054" letter-spacing="2">KATASTR NEMOVITOSTÍ</text>
               </g>
+            </g>
+            <!-- 5: pasport — floor plan of the existing house -->
+            <g id="svc-g4" opacity="0">
+              <polygon class="draw" points="175,175 345,167 352,315 182,323" fill="#fff" stroke="#0033FB" stroke-width="2.5"/>
+              <path class="draw" d="M262 171 L268 319" stroke="#0033FB" stroke-width="1.6"/>
+              <path class="draw" d="M178 250 L265 246" stroke="#0033FB" stroke-width="1.6"/>
+              <path class="draw" d="M308 169 L312 240 M312 240 L350 238" stroke="#0033FB" stroke-width="1.6"/>
+              <path class="draw" d="M218 248 a 16 16 0 0 1 16 16" fill="none" stroke="#667085" stroke-width="1.3"/>
+              <path class="draw" d="M289 240 a 15 15 0 0 0 -15 -15" fill="none" stroke="#667085" stroke-width="1.3"/>
+              <line class="draw" x1="175" y1="142" x2="345" y2="134" stroke="#344054" stroke-width="1.4" marker-start="url(#arr)" marker-end="url(#arr)"/>
+              <text x="240" y="128" class="dim">10,6 m</text>
+              <circle class="pulse-pt" cx="352" cy="315" r="8" fill="none" stroke="#0033FB" stroke-width="1.6"/>
+              <text x="196" y="218" class="dim dim-blue" font-size="16">1.NP</text>
+              <text x="284" y="290" class="dim dim-blue" font-size="16">skutečný stav</text>
+            </g>
+            <!-- 6: stake-out of a future house from the project -->
+            <g id="svc-g5" opacity="0">
+              <polygon class="draw" points="200,205 325,197 331,295 206,303" fill="rgba(0,51,251,.04)" stroke="#0033FB" stroke-width="2.2" stroke-dasharray="9 7"/>
+              <g stroke="#0033FB" stroke-width="2.2">
+                <path d="M193 198 l14 14 M207 198 l-14 14"/>
+                <path d="M318 190 l14 14 M332 190 l-14 14"/>
+                <path d="M324 288 l14 14 M338 288 l-14 14"/>
+                <path d="M199 296 l14 14 M213 296 l-14 14"/>
+              </g>
+              <circle class="pulse-pt" cx="200" cy="205" r="9" fill="none" stroke="#0033FB" stroke-width="1.6"/>
+              <circle class="pulse-pt" cx="331" cy="295" r="9" fill="none" stroke="#0033FB" stroke-width="1.6" style="animation-delay:.9s"/>
+              <line class="draw" x1="86" y1="106" x2="196" y2="201" stroke="#344054" stroke-width="1.4" marker-start="url(#arr)" marker-end="url(#arr)"/>
+              <text x="108" y="170" class="dim">5,0 m</text>
+              <line class="draw" x1="330" y1="86" x2="324" y2="193" stroke="#344054" stroke-width="1.4" marker-start="url(#arr)" marker-end="url(#arr)"/>
+              <text x="338" y="142" class="dim">6,5 m</text>
+              <text x="222" y="254" class="dim dim-blue" font-size="16">dle projektu · ±10 mm</text>
             </g>
           </svg>
         </div>
@@ -914,6 +981,59 @@ body.modal-open{overflow:hidden}
         <img src="assets/logos/pragis.jpg" alt="" loading="eager" decoding="async">
         <img src="assets/logos/cdt.png" alt="" loading="eager" decoding="async">
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== B2C REVIEWS ===================== -->
+<section class="section" id="reference-b2c">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Co říkají klienti</span>
+      <h2 class="h2">Majitelé pozemků a domů o nás</h2>
+      <p class="lead">Velké stavby jsou naše vizitka, ale většinu týdne trávíme
+      na zahradách a u rodinných domů — u lidí, jako jste vy.</p>
+    </div>
+    <div class="review-grid">
+      <!-- TODO: real review -->
+      <figure class="review-card reveal">
+        <span class="review-stars" aria-label="5 z 5 hvězdiček">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+        </span>
+        <blockquote>Potřebovali jsme rozdělit zahradu a část prodat. Vše vyřídili za nás
+        včetně katastru — ani jednou jsme nemuseli na úřad.</blockquote>
+        <figcaption><b>Jana N.</b><span>Říčany · rozdělení pozemku</span></figcaption>
+      </figure>
+      <!-- TODO: real review -->
+      <figure class="review-card reveal">
+        <span class="review-stars" aria-label="5 z 5 hvězdiček">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+        </span>
+        <blockquote>Soused posunul plot a tvrdil, že je to jeho. Hranici vytyčili,
+        předali úřední protokol a spor byl do týdne vyřízený.</blockquote>
+        <figcaption><b>Petr K.</b><span>Praha-západ · vytyčení hranic</span></figcaption>
+      </figure>
+      <!-- TODO: real review -->
+      <figure class="review-card reveal">
+        <span class="review-stars" aria-label="5 z 5 hvězdiček">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0033FB"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg>
+        </span>
+        <blockquote>Rychlá domluva, zaměření do týdne a projektant dostal podklady
+        přesně ve formátu, který potřeboval. Pevná cena platila.</blockquote>
+        <figcaption><b>Martina S.</b><span>Kladno · zaměření pro projekt</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -1176,9 +1296,10 @@ if (hasGsap && !prefersReduced) {
    2) SERVICES — "order out of chaos" scroll story
    ========================================================= */
 (function services(){
-  const groups = [0,1,2,3].map(i => document.getElementById('svc-g' + i));
+  const groups = [0,1,2,3,4,5].map(i => document.getElementById('svc-g' + i));
   const steps = document.querySelectorAll('.svc-step');
-  const labels = ['Geometrický plán · dělení', 'Vytyčovací výkres · 1:500', 'Polohopis a výškopis', 'GP pro vklad do KN'];
+  const labels = ['Geometrický plán · dělení', 'Vytyčovací výkres · 1:500', 'Polohopis a výškopis',
+                  'GP pro vklad do KN', 'Pasport stavby · 1:100', 'Vytyčovací výkres stavby'];
   const figLabel = document.getElementById('figLabel');
 
   // prepare stroke-draw lengths
