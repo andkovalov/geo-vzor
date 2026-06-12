@@ -105,8 +105,8 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .logo-swoosh{transform-box:fill-box;transform-origin:center;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
 .logo:hover .logo-swoosh{transform:translate(2px,-3px) rotate(-5deg)}
 .main-nav{display:none;gap:1.6rem;font-weight:600;color:var(--ink-2);white-space:nowrap;align-items:center}
-.main-nav > a,.main-nav .nav-link{padding:.4rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
-.main-nav > a:hover,.main-nav .nav-link:hover{color:var(--blue);border-color:var(--yellow)}
+.main-nav > a,.main-nav .nav-link{padding:.35rem .55rem;border-radius:3px;transition:background .15s,color .15s}
+.main-nav > a:hover,.main-nav .nav-link:hover{background:var(--yellow);color:var(--ink)}
 .main-nav a[aria-current=page]{color:var(--blue)}
 .nav-item{position:relative}
 .nav-item::after{content:"";position:absolute;top:100%;left:-1rem;right:-1rem;height:.7rem}
@@ -116,7 +116,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .drop{position:absolute;top:calc(100% + .6rem);left:-1rem;min-width:300px;z-index:70;background:#fff;border:1px solid var(--g100);border-radius:12px;padding:.55rem;box-shadow:0 28px 60px -24px rgba(16,24,40,.3);display:grid;gap:.1rem;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .22s,transform .22s,visibility .22s}
 .nav-item:hover .drop,.nav-item:focus-within .drop{opacity:1;visibility:visible;transform:translateY(0)}
 .drop a{padding:.55rem .85rem;border-radius:8px;font-weight:600;color:var(--ink-2);border:none}
-.drop a:hover{background:var(--g100);color:var(--blue)}
+.drop a:hover{background:var(--yellow);color:var(--ink)}
 .drop .drop-all{margin-top:.35rem;border-top:1px solid var(--g100);border-radius:0 0 8px 8px;color:var(--blue);font-size:.95rem}
 .header-actions{display:flex;align-items:center;gap:1.4rem}
 .header-phone{display:none;font-weight:700;align-items:center;gap:.45rem}
@@ -183,6 +183,55 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .reveal{opacity:0;transform:translateY(28px)}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "LocalBusiness",
+ "@id": "https://deltag.vercel.app/#firma",
+ "name": "Delta G s.r.o.",
+ "description": "Geodetické služby pro soukromé klienty i firmy — geometrické plány, vytyčení hranic, inženýrská geodézie, mapové podklady.",
+ "url": "https://deltag.vercel.app/",
+ "telephone": "+420604206176",
+ "email": "posta@deltag.cz",
+ "vatID": "CZ02362538",
+ "identifier": "02362538",
+ "foundingDate": "2004",
+ "image": "https://deltag.vercel.app/og-image.png",
+ "address": {
+  "@type": "PostalAddress",
+  "streetAddress": "Polygrafická 262/3",
+  "addressLocality": "Praha 10",
+  "postalCode": "108 00",
+  "addressCountry": "CZ"
+ },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 50.078833,
+  "longitude": 14.522639
+ },
+ "areaServed": [
+  "Praha",
+  "Středočeský kraj"
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Service",
+ "name": "Rozdělení pozemku",
+ "description": "Geometrický plán pro rozdělení pozemku včetně souhlasu stavebního úřadu a zápisu do katastru nemovitostí.",
+ "url": "https://deltag.vercel.app/sluzby-rozdeleni-pozemku.html",
+ "provider": {
+  "@id": "https://deltag.vercel.app/#firma"
+ },
+ "areaServed": [
+  "Praha",
+  "Středočeský kraj"
+ ],
+ "serviceType": "Geodetické služby"
+}
+</script>
 </head>
 <body>
 
@@ -210,7 +259,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
       </div>
       <a href="pro-firmy.html">Pro firmy a investory</a>
       <a href="kariera.html">Kariéra</a>
-      <a href="index.html#kontakt">Kontakt</a>
+      <a href="kontakt.html">Kontakt</a>
     </nav>
     <div class="header-actions">
       <a class="header-phone" href="tel:+420604206176">
@@ -234,7 +283,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
   <span class="menu-group">Společnost</span>
   <a href="pro-firmy.html">Pro firmy a investory</a>
   <a href="kariera.html">Kariéra</a>
-  <a href="index.html#kontakt">Kontakt</a>
+  <a href="kontakt.html">Kontakt</a>
   <a href="tel:+420604206176">Zavolat: 604 206 176</a>
   <a class="btn btn-primary" href="index.html#poptavka">Nezávazná poptávka</a>
 </nav>

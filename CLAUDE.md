@@ -13,7 +13,9 @@ Live: https://deltag.vercel.app/ (auto-deploys from GitHub `andkovalov/deltag`, 
 | `pro-firmy.html` | B2B catalog page (industry terminology allowed), own inline lead form (#poptavka) |
 | `kariera.html` | Careers page + application form |
 | `sluzby-*.html` | 4 B2C SEO service pages (rozdeleni-pozemku, vytyceni-hranic, geometricky-plan-kolaudace, pasport-stavby) — shared compact template: breadcrumb, H1=query, kdy-grid, 4 steps, price-box (TODO prices), FAQ + FAQPage JSON-LD, CTA to index.html#poptavka |
-| `zasady-ochrany-osobnich-udaju.html` | GDPR privacy policy (noindex) |
+| `kontakt.html` | Contact page (header "Kontakt" points here on every page): contact cards, ÚOZI badge, B2C/B2B CTA cards, map |
+| `zasady-ochrany-osobnich-udaju.html` | GDPR privacy policy (noindex, excluded from sitemap, disallowed in robots.txt) |
+| `sitemap.xml`, `robots.txt` | 8 indexable URLs on vercel domain; regenerate when adding pages |
 | `favicon.svg`, `apple-touch-icon.png`, `og-image.png` | brand assets (white swoosh on blue #0033FB) |
 | `assets/logos/*` | partner logos (12, used in marquee) |
 
@@ -83,6 +85,8 @@ Plot figure: light `--g100` panel, faint grid strokes `#D0D5DD/#EDF0F4`, parcel/
 ## SEO / meta (every page)
 
 - Unique `<title>` + `meta description`; `<link rel="canonical" href="https://deltag.vercel.app/...">`; OG (`og:url`, `og:image` → absolute vercel URLs, locale `cs_CZ`) + `twitter:card summary_large_image`. Never use github.io URLs.
+- JSON-LD: `LocalBusiness` (@id `…/#firma`, IČO, geo 50.078833/14.522639) on every page; service pages add `Service` with `provider:{"@id":"…#firma"}`. New page → add to sitemap.xml.
+- Nav hover = selection style: `background:var(--yellow);color:var(--ink)` on `.main-nav` links and `.drop` items (no underline).
 - favicon links: `favicon.svg` + `apple-touch-icon.png`. Privacy page: `noindex,follow`.
 
 ## New page checklist
