@@ -1,0 +1,94 @@
+# Delta G — design system & project conventions
+
+B2C/B2B web for Delta G s.r.o. (geodetická firma, Praha). Static HTML/CSS/vanilla JS, no build step.
+Live: https://deltag.vercel.app/ (auto-deploys from GitHub `andkovalov/deltag`, branch `main`).
+
+**After every change: `git add -A && git commit && git push`** (user's standing instruction; commit messages in English + Claude co-author line).
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `index.html` | B2C landing (hero, services scroll-stack, why-us, process, tech scanner, partners marquee, B2C reviews, lead form + quiz modal, contact, cookie banner) |
+| `pro-firmy.html` | B2B catalog page (industry terminology allowed) |
+| `kariera.html` | Careers page + application form |
+| `zasady-ochrany-osobnich-udaju.html` | GDPR privacy policy (noindex) |
+| `favicon.svg`, `apple-touch-icon.png`, `og-image.png` | brand assets (white swoosh on blue #0033FB) |
+| `assets/logos/*` | partner logos (12, used in marquee) |
+
+Each page is **self-contained**: own `<style>` block (copy tokens + needed components), own `<script>`. No shared CSS file — keep it that way unless the user asks.
+
+## Tokens
+
+```css
+:root{
+  --blue:#0033FB;     /* accent, buttons, links */
+  --yellow:#FBED51;   /* hover/highlight accent, ::selection */
+  --ink:#101828;      /* primary text */
+  --ink-2:#344054;    /* secondary text */
+  --g500:#667085;     /* muted text, labels */
+  --g300:#D0D5DD;     /* borders */
+  --g100:#F2F4F7;     /* section/page tint backgrounds */
+  --radius:14px;
+  --header-h:72px;
+}
+```
+
+- Font: **Rajdhani** (Google Fonts, weights 400;500;600;700). Body 18px, line-height 1.55.
+- `::selection{background:var(--yellow);color:var(--ink)}` on every page.
+- Sections alternate white / `--g100`. Section padding `clamp(3.5rem,9vh,6.5rem)` (more for hero-like).
+- Container: `.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}`.
+
+## Type scale
+
+- h1 hero: `clamp(2.4rem,5.6–6.6vw,4–4.6rem)`; accent word wrapped in `<em>` colored `--blue`.
+- `.h2`: `clamp(1.9rem,4vw,2.8rem)` (landing uses up to 3.1rem).
+- `.eyebrow`: uppercase 0.82rem, letter-spacing .22em, blue, with 26px dash `::before`.
+- `.lead`: `clamp(1.05rem,1.6vw,1.25rem)`, color `--ink-2`, max-width ~46–52ch.
+- Forced line breaks in leads: wrap lines in `<span class="line">` + `@media(min-width:860px){.lead:has(.line){max-width:none}.lead .line{display:block}}` (mobile falls back to natural wrap).
+
+## Components (copy from index.html)
+
+- **Buttons**: `.btn` uppercase 700; `.btn-primary` blue→**yellow bg + ink text** on hover (no shadows!); `.btn-ghost` 1.5px `--g300` border.
+- **Header**: fixed, 72px, `rgba(255,255,255,.86)` + backdrop blur; `.header-actions` groups phone (filled icon) + CTA; phone visible ≥1140px (≥760px on subpages with short navs); burger <920px.
+- **Logo**: inline SVG, 3 paths — wordmark `#101828`, swoosh `class="logo-swoosh"` `#0033FB`, arc `#101828`. Hover: springy flick `translate(2px,-3px) rotate(-5deg)`, cubic-bezier(.34,1.56,.64,1). Never recolor swoosh to yellow on white.
+- **Cards**: 1px `--g300` border, `--radius`, white bg. No hover lift on info cards (user removed it).
+- **Icon chips**: 46–48px rounded square, blue bg, white strokes only (no yellow strokes inside icons).
+- **Forms** (`.lead-form`): 2-col grid ≥640px, `.full` spans; inputs 1.5px border, focus blue ring `0 0 0 3px rgba(0,51,251,.12)`; consent checkbox `align-items:center`; honeypot `.hp-field` input name="company"; success block `.quiz-success`/`.form-success`.
+- **Lead delivery**: `const FORM_ENDPOINT = ''` → demo mode logs payload to console; real endpoint goes there. Always `preventDefault`, `reportValidity`, honeypot check.
+- **Cookie banner**: opt-in GDPR; analytics load ONLY inside `loadAnalytics()` after consent; localStorage key `dg-cookie-consent` = `all|necessary`; footer link reopens it.
+- **Partners marquee**: `.logo-track` = two identical `.logo-set`s (set has `padding-right` equal to gap, track gap 0) animated `translateX(-50%)` 40s linear; imgs uniform cells `clamp(120px,14vw,150px)×60`, `object-fit:contain`, grayscale→color, `loading="eager"`; no pause on hover; reduced-motion → static wrap, second set hidden.
+
+## Animation rules (GSAP only — no Three.js, user rejected it)
+
+- CDN: gsap 3.12.5 + ScrollTrigger from cdnjs.
+- Guards on every page: `prefersReduced` media check + `hasGsap` typeof check; fallback = everything visible/static.
+- Reveal pattern: `.reveal{opacity:0;transform:translateY(28px)}` + `ScrollTrigger.batch('.reveal',{start:'top 88%',once:true,...})`; reduced-motion sets visible immediately.
+- Services scroll-stack (landing): cards `position:sticky` with cascading `top` (+0.9rem per card) and z-index 1..n; drawing layers `#svc-g{i}` toggled by per-card ScrollTriggers `start:'top center' end:'bottom center'` (non-overlapping!) with `overwrite:'auto'` tweens; `.draw` paths animate stroke-dashoffset.
+- Tech scanner (landing): beam sweep ±56° yoyo 4.2s; readouts must not cause layout shift — fixed grid columns + `font-variant-numeric:tabular-nums`, value updates throttled (≥450ms).
+- Subtle one-shot progressions (e.g. process line): toggle `.lit` classes via `gsap.delayedCall` stagger, CSS transitions do the drawing; numbers `--g300`→`--blue`.
+- Tasteful, non-looping, never blocks reading. Hidden-tab note: rAF freezes GSAP — fine in real browsers, but preview screenshots may catch frame 0.
+
+## Drawing/figure style (SVG)
+
+Plot figure: light `--g100` panel, faint grid strokes `#D0D5DD/#EDF0F4`, parcel/houses stroked `--ink`/`--blue` 2.2–2.5px, dims `.dim` 15px `#344054` with `marker arr`, laser points `.pulse-pt` (scale+fade keyframe), yellow only for "stamp"/instrument accents with ink outline.
+
+## Copy & tone
+
+- Czech, natural business language. B2C pages: no jargon, benefits-first, fears addressed (úřady, ceny). B2B (`pro-firmy.html`): industry terminology OK (AZI, DTMŽ, vytyčovací sítě…).
+- Facts: Delta G s.r.o., od 2004, IČO 02362538, DIČ CZ02362538, sídlo Tiskařská 10 / kancelář Polygrafická 262/3, Praha 10; +420 604 206 176; posta@deltag.cz; ÚOZI; map pin 50.078833,14.522639 (Google embed with `hl=cs`).
+- Placeholders must be marked `<!-- TODO: ... -->` (prices to confirm, real reviews).
+
+## SEO / meta (every page)
+
+- Unique `<title>` + `meta description`; `<link rel="canonical" href="https://deltag.vercel.app/...">`; OG (`og:url`, `og:image` → absolute vercel URLs, locale `cs_CZ`) + `twitter:card summary_large_image`. Never use github.io URLs.
+- favicon links: `favicon.svg` + `apple-touch-icon.png`. Privacy page: `noindex,follow`.
+
+## New page checklist
+
+1. Copy head boilerplate (fonts, favicon, meta) + tokens + needed component CSS from index.html.
+2. Header with logo (full inline SVG + swoosh hover), `.header-actions`, back/nav links; footer with © line, Kariéra / Pro firmy / Zásady links as relevant.
+3. GSAP CDN + guards + `.reveal` batch.
+4. Forms → FORM_ENDPOINT pattern + GDPR consent linking to zásady.
+5. Verify: no horizontal overflow at 375/768/1024/1440; header fits at ~920–1140; console clean.
+6. Commit + push (auto-deploy).
