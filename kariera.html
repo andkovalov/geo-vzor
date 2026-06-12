@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kariéra | Delta G — přidejte se k týmu geodetů</title>
+<meta name="description" content="Delta G hledá geodety, zpracovatele dat i studenty-brigádníky. Přátelský kolektiv, moderní technika Trimble, flexibilní úvazek. Pošlete nám pár řádků — ozveme se.">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Delta G">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:title" content="Kariéra v Delta G — hledáme geodety i studenty">
+<meta property="og:description" content="Přátelský kolektiv, moderní technika, velké projekty. Napište nám pár řádků a domluvíme se.">
+<meta property="og:url" content="https://andkovalov.github.io/deltag/kariera.html">
+<meta property="og:image" content="https://andkovalov.github.io/deltag/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#0033FB;
+  --yellow:#FBED51;
+  --ink:#101828;
+  --ink-2:#344054;
+  --g500:#667085;
+  --g300:#D0D5DD;
+  --g100:#F2F4F7;
+  --radius:14px;
+  --header-h:72px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--yellow);color:var(--ink)}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Rajdhani',system-ui,sans-serif;background:#fff;color:var(--ink);
+  font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none}
+section{scroll-margin-top:calc(var(--header-h) + 16px)}
+.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-weight:600;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);
+}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--blue)}
+h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
+.lead{color:var(--ink-2);font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:52ch}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  padding:.95rem 1.9rem;border-radius:10px;
+  font-weight:700;font-size:1.02rem;letter-spacing:.04em;text-transform:uppercase;
+  transition:background .25s,color .25s,transform .15s,border-color .25s;white-space:nowrap;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--yellow);color:var(--ink)}
+.btn-ghost{border:1.5px solid var(--g300);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);background:var(--g100)}
+
+/* header */
+.site-header{
+  position:fixed;inset:0 0 auto 0;z-index:60;height:var(--header-h);display:flex;align-items:center;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--g100);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo-mark{height:40px;width:auto}
+.logo-swoosh{transform-box:fill-box;transform-origin:center;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.logo:hover .logo-swoosh{transform:translate(2px,-3px) rotate(-5deg)}
+.header-actions{display:flex;align-items:center;gap:1.4rem}
+.header-phone{display:none;font-weight:700;align-items:center;gap:.45rem}
+.header-phone:hover{color:var(--blue)}
+@media(min-width:760px){.header-phone{display:inline-flex}}
+.back-link{font-weight:600;color:var(--ink-2)}
+.back-link:hover{color:var(--blue)}
+
+/* hero */
+.hero{
+  padding:calc(var(--header-h) + clamp(3rem,8vh,5.5rem)) 0 clamp(3rem,7vh,5rem);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,0) 60%,#fff 100%),
+    repeating-linear-gradient(0deg,transparent 0 39px,var(--g100) 39px 40px),
+    repeating-linear-gradient(90deg,transparent 0 39px,var(--g100) 39px 40px);
+}
+.hero h1{font-size:clamp(2.4rem,5.6vw,4rem);margin:1.1rem 0 1.2rem;max-width:18ch}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero .lead{margin-bottom:2rem}
+.hero-points{display:flex;flex-wrap:wrap;gap:1rem 2rem;list-style:none;color:var(--ink-2);font-weight:600;margin-top:2.2rem}
+.hero-points li{display:flex;align-items:center;gap:.55rem}
+
+/* sections */
+.section{padding:clamp(3.5rem,9vh,6.5rem) 0}
+.section-head{max-width:720px;margin-bottom:clamp(2rem,5vh,3rem)}
+.h2{font-size:clamp(1.9rem,4vw,2.8rem);margin:.7rem 0 1rem}
+
+/* job cards */
+.jobs{display:grid;gap:1.4rem}
+@media(min-width:900px){.jobs{grid-template-columns:repeat(3,1fr)}}
+.job-card{
+  border:1px solid var(--g300);border-radius:var(--radius);background:#fff;
+  padding:1.8rem 1.6rem;display:flex;flex-direction:column;gap:.9rem;
+}
+.job-card .tag{
+  align-self:flex-start;padding:.3rem .7rem;border-radius:6px;
+  background:var(--g100);color:var(--ink-2);font-weight:700;font-size:.8rem;
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.job-card h3{font-size:1.5rem}
+.job-card ul{list-style:none;display:grid;gap:.55rem;color:var(--ink-2);font-size:1rem}
+.job-card li{display:flex;gap:.6rem;align-items:flex-start}
+.job-card li svg{flex:none;margin-top:.25rem}
+.job-card .btn{margin-top:auto}
+
+/* benefits */
+.benefits{background:var(--g100)}
+.benefit-grid{display:grid;gap:1.2rem}
+@media(min-width:760px){.benefit-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.benefit-grid{grid-template-columns:repeat(4,1fr)}}
+.benefit{
+  background:#fff;border:1px solid var(--g300);border-radius:var(--radius);
+  padding:1.6rem 1.5rem;display:flex;flex-direction:column;gap:.7rem;
+}
+.benefit .ico{width:46px;height:46px;border-radius:10px;background:var(--blue);display:grid;place-items:center}
+.benefit h3{font-size:1.25rem}
+.benefit p{color:var(--ink-2);font-size:.98rem}
+
+/* form */
+.form-card{
+  background:#fff;border:1px solid var(--g300);border-radius:18px;
+  max-width:780px;margin-inline:auto;box-shadow:0 30px 70px -40px rgba(16,24,40,.35);
+  padding:clamp(1.4rem,4vw,2.4rem);
+}
+.lead-form{display:grid;gap:.9rem}
+@media(min-width:640px){.lead-form{grid-template-columns:1fr 1fr}.lead-form .full{grid-column:1/-1}}
+.lead-form label{display:grid;gap:.3rem;font-weight:600;font-size:.92rem;color:var(--ink-2)}
+.lead-form input[type=text],.lead-form input[type=tel],.lead-form input[type=email],
+.lead-form select,.lead-form textarea{
+  font:inherit;padding:.8rem 1rem;border:1.5px solid var(--g300);border-radius:10px;outline:none;
+  transition:border-color .2s,box-shadow .2s;width:100%;background:#fff;color:var(--ink);
+}
+.lead-form textarea{resize:vertical;min-height:120px}
+.lead-form :is(input,select,textarea):focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,51,251,.12)}
+.lead-form label.consent{display:flex;gap:.6rem;align-items:center;font-size:.86rem;color:var(--g500);font-weight:500}
+.consent input{accent-color:var(--blue);width:16px;height:16px;flex:none}
+.consent a{color:var(--blue);text-decoration:underline}
+.form-note{font-size:.85rem;color:var(--g500)}
+.hp-field{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+.form-success{text-align:center;padding:2rem 0 1rem}
+.form-success .ico{width:64px;height:64px;border-radius:50%;background:var(--blue);margin:0 auto 1.2rem;display:grid;place-items:center}
+.form-success p:first-of-type{font-size:1.6rem;font-weight:700}
+.form-success .hint{color:var(--g500);margin-top:.4rem}
+
+/* footer */
+.site-footer{border-top:1px solid var(--g100);padding:2.2rem 0;color:var(--g500);font-size:.92rem}
+.footer-inner{display:flex;flex-wrap:wrap;gap:1rem 2.5rem;justify-content:space-between;align-items:center}
+.footer-inner a:hover{color:var(--blue)}
+
+.reveal{opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="index.html" aria-label="Delta G — úvod">
+      <svg class="logo-mark" viewBox="0 0 72 50" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Delta G">
+        <path d="M66.014 43.2699V40.7589H71.063V48.1809C70.2932 48.8021 69.4037 49.2582 68.45 49.5209C67.4193 49.8362 66.3478 49.9979 65.27 50.0009C64.2449 50.047 63.2226 49.8608 62.2796 49.4563C61.3365 49.0518 60.4971 48.4394 59.824 47.6649C58.419 45.9242 57.7019 43.7283 57.809 41.4939C57.7109 39.2118 58.4955 36.9796 60 35.2609C60.7515 34.4582 61.6682 33.828 62.6867 33.4136C63.7053 32.9993 64.8015 32.8107 65.9 32.8609C67.5429 32.8198 69.1404 33.4026 70.371 34.4919L69.185 36.8549C68.7207 36.4665 68.1975 36.1546 67.635 35.9309C67.0719 35.6591 66.4596 35.5044 65.835 35.4759C65.129 35.4448 64.4255 35.5782 63.7799 35.8656C63.1343 36.153 62.5644 36.5865 62.115 37.1319C61.1487 38.4041 60.6644 39.9775 60.748 41.5729C60.6725 43.0974 61.1489 44.5981 62.09 45.7999C62.5357 46.3237 63.0953 46.7386 63.7261 47.0128C64.3568 47.287 65.0419 47.4133 65.729 47.3819C66.6399 47.4181 67.5315 47.1128 68.229 46.5259V43.2699H66.014ZM46.014 44.0139C45.6703 43.9329 45.3198 43.8841 44.967 43.8679C42.815 43.8679 41.7393 44.6012 41.74 46.0679C41.74 47.1519 42.347 47.6969 43.56 47.6969C45.1987 47.6969 46.0167 46.8472 46.014 45.1479V44.0139ZM48.914 49.8019C48.6075 49.9007 48.287 49.9493 47.965 49.9459C47.7668 49.9448 47.5709 49.9037 47.389 49.8252C47.207 49.7467 47.0428 49.6323 46.906 49.4889C46.6154 49.2217 46.3978 48.8847 46.274 48.5099C45.9601 48.9826 45.5052 49.3444 44.974 49.5439C44.3673 49.809 43.7121 49.9452 43.05 49.9439C41.972 50.0044 40.9112 49.6534 40.082 48.9619C39.7123 48.6047 39.4244 48.1718 39.2379 47.6927C39.0515 47.2137 38.971 46.7 39.002 46.1869C38.9745 45.5561 39.0984 44.928 39.3634 44.3549C39.6283 43.7818 40.0267 43.2805 40.525 42.8929C41.7945 42.0274 43.3166 41.6103 44.85 41.7079C45.233 41.7161 45.6135 41.7732 45.982 41.8779C45.982 40.4526 45.1137 39.7396 43.377 39.7389C42.4895 39.7094 41.6077 39.8921 40.805 40.2719L40.216 38.0719C41.2623 37.5812 42.4087 37.3415 43.564 37.3719C44.2677 37.3113 44.9764 37.3915 45.6488 37.6078C46.3212 37.8242 46.9437 38.1723 47.48 38.6319C48.306 39.4726 48.7203 41.0659 48.723 43.4119V46.0019C48.723 47.6159 49.035 48.6329 49.662 49.0459C49.5162 49.3792 49.2533 49.6474 48.923 49.7999L48.914 49.8019ZM35.132 47.0189C35.3005 47.2128 35.5136 47.3628 35.753 47.4562C35.9923 47.5496 36.2507 47.5834 36.506 47.5549C37.158 47.5566 37.7957 47.3634 38.337 46.9999V49.5999C37.4613 49.8584 36.5495 49.9732 35.637 49.9399C35.142 49.9714 34.6461 49.8959 34.1829 49.7185C33.7198 49.5411 33.3003 49.266 32.953 48.9119C32.2812 48.0963 31.9455 47.0553 32.014 46.0009V39.8739H30.66V37.5999H32.011V35.1359L34.737 34.0939V37.5999H37.946V39.8739H34.737V45.1809C34.6817 45.8193 34.8193 46.4596 35.132 47.0189ZM28 49.9459C26.764 49.9459 26.143 49.0529 26.143 47.2749V33.0869L28.872 32.4109V46.0299C28.872 47.5252 29.3017 48.4146 30.161 48.6979C29.9661 49.0975 29.6562 49.4298 29.2712 49.6521C28.8862 49.8745 28.4435 49.9768 28 49.9459ZM18.6 39.7409C17.0427 39.7409 16.076 40.6259 15.7 42.3959H21.437C21.4463 42.029 21.3778 41.6642 21.236 41.3257C21.0943 40.9871 20.8824 40.6824 20.6144 40.4316C20.3464 40.1808 20.0284 39.9896 19.6812 39.8706C19.334 39.7515 18.9655 39.7073 18.6 39.7409ZM23.942 44.5239H15.6C15.6009 44.9445 15.6865 45.3607 15.8516 45.7476C16.0167 46.1345 16.2579 46.4842 16.561 46.7759C17.2229 47.3362 18.074 47.6224 18.94 47.5759C19.4557 47.6121 19.9733 47.5421 20.4608 47.3701C20.9483 47.198 21.3953 46.9277 21.774 46.5759L22.831 48.7329C21.5852 49.631 20.0625 50.0609 18.531 49.9469C17.7521 49.9861 16.9736 49.8617 16.2457 49.5816C15.5178 49.3016 14.8567 48.8721 14.305 48.3209C13.2087 47.0755 12.6494 45.4471 12.749 43.7909C12.7123 42.9433 12.8445 42.0968 13.1379 41.3008C13.4313 40.5047 13.88 39.7749 14.458 39.1539C14.978 38.586 15.612 38.1343 16.3185 37.8281C17.0249 37.5219 17.7881 37.3681 18.558 37.3769C19.3029 37.3359 20.0482 37.4517 20.7456 37.7168C21.4429 37.982 22.0769 38.3906 22.6064 38.9161C23.136 39.4417 23.5493 40.0726 23.8196 40.7679C24.09 41.4633 24.2114 42.2077 24.176 42.9529C24.1494 43.4829 24.071 44.0091 23.942 44.5239ZM4.136 35.6429C3.83133 35.6429 3.398 35.6706 2.836 35.7259V47.0379C3.294 47.0809 3.788 47.1029 4.321 47.1029C4.97106 47.1302 5.61782 46.9969 6.20406 46.7147C6.79029 46.4324 7.29792 46.0101 7.682 45.4849C8.56914 44.1491 8.99674 42.5605 8.9 40.9599C8.9 37.4152 7.312 35.6429 4.136 35.6429ZM3.547 49.7179H0V33.1569C2.263 33.0719 3.685 33.0339 4.267 33.0339C5.28603 32.9826 6.30455 33.1447 7.25733 33.5097C8.21011 33.8748 9.07615 34.4348 9.8 35.1539C10.4962 35.9103 11.0353 36.7973 11.3862 37.7635C11.737 38.7298 11.8927 39.7561 11.844 40.7829C11.8453 46.7402 9.07967 49.7186 3.547 49.7179Z" fill="#101828"/>
+        <path class="logo-swoosh" d="M54.6806 4.04769C48.3742 6.2642 41.8902 10.1536 35.9145 14.3081C28.0659 19.7648 24.8881 22.6176 10.4395 29.0516C24.1242 23.1215 28.8134 21.5271 37.2887 16.2516C42.6554 12.9111 46.4933 9.26722 51.3101 7.0391C47.862 11.147 46.568 16.1632 46.647 20.3461C46.7259 24.5291 47.6137 29.2744 49.0247 32.4515C44.216 27.7783 41.3639 26.2482 37.2887 25.3273C34.9503 24.7989 32.346 24.6516 29.65 24.7706C24.5124 24.9973 20.7717 26.667 16.7472 27.402C19.8858 27.0133 23.0442 26.8043 26.2067 26.7761C31.8026 26.7761 36.9678 27.6248 41.3639 30.087C48.1596 33.8986 52.9461 41.3817 57.2022 50C53.8245 36.3406 51.6513 28.6546 51.6513 20.858C51.6513 14.7965 53.0392 9.76606 54.6806 4.04663" fill="#0033FB"/>
+        <path d="M33.8223 0C39.6434 0.000157465 45.0247 1.87929 49.3965 5.06152L45.5547 6.78223C42.018 5.03233 38.0355 4.04699 33.8223 4.04688C19.8701 4.04688 8.43701 14.831 7.40332 28.5186C7.35289 27.8507 7.3252 27.1758 7.3252 26.4951C7.32533 11.8622 19.1894 0 33.8223 0ZM54.1406 9.49316C57.9949 14.0945 60.3173 20.0232 60.3174 26.4951C60.3174 27.1758 60.2907 27.8507 60.2402 28.5186C59.7843 22.4814 57.3033 17.0106 53.4775 12.7793L54.1406 9.49316Z" fill="#101828"/>
+      </svg>
+    </a>
+    <div class="header-actions">
+      <a class="header-phone" href="tel:+420604206176">
+        <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" fill="currentColor"/></svg>
+        604 206 176
+      </a>
+      <a class="back-link" href="index.html">← Zpět na web</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Kariéra</span>
+    <h1>Měřte s námi.<br><em>Hledáme posily</em> do týmu.</h1>
+    <p class="lead">Jsme stabilní geodetická firma — od roku 2004 měříme pražské metro,
+    železnice i rodinné domy. Teď rozšiřujeme tým a hledáme lidi, které práce
+    v terénu i nad daty baví.</p>
+    <a class="btn btn-primary" href="#formular">Poslat žádost</a>
+    <ul class="hero-points">
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#0033FB" stroke-width="1.8"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#0033FB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Přátelský kolektiv</li>
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#0033FB" stroke-width="1.8"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#0033FB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Flexibilní úvazek dle dohody</li>
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#0033FB" stroke-width="1.8"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#0033FB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Odpovídající ohodnocení</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="pozice">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Volné pozice</span>
+      <h2 class="h2">Koho právě hledáme</h2>
+      <p class="lead">Vyberte si pozici a pošlete nám pár řádků o sobě.
+      Životopis stačí přiložit později — ozveme se vám do dvou pracovních dnů.</p>
+    </div>
+    <div class="jobs">
+      <article class="job-card reveal">
+        <span class="tag">Plný úvazek</span>
+        <h3>Geodet / geodetka</h3>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#0033FB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>zaměření v oblasti inženýrské geodézie a mapování</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#0033FB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>práce v týmu i samostatně — terén a kancelář</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#0033FB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>moderní přístroje Trimble (GNSS, robotické stanice)</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#0033FB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>velké dopravní stavby i zakázky pro soukromé klienty</li>
+        </ul>
+        <button class="btn btn-ghost apply-btn" data-pozice="Geodet / geodetka">Mám zájem</button>
+      </article>
+      <article class="job-card reveal">
+        <span class="tag">Plný úvazek · částečně home office</span>
+        <h3>Zpracovatel/ka dat</h3>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#0033FB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>zpracování měření v grafických programech</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#0033FB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>znalost MicroStation nebo AutoCAD výhodou</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#0033FB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>možnost práce částečně z domova</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#0033FB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>zaškolíme — důležitá je pečlivost</li>
+        </ul>
+        <button class="btn btn-ghost apply-btn" data-pozice="Zpracovatel/ka dat">Mám zájem</button>
+      </article>
+      <article class="job-card reveal">
+        <span class="tag">Brigáda · pro studenty</span>
+        <h3>Student — brigádník</h3>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#0033FB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>práce v terénu i v kanceláři podle rozvrhu</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#0033FB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>ideální praxe při studiu geodézie</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#0033FB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>flexibilní docházka dle dohody</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#0033FB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>možnost následného přechodu na HPP</li>
+        </ul>
+        <button class="btn btn-ghost apply-btn" data-pozice="Student — brigádník">Mám zájem</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section benefits">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Proč k nám</span>
+      <h2 class="h2">Co u nás dostanete</h2>
+    </div>
+    <div class="benefit-grid">
+      <div class="benefit reveal">
+        <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="7" stroke="#fff" stroke-width="1.8"/></svg></span>
+        <h3>Stabilní zázemí</h3>
+        <p>Na trhu jsme od roku 2004. Práce je u nás dost — metro, železnice i soukromé zakázky.</p>
+      </div>
+      <div class="benefit reveal">
+        <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 20 12 4l8 16" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="15" r="2.4" stroke="#fff" stroke-width="1.8"/></svg></span>
+        <h3>Moderní technika</h3>
+        <p>GNSS aparatury a robotické totální stanice Trimble, digitální nivelace, aktuální software.</p>
+      </div>
+      <div class="benefit reveal">
+        <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <h3>Flexibilita</h3>
+        <p>Úvazek a docházku nastavíme individuálně. U zpracování dat je možný částečný home office.</p>
+      </div>
+      <div class="benefit reveal">
+        <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M16 11a4 4 0 1 0-8 0" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="7" r="4" stroke="#fff" stroke-width="1.8"/><path d="M4 21c.8-3.5 4-6 8-6s7.2 2.5 8 6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <h3>Přátelský kolektiv</h3>
+        <p>Malý tým bez korporátu. Nováčky zaučíme, studentům dáme praxi i šanci zůstat na HPP.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="formular">
+  <div class="wrap">
+    <div class="section-head reveal" style="text-align:center;margin-inline:auto">
+      <span class="eyebrow" style="justify-content:center">Žádost o pozici</span>
+      <h2 class="h2">Napište nám pár řádků</h2>
+      <p class="lead" style="margin-inline:auto">Žádné formality. Stačí kontakt a pozice,
+      o kterou máte zájem — ozveme se do dvou pracovních dnů.</p>
+    </div>
+    <div class="form-card reveal" id="formCard">
+      <form class="lead-form" id="careerForm" novalidate>
+        <label>Jméno a příjmení
+          <input type="text" name="name" autocomplete="name" required placeholder="Jan Novák">
+        </label>
+        <label>Telefon
+          <input type="tel" name="phone" autocomplete="tel" required placeholder="+420 …" pattern="[0-9+ ]{9,16}">
+        </label>
+        <label class="full">E-mail
+          <input type="email" name="email" autocomplete="email" required placeholder="jan.novak@email.cz">
+        </label>
+        <label class="full">Pozice
+          <select name="position" required>
+            <option value="" disabled selected>Vyberte pozici…</option>
+            <option>Geodet / geodetka</option>
+            <option>Zpracovatel/ka dat</option>
+            <option>Student — brigádník</option>
+            <option>Jiná / napíšu do zprávy</option>
+          </select>
+        </label>
+        <label class="full">Pár slov o vás <span style="color:var(--g500);font-weight:500">(nepovinné)</span>
+          <textarea name="message" rows="4" placeholder="Zkušenosti, škola, odkaz na CV nebo LinkedIn…"></textarea>
+        </label>
+        <div class="hp-field" aria-hidden="true">
+          <input type="text" name="company" tabindex="-1" autocomplete="off">
+        </div>
+        <label class="consent full">
+          <input type="checkbox" name="gdpr" required>
+          <span>Souhlasím se zpracováním osobních údajů za účelem výběrového řízení.
+          Více v <a href="zasady-ochrany-osobnich-udaju.html" target="_blank">zásadách ochrany osobních údajů</a>.</span>
+        </label>
+        <div class="full" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+          <button type="submit" class="btn btn-primary">Odeslat žádost</button>
+          <span class="form-note">Nebo rovnou napište na <a href="mailto:posta@deltag.cz" style="color:var(--blue);font-weight:700">posta@deltag.cz</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>© 2004–2026 Delta G s.r.o. · IČO 02362538 · Praha 10</span>
+    <a href="index.html">Hlavní stránka</a>
+    <a href="zasady-ochrany-osobnich-udaju.html">Zásady ochrany osobních údajů</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+'use strict';
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasGsap = typeof gsap !== 'undefined';
+if (hasGsap && typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
+
+if (hasGsap && !prefersReduced) {
+  ScrollTrigger.batch('.reveal', {
+    start: 'top 88%',
+    once: true,
+    onEnter: els => gsap.to(els, {opacity:1, y:0, duration:.8, stagger:.12, ease:'power3.out'})
+  });
+} else {
+  document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+}
+
+// "Mám zájem" → předvyplní pozici a sroluje na formulář
+document.querySelectorAll('.apply-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sel = document.querySelector('#careerForm select[name=position]');
+    sel.value = btn.dataset.pozice;
+    document.getElementById('formular').scrollIntoView({behavior: prefersReduced ? 'auto' : 'smooth'});
+  });
+});
+
+// POST endpoint pro žádosti (Formspree / Make / vlastní API). Prázdné = demo režim.
+const FORM_ENDPOINT = '';
+
+document.getElementById('careerForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target;
+  if (!form.reportValidity()) return;
+  if (form.company.value) return; // honeypot
+  const btn = form.querySelector('[type=submit]');
+  btn.disabled = true; btn.textContent = 'Odesílám…';
+  const payload = {
+    name: form.name.value.trim(),
+    phone: form.phone.value.trim(),
+    email: form.email.value.trim(),
+    position: form.position.value,
+    message: form.message.value.trim(),
+    source: 'kariéra',
+    page: location.href
+  };
+  try {
+    if (FORM_ENDPOINT) {
+      await fetch(FORM_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)});
+    } else {
+      console.info('[Delta G] Žádost (demo režim, nastavte FORM_ENDPOINT):', payload);
+      await new Promise(r => setTimeout(r, 600));
+    }
+    document.getElementById('formCard').innerHTML = `
+      <div class="form-success">
+        <span class="ico">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <p>Děkujeme, žádost dorazila!</p>
+        <p class="hint">Ozveme se vám do dvou pracovních dnů.<br>
+        Spěcháte? Volejte <a href="tel:+420604206176" style="color:var(--blue);font-weight:700">604 206 176</a>.</p>
+      </div>`;
+  } catch (err) {
+    btn.disabled = false; btn.textContent = 'Odeslat žádost';
+    alert('Odeslání se nepovedlo. Napište nám prosím na posta@deltag.cz.');
+  }
+});
+</script>
+</body>
+</html>
