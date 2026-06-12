@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geodet pro Prahu a Středočeský kraj | Delta G — geometrické plány, vytyčení hranic</title>
+<meta name="description" content="Geodetické služby pro soukromé klienty: rozdělení pozemku, vytyčení hranic, zaměření pro projekt domu, geometrický plán ke kolaudaci. Pevná cena, vyřízení katastru za vás. Praha a Středočeský kraj.">
+
+<!-- Rajdhani -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Delta G s.r.o.",
+  "description": "Geodetické služby pro soukromé klienty v Praze a Středočeském kraji.",
+  "telephone": "+420604206176",
+  "email": "posta@deltag.cz",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Polygrafická 262/3",
+    "addressLocality": "Praha 10",
+    "postalCode": "108 00",
+    "addressCountry": "CZ"
+  },
+  "foundingDate": "2004",
+  "areaServed": ["Praha", "Středočeský kraj"]
+}
+</script>
+
+<style>
+:root{
+  --blue:#0033FB;
+  --yellow:#FBED51;
+  --bg:#FFFFFF;
+  --ink:#101828;
+  --ink-2:#344054;
+  --g500:#667085;
+  --g300:#D0D5DD;
+  --g100:#F2F4F7;
+  --radius:14px;
+  --header-h:72px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Rajdhani',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:18px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none}
+section{scroll-margin-top:calc(var(--header-h) + 16px)}
+
+.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}
+
+/* ---------- typography ---------- */
+h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-weight:600;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--blue);
+}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--blue)}
+.h2{font-size:clamp(2rem,4.6vw,3.1rem);margin:.7rem 0 1rem}
+.lead{color:var(--ink-2);font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:46ch}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  padding:.95rem 1.9rem;border-radius:10px;
+  font-weight:700;font-size:1.02rem;letter-spacing:.04em;text-transform:uppercase;
+  transition:background .25s ease,color .25s ease,transform .15s ease,box-shadow .25s ease;
+  white-space:nowrap;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--yellow);color:var(--ink)}
+.btn-ghost{border:1.5px solid var(--g300);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);background:var(--g100)}
+
+/* ---------- header ---------- */
+.site-header{
+  position:fixed;inset:0 0 auto 0;z-index:60;height:var(--header-h);
+  display:flex;align-items:center;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,box-shadow .3s;
+}
+.site-header.scrolled{border-color:var(--g100);box-shadow:0 8px 30px -18px rgba(16,24,40,.25)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{display:flex;align-items:center;flex:none}
+.logo-mark{height:40px;width:auto;flex:none}
+.header-actions{display:flex;align-items:center;gap:1.4rem}
+.main-nav{display:none;gap:2rem;font-weight:600;color:var(--ink-2)}
+.main-nav a{padding:.4rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.main-nav a:hover{color:var(--blue);border-color:var(--yellow)}
+.header-cta{display:none}
+.header-phone{display:none;font-weight:700;color:var(--ink);align-items:center;gap:.45rem}
+.header-phone:hover{color:var(--blue)}
+.burger{display:flex;flex-direction:column;gap:5px;padding:.6rem}
+.burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{
+  position:fixed;top:var(--header-h);left:0;right:0;z-index:55;
+  background:#fff;border-bottom:1px solid var(--g100);
+  display:grid;gap:.2rem;padding:1rem 1.4rem 1.4rem;
+  transform:translateY(-110%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 20px 40px -20px rgba(16,24,40,.25);
+}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-menu a{padding:.7rem 0;font-weight:600;font-size:1.15rem;border-bottom:1px solid var(--g100)}
+.mobile-menu .btn{margin-top:.9rem}
+
+@media(min-width:920px){
+  .main-nav,.header-cta{display:inline-flex}
+  .burger,.mobile-menu{display:none}
+}
+@media(min-width:1140px){
+  .header-phone{display:inline-flex}
+}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;
+  padding:calc(var(--header-h) + clamp(3rem,9vh,6.5rem)) 0 clamp(3.5rem,9vh,7rem);
+  overflow:hidden;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+}
+.hero-grid-bg svg{width:100%;height:100%}
+.hero-inner{position:relative;z-index:1;max-width:820px;margin-inline:auto;text-align:center}
+.hero h1{font-size:clamp(2.5rem,6.6vw,4.6rem);margin:1.1rem 0 1.2rem}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero .lead{margin-bottom:2.2rem;margin-inline:auto}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:2.4rem;justify-content:center}
+.hero-points{display:flex;flex-wrap:wrap;gap:1rem 2rem;list-style:none;color:var(--ink-2);font-weight:600;justify-content:center}
+.hero-points li{display:flex;align-items:center;gap:.55rem}
+.hero-points svg{flex:none}
+.coord-readout{
+  position:absolute;right:2rem;bottom:2rem;z-index:1;
+  display:none;flex-direction:column;gap:.15rem;
+  font-weight:600;font-size:.85rem;letter-spacing:.12em;color:var(--g500);
+  text-align:right;
+}
+.coord-readout b{color:var(--blue);font-size:1rem}
+@media(min-width:920px){.coord-readout{display:flex}}
+
+/* ---------- trust strip ---------- */
+.strip{border-block:1px solid var(--g100);background:#fff}
+.strip-inner{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem 1.2rem;
+  padding:1.8rem 0;
+}
+.strip-item{display:flex;flex-direction:column;gap:.3rem;align-items:center;text-align:center}
+.strip-item b{font-size:clamp(1.9rem,3vw,2.5rem);color:var(--blue);line-height:1;white-space:nowrap}
+.strip-item span{color:var(--g500);font-weight:600;font-size:.95rem;line-height:1.3}
+@media(min-width:760px){.strip-inner{grid-template-columns:repeat(4,1fr);gap:2rem}}
+
+/* ---------- sections ---------- */
+.section{padding:clamp(4rem,10vh,7.5rem) 0}
+.section-head{max-width:720px;margin-bottom:clamp(2.2rem,5vh,3.6rem)}
+
+/* ---------- services / scroll story ---------- */
+.svc-layout{display:grid;grid-template-columns:1fr;gap:2.5rem}
+.svc-figure{order:-1}
+.svc-figure-inner{
+  background:var(--g100);border:1px solid var(--g300);border-radius:var(--radius);
+  padding:clamp(1rem,3vw,2rem);
+}
+.svc-figure-caption{
+  display:flex;justify-content:space-between;gap:1rem;
+  margin-top:.9rem;font-size:.8rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--g500);
+}
+.svc-steps{display:grid;gap:1.4rem}
+.svc-step{
+  border:1px solid var(--g300);border-radius:var(--radius);
+  padding:1.6rem 1.5rem;background:#fff;
+  transition:border-color .3s,box-shadow .3s;
+}
+.svc-step.is-active{border-color:var(--blue);box-shadow:0 14px 40px -22px rgba(0,51,251,.4)}
+.svc-step .num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:2.1rem;height:2.1rem;border-radius:8px;margin-bottom:1rem;
+  background:var(--blue);color:#fff;font-weight:700;
+}
+.svc-step.is-active .num{background:var(--yellow);color:var(--ink)}
+.svc-step h3{font-size:1.45rem;margin-bottom:.45rem}
+.svc-step p{color:var(--ink-2)}
+.svc-step .svc-price{
+  display:inline-block;margin-top:.9rem;padding:.25rem .7rem;border-radius:6px;
+  background:var(--g100);color:var(--ink-2);font-weight:700;font-size:.9rem;letter-spacing:.04em;
+}
+@media(min-width:1024px){
+  .svc-layout{grid-template-columns:1fr 1.05fr;gap:4rem;align-items:start}
+  .svc-figure{order:2;position:sticky;top:calc(var(--header-h) + 2rem)}
+  .svc-steps{gap:2rem}
+  .svc-step{min-height:34vh;display:flex;flex-direction:column;justify-content:center}
+}
+
+/* plot svg */
+#plot .draw{fill:none;stroke-linecap:round}
+#plot text{font-family:'Rajdhani',sans-serif;font-weight:600}
+#plot .dim{font-size:15px;fill:var(--ink-2);letter-spacing:.04em}
+#plot .dim-blue{fill:var(--blue)}
+.pulse-pt{transform-origin:center;transform-box:fill-box;animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{
+  0%{transform:scale(.4);opacity:.9}
+  70%{transform:scale(2.6);opacity:0}
+  100%{transform:scale(2.6);opacity:0}
+}
+
+/* ---------- why us ---------- */
+.why{background:var(--g100)}
+.why-grid{display:grid;grid-template-columns:1fr;gap:1.2rem}
+.why-card{
+  background:#fff;border:1px solid var(--g300);border-radius:var(--radius);
+  padding:1.8rem 1.6rem;display:flex;flex-direction:column;gap:.8rem;
+}
+.why-card .ico{
+  width:48px;height:48px;border-radius:10px;background:var(--blue);
+  display:grid;place-items:center;
+}
+.why-card h3{font-size:1.35rem}
+.why-card p{color:var(--ink-2);font-size:1rem}
+@media(min-width:760px){.why-grid{grid-template-columns:repeat(2,1fr);gap:1.6rem}}
+@media(min-width:1100px){.why-grid{grid-template-columns:repeat(4,1fr)}}
+
+/* ---------- process ---------- */
+#postup{padding-block:clamp(6rem,16vh,11rem)}
+.steps-line{display:grid;gap:1.6rem;counter-reset:krok}
+.step-item{position:relative;padding-left:4rem}
+.step-item::before{
+  counter-increment:krok;content:"0" counter(krok);
+  position:absolute;left:0;top:0;
+  font-weight:700;font-size:1.7rem;line-height:1;color:var(--blue);
+}
+.step-item::after{
+  content:"";position:absolute;left:.8rem;top:2.5rem;bottom:-1.4rem;width:1px;background:var(--g300);
+}
+.step-item:last-child::after{display:none}
+.step-item h3{font-size:1.3rem;margin-bottom:.25rem}
+.step-item p{color:var(--ink-2);font-size:1rem}
+@media(min-width:900px){
+  .steps-line{grid-template-columns:repeat(4,1fr);gap:2rem}
+  .step-item{padding-left:0;padding-top:3.2rem}
+  .step-item::before{top:0;left:0}
+  .step-item::after{left:3.4rem;right:-1.6rem;top:.8rem;bottom:auto;width:auto;height:1px}
+}
+
+/* ---------- tech / scanner ---------- */
+.tech{background:var(--g100);overflow:hidden}
+.tech-layout{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center}
+.tech-facts{list-style:none;display:grid;gap:1.1rem;margin-top:2rem}
+.tech-facts li{display:flex;gap:.9rem;align-items:flex-start;color:var(--ink-2);font-size:1.02rem}
+.tech-facts b{color:var(--ink)}
+.tech-facts .dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--blue);margin-top:.5rem}
+.lidar-box{
+  position:relative;height:min(440px,68vw);border-radius:var(--radius);
+  border:1px solid var(--g300);background:#fff;overflow:hidden;
+}
+.lidar-box svg{position:absolute;inset:0;width:100%;height:100%}
+.lidar-hud{
+  position:absolute;left:1.1rem;top:1rem;z-index:2;
+  font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--g500);
+}
+.lidar-hud b{color:var(--blue)}
+.rec-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--blue);margin-right:.3rem;animation:rec 1.4s ease-in-out infinite}
+@keyframes rec{0%,100%{opacity:1}50%{opacity:.2}}
+.scan-readouts{
+  position:absolute;left:1.1rem;right:1.1rem;bottom:1rem;z-index:2;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;
+}
+.scan-readouts div{display:flex;flex-direction:column;gap:.05rem}
+.scan-readouts span{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--g500);font-weight:600}
+.scan-readouts b{color:var(--ink);font-size:clamp(.92rem,1.4vw,1.1rem);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.scan-readouts b.hl{color:var(--blue)}
+@media(min-width:1024px){.tech-layout{grid-template-columns:1fr 1.1fr;gap:4rem}}
+
+/* ---------- partners ---------- */
+.partners .section-head{text-align:center;margin-inline:auto}
+.partners .eyebrow{justify-content:center}
+.partners .lead{margin-inline:auto}
+@media(min-width:860px){
+  .partners .lead{max-width:none}
+  .partners .lead .line{display:block}
+  .hero .lead{max-width:none}
+  .hero .lead .line{display:block}
+}
+.logo-marquee{
+  overflow:hidden;margin-top:clamp(2rem,5vh,3rem);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+}
+.logo-track{display:flex;width:max-content;animation:marquee 40s linear infinite}
+.logo-set{display:flex;align-items:center;gap:clamp(3rem,7vw,5.5rem);padding-right:clamp(3rem,7vw,5.5rem)}
+.logo-set img{
+  height:42px;width:auto;max-width:170px;object-fit:contain;
+  filter:grayscale(1);opacity:.55;transition:filter .3s,opacity .3s;
+}
+.logo-set img:hover{filter:none;opacity:1}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){
+  .logo-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}
+  .logo-set{flex-wrap:wrap;justify-content:center;padding-right:0}
+  .logo-set + .logo-set{display:none}
+}
+
+/* ---------- quiz ---------- */
+.quiz{background:var(--g100)}
+.quiz-card{
+  background:#fff;border:1px solid var(--g300);border-radius:18px;
+  max-width:780px;margin-inline:auto;overflow:hidden;
+  box-shadow:0 30px 70px -40px rgba(16,24,40,.35);
+}
+.quiz-head{
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:1.2rem 1.5rem;border-bottom:1px solid var(--g100);
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;color:var(--g500);
+}
+.quiz-progress{flex:1;height:4px;background:var(--g100);border-radius:99px;overflow:hidden;max-width:220px}
+.quiz-progress i{display:block;height:100%;width:0;background:var(--blue);transition:width .4s ease}
+.quiz-body{padding:clamp(1.4rem,4vw,2.4rem)}
+.quiz-q{font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:700;margin-bottom:.4rem}
+.quiz-hint{color:var(--g500);margin-bottom:1.6rem;font-size:1rem}
+.quiz-options{display:grid;gap:.8rem}
+@media(min-width:640px){.quiz-options{grid-template-columns:repeat(2,1fr)}}
+.quiz-opt{
+  text-align:left;border:1.5px solid var(--g300);border-radius:12px;
+  padding:1rem 1.1rem;display:flex;gap:.85rem;align-items:flex-start;
+  transition:border-color .2s,background .2s;font-weight:600;color:var(--ink);
+}
+.quiz-opt small{display:block;color:var(--g500);font-weight:500;font-size:.88rem;line-height:1.35;margin-top:.1rem}
+.quiz-opt:hover{border-color:var(--blue)}
+.quiz-opt.selected{border-color:var(--blue);background:rgba(0,51,251,.04)}
+.quiz-opt .radio{
+  flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--g300);margin-top:.15rem;
+  display:grid;place-items:center;transition:border-color .2s;
+}
+.quiz-opt.selected .radio{border-color:var(--blue)}
+.quiz-opt.selected .radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--blue)}
+.quiz-sub{margin:1.6rem 0 .7rem;font-weight:700;font-size:1.05rem}
+.quiz-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:2rem}
+.quiz-back{color:var(--g500);font-weight:600;display:inline-flex;align-items:center;gap:.4rem;padding:.6rem .4rem}
+.quiz-back:hover{color:var(--ink)}
+.quiz-back[disabled]{visibility:hidden}
+
+.quiz-result-price{
+  background:var(--g100);border-radius:12px;padding:1.4rem 1.5rem;margin:1.4rem 0 1.8rem;
+  display:flex;flex-direction:column;gap:.2rem;
+}
+.quiz-result-price b{font-size:clamp(1.9rem,4vw,2.6rem);color:var(--blue);line-height:1.1}
+.quiz-result-price span{color:var(--g500);font-size:.95rem;font-weight:600}
+.lead-form{display:grid;gap:.9rem}
+@media(min-width:640px){
+  .lead-form{grid-template-columns:1fr 1fr}
+  .lead-form .full{grid-column:1/-1}
+}
+.lead-form label{display:grid;gap:.3rem;font-weight:600;font-size:.92rem;color:var(--ink-2)}
+.lead-form input[type=text],.lead-form input[type=tel],.lead-form input[type=email],.lead-form textarea{
+  font:inherit;padding:.8rem 1rem;border:1.5px solid var(--g300);border-radius:10px;outline:none;
+  transition:border-color .2s,box-shadow .2s;width:100%;
+}
+.lead-form textarea{resize:vertical;min-height:110px}
+.lead-form input:focus,.lead-form textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,51,251,.12)}
+.calc-teaser{
+  margin-top:1.8rem;padding-top:1.6rem;border-top:1px solid var(--g100);
+  display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;
+}
+.calc-teaser p{font-size:.98rem;color:var(--g500);max-width:42ch}
+.calc-teaser p b{color:var(--ink)}
+
+/* ---------- quiz modal ---------- */
+.modal{
+  position:fixed;inset:0;z-index:80;display:none;
+  align-items:flex-start;justify-content:center;overflow-y:auto;
+  padding:clamp(1rem,4vh,3rem) 1rem;
+  background:rgba(16,24,40,.55);backdrop-filter:blur(4px);
+}
+.modal.open{display:flex}
+.modal .quiz-card{position:relative;width:100%;max-width:780px;margin:auto;box-shadow:0 40px 90px -30px rgba(16,24,40,.6)}
+.modal .quiz-head{padding-right:4rem}
+.modal-close{
+  position:absolute;top:.8rem;right:.8rem;z-index:3;
+  width:40px;height:40px;border-radius:50%;background:var(--g100);
+  display:grid;place-items:center;color:var(--ink-2);font-size:1rem;
+  transition:background .2s,color .2s;
+}
+.modal-close:hover{background:var(--yellow);color:var(--ink)}
+body.modal-open{overflow:hidden}
+.lead-form label.consent{display:flex;gap:.6rem;align-items:flex-start;font-size:.86rem;color:var(--g500);font-weight:500}
+.consent input{margin-top:.3rem;accent-color:var(--blue);width:16px;height:16px;flex:none}
+.form-note{font-size:.85rem;color:var(--g500)}
+.quiz-success{text-align:center;padding:2rem 0 1rem}
+.quiz-success .ico{
+  width:64px;height:64px;border-radius:50%;background:var(--blue);margin:0 auto 1.2rem;
+  display:grid;place-items:center;
+}
+.hp-field{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+
+/* ---------- contact / footer ---------- */
+.contact-grid{display:grid;gap:2.5rem;grid-template-columns:1fr}
+.contact-list{display:grid;gap:1.3rem;list-style:none}
+.contact-list a{font-weight:700;font-size:1.25rem;color:var(--ink)}
+.contact-list a:hover{color:var(--blue)}
+.contact-list .label{display:block;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g500);font-weight:600;margin-bottom:.15rem}
+.uozi-badge{
+  display:flex;gap:1rem;align-items:flex-start;margin-top:2rem;
+  border:1px solid var(--g300);border-left:4px solid var(--blue);border-radius:10px;
+  padding:1.1rem 1.2rem;background:var(--g100);
+}
+.uozi-badge p{font-size:.95rem;color:var(--ink-2)}
+.uozi-badge b{color:var(--ink)}
+.map-box{
+  border-radius:var(--radius);overflow:hidden;border:1px solid var(--g300);min-height:300px;
+  background:var(--g100);display:grid;place-items:center;color:var(--g500);font-weight:600;
+}
+.map-box iframe{width:100%;height:100%;min-height:340px;border:0}
+@media(min-width:900px){.contact-grid{grid-template-columns:1fr 1.1fr;gap:4rem}}
+
+.site-footer{border-top:1px solid var(--g100);padding:2.2rem 0;color:var(--g500);font-size:.92rem}
+.footer-inner{display:flex;flex-wrap:wrap;gap:1rem 2.5rem;justify-content:space-between;align-items:center}
+.footer-inner a:hover{color:var(--blue)}
+
+/* ---------- cookie banner ---------- */
+.cookie-banner{
+  position:fixed;z-index:90;left:1rem;right:1rem;bottom:1rem;
+  background:#fff;border:1px solid var(--g300);border-radius:14px;
+  box-shadow:0 30px 60px -25px rgba(16,24,40,.4);
+  padding:1.3rem 1.4rem;max-width:560px;
+  display:none;flex-direction:column;gap:1rem;
+}
+.cookie-banner.visible{display:flex}
+.cookie-banner h3{font-size:1.15rem}
+.cookie-banner p{font-size:.9rem;color:var(--ink-2)}
+.cookie-banner p a{color:var(--blue);text-decoration:underline}
+.cookie-actions{display:flex;flex-wrap:wrap;gap:.7rem}
+.cookie-actions .btn{padding:.65rem 1.3rem;font-size:.88rem}
+@media(min-width:640px){.cookie-banner{left:auto;right:1.5rem;bottom:1.5rem}}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none}
+  .pulse-pt{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header" id="header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#" aria-label="Delta G — úvod">
+      <svg class="logo-mark" viewBox="0 0 71.063 50" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Delta G">
+        <path d="M33.546,2.3c-12.615,0-22.9,10.671-22.9,23.754A24.389,24.389,0,0,0,12.1,34.39a12.59,12.59,0,0,1-2.617-8.333C9.485,11.7,19.707,0,33.546,0a24.4,24.4,0,0,1,15.1,5.258q-1.1.577-2.172,1.212A22.2,22.2,0,0,0,33.546,2.3ZM54.9,39.758c1.2-5.106,2.011-8.257,2.011-13.7a24.644,24.644,0,0,0-3.434-11.681c.168-1.16.336-2.319.48-3.483A26.758,26.758,0,0,1,54.9,39.758ZM66.014,43.27V40.759h5.049v7.422a7.209,7.209,0,0,1-2.613,1.34,10.974,10.974,0,0,1-3.18.48,6.81,6.81,0,0,1-5.446-2.336,9.129,9.129,0,0,1-2.015-6.171A8.884,8.884,0,0,1,60,35.261a7.607,7.607,0,0,1,5.9-2.4,6.5,6.5,0,0,1,4.471,1.631l-1.186,2.363a5.7,5.7,0,0,0-1.55-.924,4.626,4.626,0,0,0-1.8-.455,4.56,4.56,0,0,0-3.72,1.656,6.758,6.758,0,0,0-1.367,4.441A6.347,6.347,0,0,0,62.09,45.8a4.508,4.508,0,0,0,3.639,1.582,3.657,3.657,0,0,0,2.5-.856V43.27Zm-20,.744a5.707,5.707,0,0,0-1.047-.146q-3.228,0-3.227,2.2c0,1.084.607,1.629,1.82,1.629q2.458,0,2.454-2.549Zm2.9,5.788a2.989,2.989,0,0,1-.949.144,1.475,1.475,0,0,1-1.059-.457,2.317,2.317,0,0,1-.632-.979,2.7,2.7,0,0,1-1.3,1.034,4.783,4.783,0,0,1-1.924.4,4.261,4.261,0,0,1-2.968-.982,3.56,3.56,0,0,1-1.08-2.775,3.955,3.955,0,0,1,1.523-3.294,6.9,6.9,0,0,1,4.325-1.185,4.493,4.493,0,0,1,1.132.17q0-2.138-2.605-2.139a5.58,5.58,0,0,0-2.572.533l-.589-2.2a7.425,7.425,0,0,1,3.348-.7,5.317,5.317,0,0,1,3.916,1.26q1.239,1.261,1.243,4.78v2.59c0,1.614.312,2.631.939,3.044A1.487,1.487,0,0,1,48.923,49.8ZM35.132,47.019a1.587,1.587,0,0,0,1.374.536A3.269,3.269,0,0,0,38.337,47v2.6a8.449,8.449,0,0,1-2.7.34,3.452,3.452,0,0,1-2.684-1.028,4.155,4.155,0,0,1-.939-2.911V39.874H30.66V37.6h1.351V35.136l2.726-1.042V37.6h3.209v2.274H34.737v5.307A3.2,3.2,0,0,0,35.132,47.019ZM28,49.946c-1.236,0-1.857-.893-1.857-2.671V33.087l2.729-.676V46.03q0,2.243,1.289,2.668A2.232,2.232,0,0,1,28,49.946ZM18.6,39.741q-2.336,0-2.9,2.655h5.737A2.6,2.6,0,0,0,18.6,39.741Zm5.342,4.783H15.6a3.135,3.135,0,0,0,.961,2.252,3.4,3.4,0,0,0,2.379.8,3.775,3.775,0,0,0,2.834-1l1.057,2.157a6.525,6.525,0,0,1-4.3,1.214,5.582,5.582,0,0,1-4.226-1.626,6.285,6.285,0,0,1-1.556-4.53,6.4,6.4,0,0,1,1.709-4.637,5.475,5.475,0,0,1,4.1-1.777,5.331,5.331,0,0,1,5.618,5.576A8.147,8.147,0,0,1,23.942,44.524ZM4.136,35.643q-.457,0-1.3.083V47.038c.458.043.952.065,1.485.065a3.958,3.958,0,0,0,3.361-1.618A7.375,7.375,0,0,0,8.9,40.96Q8.9,35.643,4.136,35.643ZM3.547,49.718H0V33.157c2.263-.085,3.685-.123,4.267-.123A7.328,7.328,0,0,1,9.8,35.154a7.769,7.769,0,0,1,2.044,5.629Q11.846,49.719,3.547,49.718Z" fill="#101828"/>
+        <path d="M103.872,23.575c-5.606,2.255-9.566,5.157-13.72,8.37-5.526,4.272-14.364,9.135-27.984,15.2,12.9-5.59,21.583-9.977,27.2-13.775A77.484,77.484,0,0,1,102.287,25.8c-.925,3.747-2.311,7.4-3.223,11.364-.977,4.252-.952,9.266-.213,15.152-3.607-3.115-7.635-6-12.525-7.166a29.025,29.025,0,0,0-6.719-.712A71.6,71.6,0,0,0,68.114,45.59,78.206,78.206,0,0,1,77.031,45c5.275,0,10.144.8,14.288,3.121,6.406,3.593,10.918,10.647,14.93,18.771-3.184-12.876-4.544-22.161-3.831-28.841.555-5.2,1.647-9.669,1.454-14.477" transform="translate(-50.663 -19.177)" fill="#0033FB"/>
+      </svg>
+    </a>
+    <nav class="main-nav" aria-label="Hlavní navigace">
+      <a href="#sluzby">Služby</a>
+      <a href="#proc">Proč my</a>
+      <a href="#technologie">Technologie</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="header-actions">
+      <a class="header-phone" href="tel:+420604206176">
+        <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" fill="currentColor"/></svg>
+        604 206 176
+      </a>
+      <a class="btn btn-primary header-cta" href="#poptavka">Nezávazná poptávka</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobilní navigace">
+  <a href="#sluzby">Služby</a>
+  <a href="#proc">Proč my</a>
+  <a href="#technologie">Technologie</a>
+  <a href="#kontakt">Kontakt</a>
+  <a href="tel:+420604206176">Zavolat: 604 206 176</a>
+  <a class="btn btn-primary" href="#poptavka">Nezávazná poptávka</a>
+</nav>
+
+<main>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="hero">
+  <div class="hero-grid-bg" id="heroGridBg" aria-hidden="true">
+    <svg id="heroGrid" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="gridSm" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M40 0H0V40" fill="none" stroke="#F2F4F7" stroke-width="1"/>
+        </pattern>
+        <pattern id="gridLg" width="200" height="200" patternUnits="userSpaceOnUse">
+          <path d="M200 0H0V200" fill="none" stroke="#E4E7EC" stroke-width="1"/>
+        </pattern>
+        <linearGradient id="fadeWhite" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+          <stop offset="1" stop-color="#fff" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#gridSm)"/>
+      <rect width="100%" height="100%" fill="url(#gridLg)"/>
+      <g id="axes">
+        <line id="axisX" x1="0" y1="0" x2="100%" y2="0" stroke="#D0D5DD" stroke-width="1.5"/>
+        <line id="axisY" x1="0" y1="0" x2="0" y2="100%" stroke="#D0D5DD" stroke-width="1.5"/>
+      </g>
+      <g id="crosshair" opacity="0">
+        <line id="chV" y1="0" y2="100%" stroke="#0033FB" stroke-width="1" stroke-dasharray="6 6" opacity=".45"/>
+        <line id="chH" x1="0" x2="100%" stroke="#0033FB" stroke-width="1" stroke-dasharray="6 6" opacity=".45"/>
+        <circle id="chC1" r="26" fill="none" stroke="#0033FB" stroke-width="1" opacity=".5"/>
+        <circle id="chC2" r="5" fill="none" stroke="#0033FB" stroke-width="1.6"/>
+        <circle id="chDot" r="1.8" fill="#0033FB"/>
+      </g>
+      <rect y="55%" width="100%" height="45%" fill="url(#fadeWhite)"/>
+    </svg>
+  </div>
+
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Geodetické služby · Praha a Středočeský kraj</span>
+    <h1>Zaměříme. Vyřídíme.<br>Do katastru <em>bez starostí</em>.</h1>
+    <p class="lead">
+      <span class="line">Kompletní geodetické služby pro majitele pozemků a rodinných domů.</span>
+      <span class="line">Pevná cena ve smlouvě, jasné termíny a dokumenty zpracované tak,</span>
+      <span class="line">aby je katastrální úřad přijal napoprvé.</span>
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#poptavka">Nezávazná poptávka</a>
+      <button type="button" class="btn btn-ghost open-quiz">Spočítat orientační cenu</button>
+    </div>
+    <ul class="hero-points">
+      <li>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#0033FB" stroke-width="1.8"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#0033FB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Na trhu od roku 2004
+      </li>
+      <li>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#0033FB" stroke-width="1.8"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#0033FB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Dokumenty ověřuje ÚOZI
+      </li>
+      <li>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#0033FB" stroke-width="1.8"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#0033FB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Kalkulace do 24 hodin
+      </li>
+    </ul>
+  </div>
+
+  <div class="coord-readout" aria-hidden="true">
+    <b id="coordLat">50°05′14.3″ N</b>
+    <b id="coordLng">14°25′37.8″ E</b>
+    <span id="coordHz">HZ 398.2150 g</span>
+  </div>
+</section>
+
+<!-- ===================== TRUST STRIP ===================== -->
+<div class="strip">
+  <div class="wrap strip-inner">
+    <div class="strip-item reveal"><b>20+</b><span>let zkušeností<br>v geodézii</span></div>
+    <div class="strip-item reveal"><b>1000+</b><span>dokončených<br>zakázek</span></div>
+    <div class="strip-item reveal"><b>24 h</b><span>do zaslání<br>cenové nabídky</span></div>
+    <div class="strip-item reveal"><b>100 %</b><span>cen garantováno<br>ve smlouvě</span></div>
+  </div>
+</div>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="section" id="sluzby">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">S čím vám pomůžeme</span>
+      <h2 class="h2">Čtyři situace, které za vás vyřešíme</h2>
+      <p class="lead">Žádné odborné termíny navíc. Řekněte nám, co potřebujete — měření v terénu,
+      výkresy i jednání s úřady už jsou naše práce.</p>
+    </div>
+
+    <div class="svc-layout">
+      <div class="svc-steps" id="svcSteps">
+        <article class="svc-step" data-step="0">
+          <span class="num">1</span>
+          <h3>Rozdělení nebo scelení pozemku</h3>
+          <p>Chcete prodat část zahrady, oddělit parcelu pro děti nebo naopak sloučit
+          pozemky do jednoho? Vyhotovíme geometrický plán, zajistíme souhlas stavebního
+          úřadu s dělením a připravíme vše pro zápis do katastru.</p>
+          <span class="svc-price">orientačně od 9 000 Kč</span>
+        </article>
+        <article class="svc-step" data-step="1">
+          <span class="num">2</span>
+          <h3>Vytyčení hranic pozemku</h3>
+          <p>Sousedův plot stojí možná na vašem? Vytyčíme přesné hranice přímo v terénu,
+          stabilizujeme lomové body a předáme vám úřední vytyčovací protokol.
+          Jistota místo dohadů — a pevný podklad pro případný spor.</p>
+          <span class="svc-price">orientačně od 7 000 Kč</span>
+        </article>
+        <article class="svc-step" data-step="2">
+          <span class="num">3</span>
+          <h3>Zaměření pozemku pro projekt domu</h3>
+          <p>Polohopis a výškopis, bez kterého architekt nezačne kreslit. Zaměříme terén,
+          sítě, stromy i okolní stavby a podklady dodáme ve formátu, který váš projektant
+          rovnou použije (DWG/PDF).</p>
+          <span class="svc-price">orientačně od 7 500 Kč</span>
+        </article>
+        <article class="svc-step" data-step="3">
+          <span class="num">4</span>
+          <h3>Geometrický plán pro kolaudaci</h3>
+          <p>Dostavěli jste? Zaměříme novostavbu nebo přístavbu a vyhotovíme geometrický
+          plán pro zápis do katastru — nutný podklad pro kolaudaci, čerpání hypotéky
+          i přidělení čísla popisného.</p>
+          <span class="svc-price">orientačně od 8 000 Kč</span>
+        </article>
+      </div>
+
+      <figure class="svc-figure" aria-hidden="true">
+        <div class="svc-figure-inner">
+          <svg id="plot" viewBox="0 0 560 560">
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#344054"/>
+              </marker>
+            </defs>
+            <!-- background measure grid -->
+            <g stroke="#D0D5DD" stroke-width=".6" opacity=".55">
+              <path d="M80 40V520M180 40V520M280 40V520M380 40V520M480 40V520"/>
+              <path d="M40 100H520M40 200H520M40 300H520M40 400H520M40 500H520"/>
+            </g>
+            <!-- parcel outline (always) -->
+            <g id="svc-base">
+              <polygon class="draw" points="80,100 480,80 510,440 110,500" stroke="#101828" stroke-width="2.5"/>
+              <text x="86" y="86" class="dim">parc. č. 412/7</text>
+            </g>
+            <!-- 1: division -->
+            <g id="svc-g0" opacity="0">
+              <line class="draw" x1="296" y1="89" x2="308" y2="472" stroke="#0033FB" stroke-width="2.5" stroke-dasharray="10 7"/>
+              <circle cx="296" cy="89" r="5" fill="#fff" stroke="#0033FB" stroke-width="2.5"/>
+              <circle cx="308" cy="472" r="5" fill="#fff" stroke="#0033FB" stroke-width="2.5"/>
+              <circle class="pulse-pt" cx="302" cy="280" r="7" fill="none" stroke="#0033FB" stroke-width="1.6"/>
+              <circle cx="302" cy="280" r="4" fill="#0033FB"/>
+              <text x="160" y="290" class="dim dim-blue" font-size="20">A · 612 m²</text>
+              <text x="360" y="290" class="dim dim-blue" font-size="20">B · 588 m²</text>
+            </g>
+            <!-- 2: boundary points + dimensions -->
+            <g id="svc-g1" opacity="0">
+              <g fill="#fff" stroke="#0033FB" stroke-width="2.5">
+                <circle cx="80" cy="100" r="6"/><circle cx="480" cy="80" r="6"/>
+                <circle cx="510" cy="440" r="6"/><circle cx="110" cy="500" r="6"/>
+              </g>
+              <circle class="pulse-pt" cx="480" cy="80" r="8" fill="none" stroke="#0033FB" stroke-width="1.6"/>
+              <circle class="pulse-pt" cx="110" cy="500" r="8" fill="none" stroke="#0033FB" stroke-width="1.6" style="animation-delay:.9s"/>
+              <line class="draw" x1="84" y1="64" x2="476" y2="44" stroke="#344054" stroke-width="1.4" marker-start="url(#arr)" marker-end="url(#arr)"/>
+              <text x="250" y="40" class="dim">38,2 m</text>
+              <line class="draw" x1="544" y1="86" x2="544" y2="434" stroke="#344054" stroke-width="1.4" marker-start="url(#arr)" marker-end="url(#arr)"/>
+              <text x="524" y="262" class="dim" transform="rotate(90 524 262)" text-anchor="middle">35,9 m</text>
+            </g>
+            <!-- 3: contours / survey -->
+            <g id="svc-g2" opacity="0">
+              <path class="draw" d="M100 430 C 200 380, 330 470, 495 400" stroke="#667085" stroke-width="1.4" stroke-dasharray="4 5"/>
+              <path class="draw" d="M95 350 C 210 300, 340 390, 500 320" stroke="#667085" stroke-width="1.4" stroke-dasharray="4 5"/>
+              <path class="draw" d="M90 270 C 220 220, 350 310, 505 240" stroke="#667085" stroke-width="1.4" stroke-dasharray="4 5"/>
+              <g stroke="#0033FB" stroke-width="1.8">
+                <path d="M170 330v14M163 337h14"/>
+                <path d="M340 250v14M333 257h14"/>
+                <path d="M420 380v14M413 387h14"/>
+              </g>
+              <circle class="pulse-pt" cx="340" cy="257" r="8" fill="none" stroke="#0033FB" stroke-width="1.6"/>
+              <text x="184" y="332" class="dim dim-blue">+0,42</text>
+              <text x="354" y="252" class="dim dim-blue">+1,15</text>
+              <text x="434" y="382" class="dim dim-blue">+0,87</text>
+            </g>
+            <!-- 4: house + stamp -->
+            <g id="svc-g3" opacity="0">
+              <polygon class="draw" points="185,190 330,182 336,300 191,308" fill="rgba(0,51,251,.07)" stroke="#0033FB" stroke-width="2.5"/>
+              <circle class="pulse-pt" cx="336" cy="300" r="8" fill="none" stroke="#0033FB" stroke-width="1.6"/>
+              <text x="200" y="255" class="dim dim-blue" font-size="17">RD 9,2 × 11,4 m</text>
+              <g transform="rotate(-8 420 170)">
+                <rect x="345" y="135" width="158" height="52" rx="6" fill="#FBED51" stroke="#101828" stroke-width="2"/>
+                <text x="424" y="161" text-anchor="middle" font-size="16" font-weight="700" fill="#101828">ZAPSÁNO</text>
+                <text x="424" y="178" text-anchor="middle" font-size="11" font-weight="600" fill="#344054" letter-spacing="2">KATASTR NEMOVITOSTÍ</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <figcaption class="svc-figure-caption">
+          <span id="figLabel">Situační výkres · 1:500</span>
+          <span>S-JTSK · Bpv</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY US ===================== -->
+<section class="section why" id="proc">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Proč Delta G</span>
+      <h2 class="h2">Geodet, kterému nemusíte rozumět.<br>Stačí mu důvěřovat.</h2>
+      <p class="lead">Víme, že katastr, geometrické plány a razítka jsou pro většinu lidí džungle.
+      Proto jsme proces nastavili tak, abyste se o nic nemuseli starat.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="7" stroke="#fff" stroke-width="1.8"/></svg>
+        </span>
+        <h3>Stabilita od roku 2004</h3>
+        <p>Více než 20 let měříme pro velké stavby i rodinné domy. Nejsme firma na jednu
+        sezónu — budeme tu i ve chvíli, kdy budete řešit další krok.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 3h8l4 4v14H7z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 13h6M10 17h6M10 9h2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </span>
+        <h3>Papírování necháte nám</h3>
+        <p>Komunikaci s katastrálním úřadem i stavebním úřadem vedeme za vás —
+        od podání návrhu až po potvrzení zápisu. Vy jen podepíšete.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="15" rx="2" stroke="#fff" stroke-width="1.8"/><path d="M3 10h18" stroke="#fff" stroke-width="1.8"/><path d="m8 15.5 2 2 4-4.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <h3>Pevná cena ve smlouvě</h3>
+        <p>Cenu znáte předem a máte ji černé na bílém. Žádné „vícepráce", žádné
+        navyšování v průběhu zakázky. Co si domluvíme, to platí.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6l-8-4Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.5 2.5 4.5-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <h3>Úřední razítko ÚOZI</h3>
+        <p>Každý výstup ověřuje úředně oprávněný zeměměřický inženýr. Katastr proto
+        naše dokumenty přijímá bez vracení a průtahů.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="section" id="postup">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Jak to probíhá</span>
+      <h2 class="h2">Od poptávky k zápisu ve čtyřech krocích</h2>
+    </div>
+    <div class="steps-line">
+      <div class="step-item reveal">
+        <h3>Poptávka a kalkulace</h3>
+        <p>Vyplníte kalkulačku nebo zavoláte. Do 24 hodin máte konkrétní nabídku s cenou a termínem.</p>
+      </div>
+      <div class="step-item reveal">
+        <h3>Smlouva s pevnou cenou</h3>
+        <p>Vše potvrdíme písemně. Cena ve smlouvě je konečná a v průběhu se nemění.</p>
+      </div>
+      <div class="step-item reveal">
+        <h3>Měření v terénu</h3>
+        <p>Přijedeme v domluvený den, obvykle do 7–10 dnů. Vaše přítomnost většinou není nutná.</p>
+      </div>
+      <div class="step-item reveal">
+        <h3>Úřady a předání</h3>
+        <p>Dokumentaci ověří ÚOZI, podáme ji na katastr a hlídáme až do potvrzení zápisu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TECH / LIDAR ===================== -->
+<section class="section tech" id="technologie">
+  <div class="wrap tech-layout">
+    <div>
+      <span class="eyebrow">Technologie</span>
+      <h2 class="h2">Milimetrová přesnost,<br>o které se nediskutuje</h2>
+      <p class="lead">Váš pozemek měříme stejnou technikou, kterou používáme na dálnicích
+      a železnicích: GNSS aparatury a robotické totální stanice Trimble.</p>
+      <ul class="tech-facts">
+        <li><span class="dot"></span><span><b>Přesnost v řádu milimetrů</b> — hranice a výměry, které obstojí u úřadů i u soudu.</span></li>
+        <li><span class="dot"></span><span><b>Digitální výstupy</b> — projektant dostane data ve formátu, se kterým rovnou pracuje.</span></li>
+        <li><span class="dot"></span><span><b>Certifikovaná kvalita ISO 9001</b> — stejné postupy pro velkou stavbu i vaši zahradu.</span></li>
+      </ul>
+    </div>
+    <div class="lidar-box" id="scanBox">
+      <div class="lidar-hud"><span class="rec-dot"></span>Živé měření · <b>Robotická totální stanice</b></div>
+      <svg id="scanSvg" viewBox="0 48 600 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="beamGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0" stop-color="#0033FB" stop-opacity=".4"/>
+            <stop offset="1" stop-color="#0033FB" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g stroke="#EDF0F4" stroke-width="1">
+          <path d="M0 90H600M0 160H600M0 230H600M0 300H600"/>
+          <path d="M100 0V420M200 0V420M300 0V420M400 0V420M500 0V420"/>
+        </g>
+        <path id="terrainPath" d="M0 252 C 80 214, 150 276, 230 236 S 380 178, 460 220 S 560 252, 600 228"
+              fill="none" stroke="#98A2B3" stroke-width="1.5" stroke-dasharray="3 5"/>
+        <g id="scanDots"></g>
+        <g id="beamG" transform="rotate(0 300 366)">
+          <polygon points="300,366 270,30 330,30" fill="url(#beamGrad)"/>
+          <line x1="300" y1="366" x2="300" y2="30" stroke="#0033FB" stroke-width="1" opacity=".75"/>
+        </g>
+        <g>
+          <line x1="300" y1="362" x2="284" y2="400" stroke="#667085" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="300" y1="362" x2="316" y2="400" stroke="#667085" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="300" y1="362" x2="300" y2="402" stroke="#667085" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="289" y="344" width="22" height="20" rx="4" fill="#FBED51" stroke="#101828" stroke-width="1.5"/>
+          <circle cx="300" cy="354" r="4.5" fill="#101828"/>
+        </g>
+      </svg>
+      <div class="scan-readouts">
+        <div><span>Přesnost</span><b>± 2 mm</b></div>
+        <div><span>GNSS</span><b class="hl">RTK FIX</b></div>
+        <div><span>Satelity</span><b id="satVal">17</b></div>
+        <div><span>Vzdálenost</span><b id="distVal">48,231 m</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PARTNERS ===================== -->
+<section class="section partners" id="reference">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Reference</span>
+      <h2 class="h2">Důvěřují nám největší stavby v Česku</h2>
+      <p class="lead"><span class="line">Měřili jsme pro pražské metro, železnici i povodí Vltavy.</span>
+      <span class="line">Stejnou přesnost a péči dostanete i vy — na zahradě rodinného domu.</span></p>
+    </div>
+  </div>
+  <div class="logo-marquee reveal" role="img" aria-label="Loga partnerů: Správa železnic, Metroprojekt, SUDOP, Sweco Hydroprojekt, AŽD, Pontex, Kontron ST Group, SITEL, ŽETA, PlanPlus, PraGIS, CDT">
+    <div class="logo-track">
+      <div class="logo-set" aria-hidden="true">
+        <img src="assets/logos/szdc.png" alt="Správa železnic" loading="lazy">
+        <img src="assets/logos/metroprojekt.jpg" alt="Metroprojekt" loading="lazy">
+        <img src="assets/logos/sudop.jpg" alt="SUDOP Praha" loading="lazy">
+        <img src="assets/logos/sweco.jpg" alt="Sweco Hydroprojekt" loading="lazy">
+        <img src="assets/logos/azd.png" alt="AŽD Praha" loading="lazy">
+        <img src="assets/logos/pontex.png" alt="Pontex" loading="lazy">
+        <img src="assets/logos/kontron.png" alt="Kontron ST Group" loading="lazy">
+        <img src="assets/logos/sitel.png" alt="SITEL" loading="lazy">
+        <img src="assets/logos/zeta.png" alt="ŽETA" loading="lazy">
+        <img src="assets/logos/planplus.png" alt="PlanPlus" loading="lazy">
+        <img src="assets/logos/pragis.jpg" alt="PraGIS" loading="lazy">
+        <img src="assets/logos/cdt.png" alt="ČD - Telematika" loading="lazy">
+      </div>
+      <div class="logo-set" aria-hidden="true">
+        <img src="assets/logos/szdc.png" alt="" loading="lazy">
+        <img src="assets/logos/metroprojekt.jpg" alt="" loading="lazy">
+        <img src="assets/logos/sudop.jpg" alt="" loading="lazy">
+        <img src="assets/logos/sweco.jpg" alt="" loading="lazy">
+        <img src="assets/logos/azd.png" alt="" loading="lazy">
+        <img src="assets/logos/pontex.png" alt="" loading="lazy">
+        <img src="assets/logos/kontron.png" alt="" loading="lazy">
+        <img src="assets/logos/sitel.png" alt="" loading="lazy">
+        <img src="assets/logos/zeta.png" alt="" loading="lazy">
+        <img src="assets/logos/planplus.png" alt="" loading="lazy">
+        <img src="assets/logos/pragis.jpg" alt="" loading="lazy">
+        <img src="assets/logos/cdt.png" alt="" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LEAD FORM ===================== -->
+<section class="section quiz" id="poptavka">
+  <div class="wrap">
+    <div class="section-head reveal" style="text-align:center;margin-inline:auto">
+      <span class="eyebrow" style="justify-content:center">Nezávazná poptávka</span>
+      <h2 class="h2">Napište nám, co řešíte</h2>
+      <p class="lead" style="margin-inline:auto">Do 24 hodin se vám ozveme s konkrétní nabídkou
+      a termínem. Odesláním nevzniká žádný závazek.</p>
+    </div>
+    <div class="quiz-card reveal">
+      <div class="quiz-body">
+        <form class="lead-form" id="mainForm" novalidate>
+          <label>Jméno a příjmení
+            <input type="text" name="name" autocomplete="name" required placeholder="Jan Novák">
+          </label>
+          <label>Telefon
+            <input type="tel" name="phone" autocomplete="tel" required placeholder="+420 …" pattern="[0-9+ ]{9,16}">
+          </label>
+          <label class="full">E-mail
+            <input type="email" name="email" autocomplete="email" required placeholder="jan.novak@email.cz">
+          </label>
+          <label class="full">Popište svou situaci <span style="color:var(--g500);font-weight:500">(nepovinné)</span>
+            <textarea name="message" rows="4" placeholder="Např. chci rozdělit pozemek v Říčanech a část prodat sousedovi…"></textarea>
+          </label>
+          <div class="hp-field" aria-hidden="true">
+            <input type="text" name="company" tabindex="-1" autocomplete="off">
+          </div>
+          <label class="consent full">
+            <input type="checkbox" name="gdpr" required>
+            <span>Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky.
+            Více v <a href="zasady-ochrany-osobnich-udaju.html" target="_blank" style="color:var(--blue);text-decoration:underline">zásadách ochrany osobních údajů</a>.</span>
+          </label>
+          <div class="full" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+            <button type="submit" class="btn btn-primary">Odeslat poptávku</button>
+            <span class="form-note">Ozveme se jednou — žádné obvolávání.</span>
+          </div>
+        </form>
+        <div class="calc-teaser">
+          <p><b>Chcete nejdřív vědět, kolik to asi stojí?</b><br>
+          Orientační cenu spočítáte za 30 sekund — tři otázky, bez zadávání kontaktů.</p>
+          <button type="button" class="btn btn-ghost open-quiz">Spočítat orientační cenu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="section" id="kontakt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Kontakt</span>
+      <h2 class="h2">Raději rovnou zavoláte? Jsme tu.</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <ul class="contact-list">
+          <li>
+            <span class="label">Telefon</span>
+            <a href="tel:+420604206176">+420 604 206 176</a>
+          </li>
+          <li>
+            <span class="label">E-mail</span>
+            <a href="mailto:posta@deltag.cz">posta@deltag.cz</a>
+          </li>
+          <li>
+            <span class="label">Kancelář</span>
+            <span style="font-weight:600">Polygrafická 262/3, 108 00 Praha 10</span>
+          </li>
+          <li>
+            <span class="label">Sídlo společnosti</span>
+            <span style="font-weight:600">Delta G s.r.o., Tiskařská 10, 108 00 Praha 10</span><br>
+            <span style="color:var(--g500);font-size:.95rem">IČO: 02362538 · DIČ: CZ02362538</span>
+          </li>
+        </ul>
+        <div class="uozi-badge">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" style="flex:none">
+            <path d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6l-8-4Z" stroke="#0033FB" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="m8.5 12 2.5 2.5 4.5-5" stroke="#0033FB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p><b>Úředně oprávněný zeměměřický inženýr (ÚOZI)</b><br>
+          Výsledky zeměměřických činností ověřujeme podle zákona č. 200/1994 Sb.
+          Nejvyšší kvalifikace v oboru — záruka, že dokumenty u úřadů obstojí.</p>
+        </div>
+      </div>
+      <div class="map-box reveal">
+        <iframe
+          title="Mapa — kancelář Delta G, Polygrafická 262/3, Praha 10"
+          src="https://maps.google.com/maps?q=50.078833,14.522639&hl=cs&z=16&output=embed"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>© 2004–2026 Delta G s.r.o. · IČO 02362538 · Praha 10</span>
+    <span>Úředně oprávněný zeměměřický inženýr (ÚOZI)</span>
+    <a href="zasady-ochrany-osobnich-udaju.html">Zásady ochrany osobních údajů</a>
+    <a href="#" id="cookieSettingsLink">Nastavení cookies</a>
+  </div>
+</footer>
+
+<!-- ===================== QUIZ MODAL ===================== -->
+<div class="modal" id="quizModal" role="dialog" aria-modal="true" aria-label="Orientační kalkulace">
+  <div class="quiz-card" id="quizCard">
+    <button class="modal-close" id="quizClose" aria-label="Zavřít kalkulačku">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="m2 2 12 12M14 2 2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="quiz-head">
+      <span id="quizStepLabel">Krok 1 ze 3</span>
+      <span class="quiz-progress"><i id="quizBar"></i></span>
+    </div>
+    <div class="quiz-body" id="quizBody" aria-live="polite"><!-- JS --></div>
+  </div>
+</div>
+
+<!-- ===================== COOKIE BANNER ===================== -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="false" aria-label="Souhlas s cookies">
+  <div>
+    <h3>Cookies používáme jen se souhlasem</h3>
+    <p>Nezbytné cookies zajišťují základní funkce webu. Analytické cookies nám pomáhají
+    web zlepšovat — načteme je <strong>pouze pokud je povolíte</strong>. Do té doby žádná
+    data o vaší návštěvě nesbíráme. Více v
+    <a href="zasady-ochrany-osobnich-udaju.html">zásadách ochrany osobních údajů</a>.</p>
+  </div>
+  <div class="cookie-actions">
+    <button class="btn btn-primary" id="cookieAcceptAll">Přijmout vše</button>
+    <button class="btn btn-ghost" id="cookieNecessary">Pouze nezbytné</button>
+  </div>
+</div>
+
+<!-- ===================== LIBS ===================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+/* =========================================================
+   Delta G — B2C landing
+   ========================================================= */
+'use strict';
+
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches;
+const hasGsap = typeof gsap !== 'undefined';
+if (hasGsap && typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
+
+/* ---------- header & mobile menu ---------- */
+const header = document.getElementById('header');
+addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10), {passive:true});
+
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}));
+
+/* ---------- reveal on scroll ---------- */
+if (hasGsap && !prefersReduced) {
+  ScrollTrigger.batch('.reveal', {
+    start: 'top 88%',
+    once: true,
+    onEnter: els => gsap.to(els, {opacity:1, y:0, duration:.8, stagger:.12, ease:'power3.out'})
+  });
+} else {
+  document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+}
+
+/* =========================================================
+   1) HERO — precision grid (GSAP + SVG)
+   ========================================================= */
+(function heroGrid(){
+  const hero = document.getElementById('hero');
+  const cross = document.getElementById('crosshair');
+  if (!hasGsap || !cross) return;
+
+  const chV = document.getElementById('chV');
+  const chH = document.getElementById('chH');
+  const c1 = document.getElementById('chC1');
+  const c2 = document.getElementById('chC2');
+  const dot = document.getElementById('chDot');
+  const latEl = document.getElementById('coordLat');
+  const lngEl = document.getElementById('coordLng');
+  const hzEl  = document.getElementById('coordHz');
+
+  // draw-in of the main axes
+  const ax = document.getElementById('axisX'), ay = document.getElementById('axisY');
+  if (!prefersReduced) {
+    gsap.fromTo([ax, ay], {opacity:0}, {opacity:1, duration:1.2});
+    gsap.from('.hero-inner > *', {y:30, opacity:0, duration:.9, stagger:.12, ease:'power3.out', delay:.1});
+  }
+
+  const pos = {x: innerWidth*.62, y: innerHeight*.38};
+  const apply = () => {
+    gsap.set(chV, {attr:{x1:pos.x, x2:pos.x}});
+    gsap.set(chH, {attr:{y1:pos.y, y2:pos.y}});
+    gsap.set([c1,c2,dot], {attr:{cx:pos.x, cy:pos.y}});
+  };
+  apply();
+
+  // animated proxy for smooth follow
+  const proxy = {x:pos.x, y:pos.y};
+  const fmt = n => n.toFixed(1).padStart(4,'0');
+
+  function updateReadout(){
+    // playful mapping around Prague: 50°05'N 14°25'E
+    const latSec = 10 + (1 - proxy.y / innerHeight) * 18;   // 10–28″
+    const lngSec = 25 + (proxy.x / innerWidth) * 22;        // 25–47″
+    const hz = 380 + (proxy.x / innerWidth) * 19.999;
+    if (latEl) latEl.textContent = `50°05′${fmt(latSec)}″ N`;
+    if (lngEl) lngEl.textContent = `14°25′${fmt(lngSec)}″ E`;
+    if (hzEl)  hzEl.textContent  = `HZ ${hz.toFixed(4)} g`;
+  }
+
+  function tick(){
+    pos.x += (proxy.tx - pos.x) * .08;
+    pos.y += (proxy.ty - pos.y) * .08;
+    proxy.x = pos.x; proxy.y = pos.y;
+    apply(); updateReadout();
+  }
+  proxy.tx = pos.x; proxy.ty = pos.y;
+
+  if (prefersReduced) { gsap.set(cross, {opacity:1}); updateReadout(); return; }
+
+  gsap.to(cross, {opacity:1, duration:1, delay:.5});
+  gsap.ticker.add(tick);
+
+  const fine = window.matchMedia('(pointer: fine)').matches;
+  if (fine) {
+    hero.addEventListener('mousemove', e => { proxy.tx = e.clientX; proxy.ty = e.clientY; });
+  } else {
+    // touch devices: autonomous slow sweep
+    gsap.to(proxy, {
+      tx: () => innerWidth * (0.2 + Math.random()*0.6),
+      ty: () => innerHeight * (0.2 + Math.random()*0.5),
+      duration: 4, ease: 'sine.inOut',
+      repeat: -1, repeatRefresh: true
+    });
+  }
+  // gentle drift on scroll
+  addEventListener('scroll', () => { proxy.ty = Math.min(innerHeight*.8, proxy.ty + 0.5); }, {passive:true});
+})();
+
+/* =========================================================
+   2) SERVICES — "order out of chaos" scroll story
+   ========================================================= */
+(function services(){
+  const groups = [0,1,2,3].map(i => document.getElementById('svc-g' + i));
+  const steps = document.querySelectorAll('.svc-step');
+  const labels = ['Geometrický plán · dělení', 'Vytyčovací výkres · 1:500', 'Polohopis a výškopis', 'GP pro vklad do KN'];
+  const figLabel = document.getElementById('figLabel');
+
+  // prepare stroke-draw lengths
+  document.querySelectorAll('#plot .draw').forEach(p => {
+    if (typeof p.getTotalLength === 'function') {
+      let len = 0;
+      try { len = p.getTotalLength(); } catch(e){ len = 0; }
+      if (len) {
+        p.dataset.len = len;
+        p.style.strokeDasharray = p.getAttribute('stroke-dasharray')
+          ? p.style.strokeDasharray  // keep dashed look; we fade instead
+          : `${len}`;
+        if (!p.getAttribute('stroke-dasharray')) p.style.strokeDashoffset = '0';
+      }
+    }
+  });
+
+  function activate(i){
+    steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
+    if (figLabel) figLabel.textContent = labels[i] || labels[0];
+    groups.forEach((g, k) => {
+      if (!g) return;
+      if (!hasGsap || prefersReduced) { g.style.opacity = (k === i) ? 1 : 0; return; }
+      if (k === i) {
+        gsap.to(g, {opacity:1, duration:.5, ease:'power2.out', overwrite:'auto'});
+        g.querySelectorAll('.draw').forEach(p => {
+          const len = parseFloat(p.dataset.len || 0);
+          if (len && !p.getAttribute('stroke-dasharray')) {
+            gsap.fromTo(p, {strokeDashoffset: len}, {strokeDashoffset: 0, duration: 1.1, ease:'power2.inOut'});
+          } else {
+            gsap.fromTo(p, {opacity:0}, {opacity:1, duration:.9});
+          }
+        });
+        gsap.fromTo(g.querySelectorAll('text'), {opacity:0, y:6}, {opacity:1, y:0, duration:.5, stagger:.1, delay:.45});
+      } else {
+        gsap.to(g, {opacity:0, duration:.35, overwrite:'auto'});
+      }
+    });
+  }
+
+  if (hasGsap && typeof ScrollTrigger !== 'undefined' && !prefersReduced) {
+    steps.forEach((step, i) => {
+      // start/end na středu viewportu => pásma jednotlivých kroků se nepřekrývají
+      ScrollTrigger.create({
+        trigger: step,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: () => activate(i),
+        onEnterBack: () => activate(i)
+      });
+    });
+    activate(0);
+  } else {
+    // no-motion fallback: show everything
+    steps.forEach(s => s.classList.add('is-active'));
+    groups.forEach(g => { if (g) g.style.opacity = .9; });
+  }
+})();
+
+/* =========================================================
+   3) TECH — live measurement scanner (GSAP + SVG)
+   ========================================================= */
+(function scanner(){
+  const box = document.getElementById('scanBox');
+  const beam = document.getElementById('beamG');
+  const terrain = document.getElementById('terrainPath');
+  const dotsG = document.getElementById('scanDots');
+  if (!box || !beam || !terrain || !dotsG) return;
+
+  const APEX = {x: 300, y: 366};
+  const NS = 'http://www.w3.org/2000/svg';
+
+  // sample measurement points along the terrain profile
+  const total = terrain.getTotalLength();
+  const COUNT = 48;
+  const dots = [];
+  for (let i = 0; i < COUNT; i++) {
+    const p = terrain.getPointAtLength(total * (i + .5) / COUNT);
+    const c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', p.x); c.setAttribute('cy', p.y);
+    c.setAttribute('r', 2.4); c.setAttribute('fill', '#0033FB');
+    c.setAttribute('opacity', '.18');
+    dotsG.appendChild(c);
+    // angle from vertical axis of the station
+    const ang = Math.atan2(p.x - APEX.x, APEX.y - p.y) * 180 / Math.PI;
+    const dist = Math.hypot(p.x - APEX.x, APEX.y - p.y);
+    dots.push({el: c, ang, dist});
+  }
+
+  const satVal = document.getElementById('satVal');
+  const distVal = document.getElementById('distVal');
+
+  if (!hasGsap || prefersReduced) {
+    beam.setAttribute('transform', `rotate(24 ${APEX.x} ${APEX.y})`);
+    dots.forEach(d => d.el.setAttribute('opacity', '.7'));
+    return;
+  }
+
+  const sweep = {a: -56};
+  gsap.to(sweep, {a: 56, duration: 4.2, ease: 'sine.inOut', yoyo: true, repeat: -1});
+
+  let visible = true;
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; }, {threshold:.05}).observe(box);
+
+  let lastDist = 0;
+  gsap.ticker.add(() => {
+    if (!visible) return;
+    beam.setAttribute('transform', `rotate(${sweep.a.toFixed(2)} ${APEX.x} ${APEX.y})`);
+    const now = performance.now();
+    dots.forEach(d => {
+      if (Math.abs(d.ang - sweep.a) < 3.2) {
+        gsap.killTweensOf(d.el);
+        gsap.set(d.el, {attr: {opacity: 1, r: 3.4}});
+        gsap.to(d.el, {attr: {opacity: .3, r: 2.4}, duration: 1.6, ease: 'power2.out'});
+        // hodnotu měníme nejvýš ~2× za sekundu, ať číslice neproblikávají
+        if (distVal && now - lastDist > 450) {
+          lastDist = now;
+          distVal.textContent = (d.dist * 0.42).toFixed(3).replace('.', ',') + ' m';
+        }
+      }
+    });
+  });
+
+  // satellites readout drifts between 15 and 18
+  setInterval(() => {
+    if (visible && satVal) satVal.textContent = 15 + Math.floor(Math.random() * 4);
+  }, 5200);
+})();
+
+/* =========================================================
+   4) LEADS — shared delivery, main form, quiz modal
+   ========================================================= */
+// POST endpoint pro leady (Formspree / Make / vlastní API). Prázdné = demo režim.
+const FORM_ENDPOINT = '';
+
+async function sendLead(payload){
+  if (FORM_ENDPOINT) {
+    await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+  } else {
+    console.info('[Delta G] Lead (demo režim, nastavte FORM_ENDPOINT):', payload);
+    await new Promise(r => setTimeout(r, 600));
+  }
+}
+
+const SUCCESS_HTML = `
+  <div class="quiz-success">
+    <span class="ico">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <p class="quiz-q">Děkujeme, máme to!</p>
+    <p class="quiz-hint" style="margin-bottom:1.5rem">Do 24 hodin se vám ozveme s přesnou nabídkou.
+    Spěcháte? Volejte <a href="tel:+420604206176" style="color:var(--blue);font-weight:700">604 206 176</a>.</p>
+  </div>`;
+
+/* ---------- quiz modal open/close ---------- */
+(function quizModal(){
+  const modal = document.getElementById('quizModal');
+  const close = document.getElementById('quizClose');
+  if (!modal) return;
+  const open = () => { modal.classList.add('open'); document.body.classList.add('modal-open'); };
+  const shut = () => { modal.classList.remove('open'); document.body.classList.remove('modal-open'); };
+  document.querySelectorAll('.open-quiz').forEach(b => b.addEventListener('click', open));
+  close.addEventListener('click', shut);
+  modal.addEventListener('click', e => { if (e.target === modal) shut(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) shut(); });
+})();
+
+/* ---------- main lead form ---------- */
+(function mainForm(){
+  const form = document.getElementById('mainForm');
+  if (!form) return;
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    if (form.company.value) return; // honeypot
+    const btn = form.querySelector('[type=submit]');
+    btn.disabled = true; btn.textContent = 'Odesílám…';
+    try {
+      await sendLead({
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim(),
+        source: 'hlavní formulář',
+        page: location.href
+      });
+      form.closest('.quiz-body').innerHTML = SUCCESS_HTML;
+    } catch (err) {
+      btn.disabled = false; btn.textContent = 'Odeslat poptávku';
+      alert('Odeslání se nepovedlo. Zavolejte nám prosím na 604 206 176.');
+    }
+  });
+})();
+
+/* ---------- quiz: 3-step price calculator ---------- */
+(function quiz(){
+  const body = document.getElementById('quizBody');
+  const bar = document.getElementById('quizBar');
+  const stepLabel = document.getElementById('quizStepLabel');
+  if (!body) return;
+
+  const CZK = n => n.toLocaleString('cs-CZ') + ' Kč';
+  const round100 = n => Math.round(n / 100) * 100;
+
+  const PRICES = { // [min, max] base, Kč bez dopravy
+    rozdeleni: [9000, 14500],
+    vytyceni:  [7000, 12000],
+    projekt:   [7500, 13500],
+    kolaudace: [8000, 12500],
+    jine:      [7000, 14500]
+  };
+  const SIZE_MULT = {s1: 1, s2: 1.15, s3: 1.35, s4: 1.6};
+  const LOC_MULT  = {praha: 1, okoli: 1, sk: 1.05, jinde: 1.18};
+  const URAD_FEE  = {ano: 1900, ne: 0, nevim: 0};
+
+  const QUESTIONS = [
+    {
+      key: 'service',
+      q: 'Co potřebujete vyřešit?',
+      hint: 'Vyberte situaci, která je vám nejblíž.',
+      options: [
+        {v:'rozdeleni', t:'Rozdělit / scelit pozemek', s:'prodej části zahrady, oddělení parcely'},
+        {v:'vytyceni',  t:'Vytyčit hranice pozemku',   s:'spor o plot, jistota před stavbou'},
+        {v:'projekt',   t:'Zaměření pro projekt domu', s:'polohopis a výškopis pro architekta'},
+        {v:'kolaudace', t:'Geometrický plán ke kolaudaci', s:'zápis novostavby do katastru'},
+        {v:'jine',      t:'Něco jiného / nevím',       s:'poradíme, co přesně potřebujete'}
+      ]
+    },
+    {
+      key: 'place',
+      q: 'Kde se pozemek nachází a jak je velký?',
+      hint: 'Stačí odhad — výměru najdete i v katastru nemovitostí.',
+      sub1: 'Lokalita',
+      options: [
+        {v:'praha', t:'Praha'},
+        {v:'okoli', t:'Praha-východ / Praha-západ'},
+        {v:'sk',    t:'Jinde ve Středočeském kraji'},
+        {v:'jinde', t:'Jiný kraj'}
+      ],
+      sub2: 'Přibližná výměra',
+      options2: [
+        {v:'s1', t:'do 500 m²'},
+        {v:'s2', t:'500 – 1 500 m²'},
+        {v:'s3', t:'1 500 – 5 000 m²'},
+        {v:'s4', t:'nad 5 000 m²'}
+      ]
+    },
+    {
+      key: 'urad',
+      q: 'Máme za vás vyřídit i podání na úřadech?',
+      hint: 'Návrh na vklad, komunikace s katastrem, hlídání lhůt.',
+      options: [
+        {v:'ano',  t:'Ano, vyřiďte vše za mě', s:'nejoblíbenější volba — žádné fronty a formuláře'},
+        {v:'ne',   t:'Ne, podám si to sám',    s:'předáme vám hotové dokumenty s instrukcemi'},
+        {v:'nevim',t:'Nevím, poraďte mi',      s:'projdeme to spolu po telefonu'}
+      ]
+    }
+  ];
+
+  const state = {step: 0, service: null, loc: null, size: null, urad: null};
+
+  function progress(){
+    const pct = state.step >= 3 ? 100 : (state.step / 3) * 100 + 8;
+    bar.style.width = Math.min(100, pct) + '%';
+    stepLabel.textContent = state.step >= 3 ? 'Výsledek' : `Krok ${state.step + 1} ze 3`;
+  }
+
+  function optBtn(o, group){
+    return `<button type="button" class="quiz-opt" data-group="${group}" data-v="${o.v}">
+      <span class="radio"></span>
+      <span>${o.t}${o.s ? `<small>${o.s}</small>` : ''}</span>
+    </button>`;
+  }
+
+  function render(){
+    progress();
+    if (state.step === 3) return renderResult();
+    const Q = QUESTIONS[state.step];
+    let html = `<p class="quiz-q">${Q.q}</p><p class="quiz-hint">${Q.hint}</p>`;
+    if (state.step === 1) {
+      html += `<p class="quiz-sub">${Q.sub1}</p><div class="quiz-options">${Q.options.map(o => optBtn(o,'loc')).join('')}</div>`;
+      html += `<p class="quiz-sub">${Q.sub2}</p><div class="quiz-options">${Q.options2.map(o => optBtn(o,'size')).join('')}</div>`;
+    } else {
+      const group = state.step === 0 ? 'service' : 'urad';
+      html += `<div class="quiz-options">${Q.options.map(o => optBtn(o, group)).join('')}</div>`;
+    }
+    html += `<div class="quiz-nav">
+      <button type="button" class="quiz-back" id="qBack" ${state.step === 0 ? 'disabled' : ''}>← Zpět</button>
+      <button type="button" class="btn btn-primary" id="qNext">Pokračovat →</button>
+    </div>`;
+    body.innerHTML = html;
+
+    body.querySelectorAll('.quiz-opt').forEach(btn => {
+      const g = btn.dataset.group, v = btn.dataset.v;
+      if (state[g === 'loc' ? 'loc' : g === 'size' ? 'size' : g] === v) btn.classList.add('selected');
+      btn.addEventListener('click', () => {
+        body.querySelectorAll(`.quiz-opt[data-group="${g}"]`).forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        if (g === 'service') state.service = v;
+        else if (g === 'loc') state.loc = v;
+        else if (g === 'size') state.size = v;
+        else state.urad = v;
+      });
+    });
+    const back = document.getElementById('qBack');
+    back && back.addEventListener('click', () => { state.step--; render(); });
+    document.getElementById('qNext').addEventListener('click', () => {
+      const ok = state.step === 0 ? state.service
+               : state.step === 1 ? (state.loc && state.size)
+               : state.urad;
+      if (!ok) {
+        if (hasGsap) gsap.fromTo('#quizCard', {x:-6}, {x:0, duration:.4, ease:'elastic.out(1,.35)'});
+        body.querySelectorAll('.quiz-options').forEach(o => o.style.outline = '');
+        return;
+      }
+      state.step++;
+      render();
+      if (hasGsap && !prefersReduced) gsap.from(body, {opacity:0, y:14, duration:.4, ease:'power2.out'});
+    });
+  }
+
+  function calc(){
+    const [lo, hi] = PRICES[state.service] || PRICES.jine;
+    const m = (SIZE_MULT[state.size] || 1) * (LOC_MULT[state.loc] || 1);
+    const fee = URAD_FEE[state.urad] || 0;
+    return [round100(lo * m + fee), round100(hi * m + fee)];
+  }
+
+  const SERVICE_NAMES = {
+    rozdeleni: 'Rozdělení / scelení pozemku',
+    vytyceni: 'Vytyčení hranic pozemku',
+    projekt: 'Zaměření pro projekt domu',
+    kolaudace: 'Geometrický plán ke kolaudaci',
+    jine: 'Individuální poptávka'
+  };
+
+  function renderResult(){
+    const [lo, hi] = calc();
+    body.innerHTML = `
+      <p class="quiz-q">Vaše orientační cena</p>
+      <p class="quiz-hint">${SERVICE_NAMES[state.service]}${state.urad === 'ano' ? ' + kompletní vyřízení úřadů' : ''}</p>
+      <div class="quiz-result-price">
+        <b>${CZK(lo)} – ${CZK(hi)}</b>
+        <span>včetně DPH · finální cenu garantujeme ve smlouvě</span>
+      </div>
+      <p style="font-weight:600;margin-bottom:1.1rem">Nechte nám kontakt — do 24 hodin vám pošleme
+      přesnou nabídku a tuto cenu vám podržíme.</p>
+      <form class="lead-form" id="leadForm" novalidate>
+        <label>Jméno a příjmení
+          <input type="text" name="name" autocomplete="name" required placeholder="Jan Novák">
+        </label>
+        <label>Telefon
+          <input type="tel" name="phone" autocomplete="tel" required placeholder="+420 …" pattern="[0-9+ ]{9,16}">
+        </label>
+        <label class="full">E-mail <span style="color:var(--g500);font-weight:500">(nepovinné)</span>
+          <input type="email" name="email" autocomplete="email" placeholder="jan.novak@email.cz">
+        </label>
+        <div class="hp-field" aria-hidden="true">
+          <input type="text" name="company" tabindex="-1" autocomplete="off">
+        </div>
+        <label class="consent full">
+          <input type="checkbox" name="gdpr" required>
+          <span>Souhlasím se zpracováním osobních údajů za účelem vypracování cenové nabídky.
+          Více v <a href="zasady-ochrany-osobnich-udaju.html" target="_blank" style="color:var(--blue);text-decoration:underline">zásadách ochrany osobních údajů</a>.</span>
+        </label>
+        <div class="full" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+          <button type="submit" class="btn btn-primary">Získat přesnou nabídku</button>
+          <button type="button" class="quiz-back" id="qRestart">↺ Spočítat znovu</button>
+        </div>
+        <p class="form-note full">Odesláním nevzniká žádný závazek. Ozveme se jednou — žádné obvolávání.</p>
+      </form>`;
+    progress();
+
+    document.getElementById('qRestart').addEventListener('click', () => {
+      Object.assign(state, {step:0, service:null, loc:null, size:null, urad:null});
+      render();
+    });
+
+    const form = document.getElementById('leadForm');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      if (form.company.value) return; // honeypot
+      const payload = {
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        email: form.email.value.trim(),
+        service: SERVICE_NAMES[state.service],
+        location: state.loc, size: state.size, urad: state.urad,
+        estimate: `${CZK(lo)} – ${CZK(hi)}`,
+        page: location.href
+      };
+      const btn = form.querySelector('[type=submit]');
+      btn.disabled = true; btn.textContent = 'Odesílám…';
+      try {
+        await sendLead(payload);
+        body.innerHTML = SUCCESS_HTML;
+        bar.style.width = '100%';
+      } catch (err) {
+        btn.disabled = false; btn.textContent = 'Získat přesnou nabídku';
+        alert('Odeslání se nepovedlo. Zavolejte nám prosím na 604 206 176.');
+      }
+    });
+  }
+
+  render();
+})();
+
+/* =========================================================
+   5) COOKIE BANNER — GDPR, opt-in only
+   ========================================================= */
+(function cookies(){
+  const KEY = 'dg-cookie-consent';            // 'all' | 'necessary'
+  const banner = document.getElementById('cookieBanner');
+
+  function loadAnalytics(){
+    /* Analytické skripty se načítají VÝHRADNĚ zde — tedy až po souhlasu.
+       Příklad (odkomentujte a doplňte ID):
+       const s = document.createElement('script');
+       s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX';
+       s.async = true; document.head.appendChild(s);
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date()); gtag('config', 'G-XXXXXXX', {anonymize_ip: true});
+    */
+  }
+
+  function choose(value){
+    try { localStorage.setItem(KEY, value); } catch(e){}
+    banner.classList.remove('visible');
+    if (value === 'all') loadAnalytics();
+  }
+
+  document.getElementById('cookieAcceptAll').addEventListener('click', () => choose('all'));
+  document.getElementById('cookieNecessary').addEventListener('click', () => choose('necessary'));
+  document.getElementById('cookieSettingsLink').addEventListener('click', e => {
+    e.preventDefault();
+    banner.classList.add('visible');
+  });
+
+  let saved = null;
+  try { saved = localStorage.getItem(KEY); } catch(e){}
+  if (saved === 'all') loadAnalytics();
+  else if (saved !== 'necessary') setTimeout(() => banner.classList.add('visible'), 900);
+})();
+</script>
+</body>
+</html>
