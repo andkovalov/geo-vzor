@@ -10,8 +10,9 @@ Live: https://deltag.vercel.app/ (auto-deploys from GitHub `andkovalov/deltag`, 
 | File | Purpose |
 |---|---|
 | `index.html` | B2C landing (hero, services scroll-stack, why-us, process, tech scanner, partners marquee, B2C reviews, lead form + quiz modal, contact, cookie banner) |
-| `pro-firmy.html` | B2B catalog page (industry terminology allowed) |
+| `pro-firmy.html` | B2B catalog page (industry terminology allowed), own inline lead form (#poptavka) |
 | `kariera.html` | Careers page + application form |
+| `sluzby-*.html` | 4 B2C SEO service pages (rozdeleni-pozemku, vytyceni-hranic, geometricky-plan-kolaudace, pasport-stavby) — shared compact template: breadcrumb, H1=query, kdy-grid, 4 steps, price-box (TODO prices), FAQ + FAQPage JSON-LD, CTA to index.html#poptavka |
 | `zasady-ochrany-osobnich-udaju.html` | GDPR privacy policy (noindex) |
 | `favicon.svg`, `apple-touch-icon.png`, `og-image.png` | brand assets (white swoosh on blue #0033FB) |
 | `assets/logos/*` | partner logos (12, used in marquee) |
@@ -50,7 +51,7 @@ Each page is **self-contained**: own `<style>` block (copy tokens + needed compo
 ## Components (copy from index.html)
 
 - **Buttons**: `.btn` uppercase 700; `.btn-primary` blue→**yellow bg + ink text** on hover (no shadows!); `.btn-ghost` 1.5px `--g300` border.
-- **Header**: fixed, 72px, `rgba(255,255,255,.86)` + backdrop blur; `.header-actions` groups phone (filled icon) + CTA; phone visible ≥1140px (≥760px on subpages with short navs); burger <920px.
+- **Header (corporate, identical on every page)**: fixed, 72px, `rgba(255,255,255,.86)` + backdrop blur. Nav: `Služby ▾` (dropdown with the 4 service pages + "Přehled všech služeb →"), `Pro firmy a investory`, `Kariéra`, `Kontakt`; current page gets `aria-current="page"` (blue). Dropdown: CSS-only `:hover/:focus-within`, invisible bridge via `.nav-item::after`. `.header-actions` = phone (filled icon, ≥1240px) + page-appropriate CTA. Burger <980px; mobile menu uses `.menu-group` headers + indented `.menu-sub` links.
 - **Logo**: inline SVG, 3 paths — wordmark `#101828`, swoosh `class="logo-swoosh"` `#0033FB`, arc `#101828`. Hover: springy flick `translate(2px,-3px) rotate(-5deg)`, cubic-bezier(.34,1.56,.64,1). Never recolor swoosh to yellow on white.
 - **Cards**: 1px `--g300` border, `--radius`, white bg. No hover lift on info cards (user removed it).
 - **Icon chips**: 46–48px rounded square, blue bg, white strokes only (no yellow strokes inside icons).

@@ -125,9 +125,28 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 }
 .logo:hover .logo-swoosh{transform:translate(2px,-3px) rotate(-5deg)}
 .header-actions{display:flex;align-items:center;gap:1.4rem}
-.main-nav{display:none;gap:1.6rem;font-weight:600;color:var(--ink-2);white-space:nowrap}
-.main-nav a{padding:.4rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
-.main-nav a:hover{color:var(--blue);border-color:var(--yellow)}
+.main-nav{display:none;gap:1.6rem;font-weight:600;color:var(--ink-2);white-space:nowrap;align-items:center}
+.main-nav > a,.main-nav .nav-link{padding:.4rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.main-nav > a:hover,.main-nav .nav-link:hover{color:var(--blue);border-color:var(--yellow)}
+.main-nav a[aria-current=page]{color:var(--blue)}
+/* dropdown */
+.nav-item{position:relative}
+.nav-item::after{content:"";position:absolute;top:100%;left:-1rem;right:-1rem;height:.7rem}
+.nav-link{display:inline-flex;align-items:center;gap:.45rem;cursor:pointer}
+.nav-link .caret{transition:transform .25s}
+.nav-item:hover .caret,.nav-item:focus-within .caret{transform:rotate(180deg)}
+.drop{
+  position:absolute;top:calc(100% + .6rem);left:-1rem;min-width:300px;z-index:70;
+  background:#fff;border:1px solid var(--g100);border-radius:12px;padding:.55rem;
+  box-shadow:0 28px 60px -24px rgba(16,24,40,.3);
+  display:grid;gap:.1rem;
+  opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .22s,transform .22s,visibility .22s;
+}
+.nav-item:hover .drop,.nav-item:focus-within .drop{opacity:1;visibility:visible;transform:translateY(0)}
+.drop a{padding:.55rem .85rem;border-radius:8px;font-weight:600;color:var(--ink-2);border:none}
+.drop a:hover{background:var(--g100);color:var(--blue)}
+.drop .drop-all{margin-top:.35rem;border-top:1px solid var(--g100);border-radius:0 0 8px 8px;color:var(--blue);font-size:.95rem}
 .header-cta{display:none}
 .header-phone{display:none;font-weight:700;color:var(--ink);align-items:center;gap:.45rem}
 .header-phone:hover{color:var(--blue)}
@@ -146,6 +165,11 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .mobile-menu.open{transform:translateY(0)}
 .mobile-menu a{padding:.7rem 0;font-weight:600;font-size:1.15rem;border-bottom:1px solid var(--g100)}
 .mobile-menu .btn{margin-top:.9rem}
+.mobile-menu .menu-group{
+  padding:1rem 0 .25rem;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--g500);font-weight:600;
+}
+.mobile-menu a.menu-sub{padding-left:1rem;font-size:1.02rem;color:var(--ink-2)}
 
 @media(min-width:980px){
   .main-nav,.header-cta{display:inline-flex}
@@ -228,6 +252,11 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
   display:inline-block;margin-top:.9rem;padding:.55rem .9rem;border-radius:8px;
   background:var(--g100);color:var(--ink-2);font-weight:700;font-size:.9rem;letter-spacing:.04em;
 }
+.svc-more{
+  display:inline-block;margin-top:.9rem;margin-left:1rem;
+  font-weight:700;color:var(--blue);font-size:.95rem;letter-spacing:.03em;
+}
+.svc-more:hover{text-decoration:underline}
 @media(min-width:768px){
   .svc-step h3{font-size:1.65rem}
 }
@@ -536,11 +565,21 @@ body.modal-open{overflow:hidden}
       </svg>
     </a>
     <nav class="main-nav" aria-label="Hlavní navigace">
-      <a href="#sluzby">Služby</a>
-      <a href="#proc">Proč my</a>
-      <a href="#technologie">Technologie</a>
-      <a href="#kontakt">Kontakt</a>
+      <div class="nav-item">
+        <a class="nav-link" href="#sluzby" aria-haspopup="true">Služby
+          <svg class="caret" width="10" height="7" viewBox="0 0 10 7" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="drop">
+          <a href="sluzby-rozdeleni-pozemku.html">Rozdělení pozemku</a>
+          <a href="sluzby-vytyceni-hranic.html">Vytyčení hranic pozemku</a>
+          <a href="sluzby-geometricky-plan-kolaudace.html">Geometrický plán ke kolaudaci</a>
+          <a href="sluzby-pasport-stavby.html">Pasport stavby</a>
+          <a class="drop-all" href="#sluzby">Přehled všech služeb →</a>
+        </div>
+      </div>
       <a href="pro-firmy.html">Pro firmy a investory</a>
+      <a href="kariera.html">Kariéra</a>
+      <a href="#kontakt">Kontakt</a>
     </nav>
     <div class="header-actions">
       <a class="header-phone" href="tel:+420604206176">
@@ -555,11 +594,16 @@ body.modal-open{overflow:hidden}
   </div>
 </header>
 <nav class="mobile-menu" id="mobileMenu" aria-label="Mobilní navigace">
-  <a href="#sluzby">Služby</a>
-  <a href="#proc">Proč my</a>
-  <a href="#technologie">Technologie</a>
-  <a href="#kontakt">Kontakt</a>
+  <span class="menu-group">Služby pro soukromé klienty</span>
+  <a class="menu-sub" href="sluzby-rozdeleni-pozemku.html">Rozdělení pozemku</a>
+  <a class="menu-sub" href="sluzby-vytyceni-hranic.html">Vytyčení hranic pozemku</a>
+  <a class="menu-sub" href="sluzby-geometricky-plan-kolaudace.html">Geometrický plán ke kolaudaci</a>
+  <a class="menu-sub" href="sluzby-pasport-stavby.html">Pasport stavby</a>
+  <a href="#sluzby">Přehled všech služeb</a>
+  <span class="menu-group">Společnost</span>
   <a href="pro-firmy.html">Pro firmy a investory</a>
+  <a href="kariera.html">Kariéra</a>
+  <a href="#kontakt">Kontakt</a>
   <a href="tel:+420604206176">Zavolat: 604 206 176</a>
   <a class="btn btn-primary" href="#poptavka">Nezávazná poptávka</a>
 </nav>
@@ -663,6 +707,7 @@ body.modal-open{overflow:hidden}
           pozemky do jednoho? Vyhotovíme geometrický plán, zajistíme souhlas stavebního
           úřadu s dělením a připravíme vše pro zápis do katastru.</p>
           <span class="svc-price">orientačně od 9 000 Kč</span>
+          <a class="svc-more" href="sluzby-rozdeleni-pozemku.html">Více o službě →</a>
         </article>
         <article class="svc-step" data-step="1">
           <span class="num">2</span>
@@ -671,6 +716,7 @@ body.modal-open{overflow:hidden}
           stabilizujeme lomové body a předáme vám úřední vytyčovací protokol.
           Jistota místo dohadů — a pevný podklad pro případný spor.</p>
           <span class="svc-price">orientačně od 7 000 Kč</span>
+          <a class="svc-more" href="sluzby-vytyceni-hranic.html">Více o službě →</a>
         </article>
         <article class="svc-step" data-step="2">
           <span class="num">3</span>
@@ -687,6 +733,7 @@ body.modal-open{overflow:hidden}
           plán pro zápis do katastru — nutný podklad pro kolaudaci, čerpání hypotéky
           i přidělení čísla popisného.</p>
           <span class="svc-price">orientačně od 8 000 Kč</span>
+          <a class="svc-more" href="sluzby-geometricky-plan-kolaudace.html">Více o službě →</a>
         </article>
         <article class="svc-step" data-step="4">
           <span class="num">5</span>
@@ -696,6 +743,7 @@ body.modal-open{overflow:hidden}
           i prodej nemovitosti.</p>
           <!-- TODO: potvrdit cenu u majitele -->
           <span class="svc-price">orientačně od 12 000 Kč</span>
+          <a class="svc-more" href="sluzby-pasport-stavby.html">Více o službě →</a>
         </article>
         <article class="svc-step" data-step="5">
           <span class="num">6</span>

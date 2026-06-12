@@ -79,9 +79,52 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .header-actions{display:flex;align-items:center;gap:1.4rem}
 .header-phone{display:none;font-weight:700;align-items:center;gap:.45rem}
 .header-phone:hover{color:var(--blue)}
-@media(min-width:760px){.header-phone{display:inline-flex}}
-.back-link{font-weight:600;color:var(--ink-2)}
-.back-link:hover{color:var(--blue)}
+.header-cta{display:none}
+.main-nav{display:none;gap:1.6rem;font-weight:600;color:var(--ink-2);white-space:nowrap;align-items:center}
+.main-nav > a,.main-nav .nav-link{padding:.4rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.main-nav > a:hover,.main-nav .nav-link:hover{color:var(--blue);border-color:var(--yellow)}
+.main-nav a[aria-current=page]{color:var(--blue)}
+.nav-item{position:relative}
+.nav-item::after{content:"";position:absolute;top:100%;left:-1rem;right:-1rem;height:.7rem}
+.nav-link{display:inline-flex;align-items:center;gap:.45rem;cursor:pointer}
+.nav-link .caret{transition:transform .25s}
+.nav-item:hover .caret,.nav-item:focus-within .caret{transform:rotate(180deg)}
+.drop{
+  position:absolute;top:calc(100% + .6rem);left:-1rem;min-width:300px;z-index:70;
+  background:#fff;border:1px solid var(--g100);border-radius:12px;padding:.55rem;
+  box-shadow:0 28px 60px -24px rgba(16,24,40,.3);
+  display:grid;gap:.1rem;
+  opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .22s,transform .22s,visibility .22s;
+}
+.nav-item:hover .drop,.nav-item:focus-within .drop{opacity:1;visibility:visible;transform:translateY(0)}
+.drop a{padding:.55rem .85rem;border-radius:8px;font-weight:600;color:var(--ink-2);border:none}
+.drop a:hover{background:var(--g100);color:var(--blue)}
+.drop .drop-all{margin-top:.35rem;border-top:1px solid var(--g100);border-radius:0 0 8px 8px;color:var(--blue);font-size:.95rem}
+.burger{display:flex;flex-direction:column;gap:5px;padding:.6rem}
+.burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{
+  position:fixed;top:var(--header-h);left:0;right:0;z-index:55;background:#fff;
+  border-bottom:1px solid var(--g100);display:grid;gap:.2rem;padding:1rem 1.4rem 1.4rem;
+  transform:translateY(-110%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 20px 40px -20px rgba(16,24,40,.25);
+}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-menu a{padding:.7rem 0;font-weight:600;font-size:1.15rem;border-bottom:1px solid var(--g100)}
+.mobile-menu .btn{margin-top:.9rem}
+.mobile-menu .menu-group{
+  padding:1rem 0 .25rem;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--g500);font-weight:600;
+}
+.mobile-menu a.menu-sub{padding-left:1rem;font-size:1.02rem;color:var(--ink-2)}
+@media(min-width:980px){
+  .main-nav,.header-cta{display:inline-flex}
+  .burger,.mobile-menu{display:none}
+}
+@media(min-width:1240px){.header-phone{display:inline-flex}}
 
 /* hero */
 .hero{
@@ -179,15 +222,49 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
         <path d="M33.8223 0C39.6434 0.000157465 45.0247 1.87929 49.3965 5.06152L45.5547 6.78223C42.018 5.03233 38.0355 4.04699 33.8223 4.04688C19.8701 4.04688 8.43701 14.831 7.40332 28.5186C7.35289 27.8507 7.3252 27.1758 7.3252 26.4951C7.32533 11.8622 19.1894 0 33.8223 0ZM54.1406 9.49316C57.9949 14.0945 60.3173 20.0232 60.3174 26.4951C60.3174 27.1758 60.2907 27.8507 60.2402 28.5186C59.7843 22.4814 57.3033 17.0106 53.4775 12.7793L54.1406 9.49316Z" fill="#101828"/>
       </svg>
     </a>
+    <nav class="main-nav" aria-label="Hlavní navigace">
+      <div class="nav-item">
+        <a class="nav-link" href="index.html#sluzby" aria-haspopup="true">Služby
+          <svg class="caret" width="10" height="7" viewBox="0 0 10 7" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="drop">
+          <a href="sluzby-rozdeleni-pozemku.html">Rozdělení pozemku</a>
+          <a href="sluzby-vytyceni-hranic.html">Vytyčení hranic pozemku</a>
+          <a href="sluzby-geometricky-plan-kolaudace.html">Geometrický plán ke kolaudaci</a>
+          <a href="sluzby-pasport-stavby.html">Pasport stavby</a>
+          <a class="drop-all" href="index.html#sluzby">Přehled všech služeb →</a>
+        </div>
+      </div>
+      <a href="pro-firmy.html">Pro firmy a investory</a>
+      <a href="kariera.html" aria-current="page">Kariéra</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </nav>
     <div class="header-actions">
       <a class="header-phone" href="tel:+420604206176">
         <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" fill="currentColor"/></svg>
         604 206 176
       </a>
-      <a class="back-link" href="index.html">← Zpět na web</a>
+      <a class="btn btn-primary header-cta" href="#formular">Poslat žádost</a>
+      <button class="burger" id="burger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobilní navigace">
+  <span class="menu-group">Služby pro soukromé klienty</span>
+  <a class="menu-sub" href="sluzby-rozdeleni-pozemku.html">Rozdělení pozemku</a>
+  <a class="menu-sub" href="sluzby-vytyceni-hranic.html">Vytyčení hranic pozemku</a>
+  <a class="menu-sub" href="sluzby-geometricky-plan-kolaudace.html">Geometrický plán ke kolaudaci</a>
+  <a class="menu-sub" href="sluzby-pasport-stavby.html">Pasport stavby</a>
+  <a href="index.html#sluzby">Přehled všech služeb</a>
+  <span class="menu-group">Společnost</span>
+  <a href="pro-firmy.html">Pro firmy a investory</a>
+  <a href="kariera.html" aria-current="page">Kariéra</a>
+  <a href="index.html#kontakt">Kontakt</a>
+  <a href="tel:+420604206176">Zavolat: 604 206 176</a>
+  <a class="btn btn-primary" href="#formular">Poslat žádost</a>
+</nav>
 
 <main>
 
@@ -350,6 +427,20 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const hasGsap = typeof gsap !== 'undefined';
 if (hasGsap && typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
+
+// mobile menu
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}));
 
 if (hasGsap && !prefersReduced) {
   ScrollTrigger.batch('.reveal', {

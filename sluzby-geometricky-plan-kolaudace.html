@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geometrický plán ke kolaudaci novostavby — rychle a bez vracení | Delta G</title>
+<meta name="description" content="Zaměření novostavby a geometrický plán pro zápis domu do katastru — podklad ke kolaudaci, hypotéce i číslu popisnému. Praha a Středočeský kraj.">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://deltag.vercel.app/sluzby-geometricky-plan-kolaudace.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Delta G">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:title" content="Geometrický plán ke kolaudaci novostavby — rychle a bez vracení | Delta G">
+<meta property="og:description" content="Zaměření novostavby a geometrický plán pro zápis domu do katastru — podklad ke kolaudaci, hypotéce i číslu popisnému. Praha a Středočeský kraj.">
+<meta property="og:url" content="https://deltag.vercel.app/sluzby-geometricky-plan-kolaudace.html">
+<meta property="og:image" content="https://deltag.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://deltag.vercel.app/og-image.png">
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Kdy mám geodeta objednat?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Ideálně hned po dokončení hrubé stavby — obvod budovy už se nezmění a plán bude hotový dřív, než jej úřady budou chtít."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Co od vás budu potřebovat?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Číslo parcely a kontakt. Vše ostatní — podklady katastru, zaměření, ověření i součinnost s úřadem — zajistíme my."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Jak dlouho trvá zápis stavby do katastru?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Vyhotovení plánu trvá obvykle 2–3 týdny, katastr poté rozhoduje o vkladu do 30 dnů."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Potřebuje geometrický plán i garáž nebo bazén?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Stavby spojené se zemí pevným základem se do katastru zapisují zpravidla od výměry 16 m². Konkrétní případ posoudíme zdarma po telefonu."
+   }
+  }
+ ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#0033FB;--yellow:#FBED51;--ink:#101828;--ink-2:#344054;
+  --g500:#667085;--g300:#D0D5DD;--g100:#F2F4F7;--radius:14px;--header-h:72px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--yellow);color:var(--ink)}
+html{scroll-behavior:smooth}
+body{font-family:'Rajdhani',system-ui,sans-serif;background:#fff;color:var(--ink);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none}
+section{scroll-margin-top:calc(var(--header-h) + 16px)}
+.wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-weight:600;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--blue)}
+h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
+.h2{font-size:clamp(1.8rem,3.6vw,2.5rem);margin:.7rem 0 1rem}
+.lead{color:var(--ink-2);font-size:clamp(1.05rem,1.6vw,1.2rem);max-width:60ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.95rem 1.9rem;border-radius:10px;font-weight:700;font-size:1.02rem;letter-spacing:.04em;text-transform:uppercase;transition:background .25s,color .25s,transform .15s,border-color .25s;white-space:nowrap}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--yellow);color:var(--ink)}
+.btn-ghost{border:1.5px solid var(--g300);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);background:var(--g100)}
+.site-header{position:fixed;inset:0 0 auto 0;z-index:60;height:var(--header-h);display:flex;align-items:center;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--g100)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{display:flex;align-items:center;flex:none}
+.logo-mark{height:40px;width:auto}
+.logo-swoosh{transform-box:fill-box;transform-origin:center;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.logo:hover .logo-swoosh{transform:translate(2px,-3px) rotate(-5deg)}
+.main-nav{display:none;gap:1.6rem;font-weight:600;color:var(--ink-2);white-space:nowrap;align-items:center}
+.main-nav > a,.main-nav .nav-link{padding:.4rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.main-nav > a:hover,.main-nav .nav-link:hover{color:var(--blue);border-color:var(--yellow)}
+.main-nav a[aria-current=page]{color:var(--blue)}
+.nav-item{position:relative}
+.nav-item::after{content:"";position:absolute;top:100%;left:-1rem;right:-1rem;height:.7rem}
+.nav-link{display:inline-flex;align-items:center;gap:.45rem;cursor:pointer}
+.nav-link .caret{transition:transform .25s}
+.nav-item:hover .caret,.nav-item:focus-within .caret{transform:rotate(180deg)}
+.drop{position:absolute;top:calc(100% + .6rem);left:-1rem;min-width:300px;z-index:70;background:#fff;border:1px solid var(--g100);border-radius:12px;padding:.55rem;box-shadow:0 28px 60px -24px rgba(16,24,40,.3);display:grid;gap:.1rem;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .22s,transform .22s,visibility .22s}
+.nav-item:hover .drop,.nav-item:focus-within .drop{opacity:1;visibility:visible;transform:translateY(0)}
+.drop a{padding:.55rem .85rem;border-radius:8px;font-weight:600;color:var(--ink-2);border:none}
+.drop a:hover{background:var(--g100);color:var(--blue)}
+.drop .drop-all{margin-top:.35rem;border-top:1px solid var(--g100);border-radius:0 0 8px 8px;color:var(--blue);font-size:.95rem}
+.header-actions{display:flex;align-items:center;gap:1.4rem}
+.header-phone{display:none;font-weight:700;align-items:center;gap:.45rem}
+.header-phone:hover{color:var(--blue)}
+.header-cta{display:none}
+.burger{display:flex;flex-direction:column;gap:5px;padding:.6rem}
+.burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{position:fixed;top:var(--header-h);left:0;right:0;z-index:55;background:#fff;border-bottom:1px solid var(--g100);display:grid;gap:.2rem;padding:1rem 1.4rem 1.4rem;transform:translateY(-110%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:0 20px 40px -20px rgba(16,24,40,.25)}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-menu a{padding:.7rem 0;font-weight:600;font-size:1.15rem;border-bottom:1px solid var(--g100)}
+.mobile-menu .btn{margin-top:.9rem}
+.mobile-menu .menu-group{padding:1rem 0 .25rem;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g500);font-weight:600}
+.mobile-menu a.menu-sub{padding-left:1rem;font-size:1.02rem;color:var(--ink-2)}
+@media(min-width:980px){.main-nav,.header-cta{display:inline-flex}.burger,.mobile-menu{display:none}}
+@media(min-width:1240px){.header-phone{display:inline-flex}}
+.hero{padding:calc(var(--header-h) + clamp(2.5rem,7vh,4.5rem)) 0 clamp(2.5rem,6vh,4rem);background:repeating-linear-gradient(0deg,transparent 0 39px,var(--g100) 39px 40px),repeating-linear-gradient(90deg,transparent 0 39px,var(--g100) 39px 40px)}
+.breadcrumb{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;font-size:.9rem;font-weight:600;color:var(--g500);margin-bottom:1.4rem}
+.breadcrumb a:hover{color:var(--blue)}
+.breadcrumb svg{opacity:.5}
+.hero h1{font-size:clamp(2.1rem,5vw,3.4rem);margin:.4rem 0 1.1rem;max-width:22ch}
+.hero .lead{margin-bottom:1.8rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem}
+.section{padding:clamp(3rem,8vh,5.5rem) 0}
+.section-head{max-width:720px;margin-bottom:clamp(1.6rem,4vh,2.4rem)}
+.kdy-grid{display:grid;gap:1.1rem}
+@media(min-width:760px){.kdy-grid{grid-template-columns:repeat(2,1fr)}}
+.kdy{border:1px solid var(--g300);border-radius:var(--radius);background:#fff;padding:1.4rem 1.4rem;display:flex;gap:.9rem;align-items:flex-start}
+.kdy svg{flex:none;margin-top:.2rem}
+.kdy h3{font-size:1.2rem;margin-bottom:.25rem}
+.kdy p{color:var(--ink-2);font-size:.98rem}
+.postup{background:var(--g100)}
+.steps-line{display:grid;gap:1.6rem;counter-reset:krok}
+.step-item{position:relative;padding-left:4rem}
+.step-item::before{counter-increment:krok;content:"0" counter(krok);position:absolute;left:0;top:0;font-weight:700;font-size:1.7rem;line-height:1;color:var(--blue)}
+.step-item::after{content:"";position:absolute;left:.8rem;top:2.5rem;bottom:-1.4rem;width:1px;background:var(--g300)}
+.step-item:last-child::after{display:none}
+.step-item h3{font-size:1.25rem;margin-bottom:.25rem}
+.step-item p{color:var(--ink-2);font-size:.98rem}
+@media(min-width:900px){.steps-line{grid-template-columns:repeat(4,1fr);gap:2rem}.step-item{padding-left:0;padding-top:3.2rem}.step-item::before{top:0;left:0}.step-item::after{left:3.4rem;right:-1.6rem;top:.8rem;bottom:auto;width:auto;height:1px}}
+.price-box{border:1px solid var(--g300);border-left:5px solid var(--blue);border-radius:var(--radius);background:#fff;padding:1.8rem 1.8rem;display:flex;flex-wrap:wrap;gap:1.5rem 3rem;align-items:center}
+.price-box b{font-size:clamp(2rem,4vw,2.8rem);color:var(--blue);line-height:1.05}
+.price-box .pn{color:var(--ink-2);max-width:48ch;font-size:1rem}
+.price-box .label{display:block;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g500);font-weight:600;margin-bottom:.2rem}
+.faq{display:grid;gap:.8rem;max-width:820px}
+.faq details{border:1px solid var(--g300);border-radius:12px;background:#fff;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:1.05rem 1.3rem;font-weight:700;font-size:1.08rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.5rem;color:var(--blue);line-height:1;transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 1.3rem 1.2rem;color:var(--ink-2)}
+.cta-final{background:var(--g100)}
+.cta-final .inner{text-align:center;max-width:680px;margin-inline:auto}
+.cta-final .h2{margin-top:.4rem}
+.cta-final .btns{display:flex;flex-wrap:wrap;gap:.9rem;justify-content:center;margin-top:1.8rem}
+.cta-final .xlinks{margin-top:2rem;display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;font-weight:600;color:var(--g500)}
+.cta-final .xlinks a{color:var(--blue)}
+.cta-final .xlinks a:hover{text-decoration:underline}
+.site-footer{border-top:1px solid var(--g100);padding:2.2rem 0;color:var(--g500);font-size:.92rem}
+.footer-inner{display:flex;flex-wrap:wrap;gap:1rem 2.5rem;justify-content:space-between;align-items:center}
+.footer-inner a:hover{color:var(--blue)}
+.reveal{opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="index.html" aria-label="Delta G — úvod">
+      <svg class="logo-mark" viewBox="0 0 72 50" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Delta G">
+        <path d="M66.014 43.2699V40.7589H71.063V48.1809C70.2932 48.8021 69.4037 49.2582 68.45 49.5209C67.4193 49.8362 66.3478 49.9979 65.27 50.0009C64.2449 50.047 63.2226 49.8608 62.2796 49.4563C61.3365 49.0518 60.4971 48.4394 59.824 47.6649C58.419 45.9242 57.7019 43.7283 57.809 41.4939C57.7109 39.2118 58.4955 36.9796 60 35.2609C60.7515 34.4582 61.6682 33.828 62.6867 33.4136C63.7053 32.9993 64.8015 32.8107 65.9 32.8609C67.5429 32.8198 69.1404 33.4026 70.371 34.4919L69.185 36.8549C68.7207 36.4665 68.1975 36.1546 67.635 35.9309C67.0719 35.6591 66.4596 35.5044 65.835 35.4759C65.129 35.4448 64.4255 35.5782 63.7799 35.8656C63.1343 36.153 62.5644 36.5865 62.115 37.1319C61.1487 38.4041 60.6644 39.9775 60.748 41.5729C60.6725 43.0974 61.1489 44.5981 62.09 45.7999C62.5357 46.3237 63.0953 46.7386 63.7261 47.0128C64.3568 47.287 65.0419 47.4133 65.729 47.3819C66.6399 47.4181 67.5315 47.1128 68.229 46.5259V43.2699H66.014ZM46.014 44.0139C45.6703 43.9329 45.3198 43.8841 44.967 43.8679C42.815 43.8679 41.7393 44.6012 41.74 46.0679C41.74 47.1519 42.347 47.6969 43.56 47.6969C45.1987 47.6969 46.0167 46.8472 46.014 45.1479V44.0139ZM48.914 49.8019C48.6075 49.9007 48.287 49.9493 47.965 49.9459C47.7668 49.9448 47.5709 49.9037 47.389 49.8252C47.207 49.7467 47.0428 49.6323 46.906 49.4889C46.6154 49.2217 46.3978 48.8847 46.274 48.5099C45.9601 48.9826 45.5052 49.3444 44.974 49.5439C44.3673 49.809 43.7121 49.9452 43.05 49.9439C41.972 50.0044 40.9112 49.6534 40.082 48.9619C39.7123 48.6047 39.4244 48.1718 39.2379 47.6927C39.0515 47.2137 38.971 46.7 39.002 46.1869C38.9745 45.5561 39.0984 44.928 39.3634 44.3549C39.6283 43.7818 40.0267 43.2805 40.525 42.8929C41.7945 42.0274 43.3166 41.6103 44.85 41.7079C45.233 41.7161 45.6135 41.7732 45.982 41.8779C45.982 40.4526 45.1137 39.7396 43.377 39.7389C42.4895 39.7094 41.6077 39.8921 40.805 40.2719L40.216 38.0719C41.2623 37.5812 42.4087 37.3415 43.564 37.3719C44.2677 37.3113 44.9764 37.3915 45.6488 37.6078C46.3212 37.8242 46.9437 38.1723 47.48 38.6319C48.306 39.4726 48.7203 41.0659 48.723 43.4119V46.0019C48.723 47.6159 49.035 48.6329 49.662 49.0459C49.5162 49.3792 49.2533 49.6474 48.923 49.7999L48.914 49.8019ZM35.132 47.0189C35.3005 47.2128 35.5136 47.3628 35.753 47.4562C35.9923 47.5496 36.2507 47.5834 36.506 47.5549C37.158 47.5566 37.7957 47.3634 38.337 46.9999V49.5999C37.4613 49.8584 36.5495 49.9732 35.637 49.9399C35.142 49.9714 34.6461 49.8959 34.1829 49.7185C33.7198 49.5411 33.3003 49.266 32.953 48.9119C32.2812 48.0963 31.9455 47.0553 32.014 46.0009V39.8739H30.66V37.5999H32.011V35.1359L34.737 34.0939V37.5999H37.946V39.8739H34.737V45.1809C34.6817 45.8193 34.8193 46.4596 35.132 47.0189ZM28 49.9459C26.764 49.9459 26.143 49.0529 26.143 47.2749V33.0869L28.872 32.4109V46.0299C28.872 47.5252 29.3017 48.4146 30.161 48.6979C29.9661 49.0975 29.6562 49.4298 29.2712 49.6521C28.8862 49.8745 28.4435 49.9768 28 49.9459ZM18.6 39.7409C17.0427 39.7409 16.076 40.6259 15.7 42.3959H21.437C21.4463 42.029 21.3778 41.6642 21.236 41.3257C21.0943 40.9871 20.8824 40.6824 20.6144 40.4316C20.3464 40.1808 20.0284 39.9896 19.6812 39.8706C19.334 39.7515 18.9655 39.7073 18.6 39.7409ZM23.942 44.5239H15.6C15.6009 44.9445 15.6865 45.3607 15.8516 45.7476C16.0167 46.1345 16.2579 46.4842 16.561 46.7759C17.2229 47.3362 18.074 47.6224 18.94 47.5759C19.4557 47.6121 19.9733 47.5421 20.4608 47.3701C20.9483 47.198 21.3953 46.9277 21.774 46.5759L22.831 48.7329C21.5852 49.631 20.0625 50.0609 18.531 49.9469C17.7521 49.9861 16.9736 49.8617 16.2457 49.5816C15.5178 49.3016 14.8567 48.8721 14.305 48.3209C13.2087 47.0755 12.6494 45.4471 12.749 43.7909C12.7123 42.9433 12.8445 42.0968 13.1379 41.3008C13.4313 40.5047 13.88 39.7749 14.458 39.1539C14.978 38.586 15.612 38.1343 16.3185 37.8281C17.0249 37.5219 17.7881 37.3681 18.558 37.3769C19.3029 37.3359 20.0482 37.4517 20.7456 37.7168C21.4429 37.982 22.0769 38.3906 22.6064 38.9161C23.136 39.4417 23.5493 40.0726 23.8196 40.7679C24.09 41.4633 24.2114 42.2077 24.176 42.9529C24.1494 43.4829 24.071 44.0091 23.942 44.5239ZM4.136 35.6429C3.83133 35.6429 3.398 35.6706 2.836 35.7259V47.0379C3.294 47.0809 3.788 47.1029 4.321 47.1029C4.97106 47.1302 5.61782 46.9969 6.20406 46.7147C6.79029 46.4324 7.29792 46.0101 7.682 45.4849C8.56914 44.1491 8.99674 42.5605 8.9 40.9599C8.9 37.4152 7.312 35.6429 4.136 35.6429ZM3.547 49.7179H0V33.1569C2.263 33.0719 3.685 33.0339 4.267 33.0339C5.28603 32.9826 6.30455 33.1447 7.25733 33.5097C8.21011 33.8748 9.07615 34.4348 9.8 35.1539C10.4962 35.9103 11.0353 36.7973 11.3862 37.7635C11.737 38.7298 11.8927 39.7561 11.844 40.7829C11.8453 46.7402 9.07967 49.7186 3.547 49.7179Z" fill="#101828"/>
+        <path class="logo-swoosh" d="M54.6806 4.04769C48.3742 6.2642 41.8902 10.1536 35.9145 14.3081C28.0659 19.7648 24.8881 22.6176 10.4395 29.0516C24.1242 23.1215 28.8134 21.5271 37.2887 16.2516C42.6554 12.9111 46.4933 9.26722 51.3101 7.0391C47.862 11.147 46.568 16.1632 46.647 20.3461C46.7259 24.5291 47.6137 29.2744 49.0247 32.4515C44.216 27.7783 41.3639 26.2482 37.2887 25.3273C34.9503 24.7989 32.346 24.6516 29.65 24.7706C24.5124 24.9973 20.7717 26.667 16.7472 27.402C19.8858 27.0133 23.0442 26.8043 26.2067 26.7761C31.8026 26.7761 36.9678 27.6248 41.3639 30.087C48.1596 33.8986 52.9461 41.3817 57.2022 50C53.8245 36.3406 51.6513 28.6546 51.6513 20.858C51.6513 14.7965 53.0392 9.76606 54.6806 4.04663" fill="#0033FB"/>
+        <path d="M33.8223 0C39.6434 0.000157465 45.0247 1.87929 49.3965 5.06152L45.5547 6.78223C42.018 5.03233 38.0355 4.04699 33.8223 4.04688C19.8701 4.04688 8.43701 14.831 7.40332 28.5186C7.35289 27.8507 7.3252 27.1758 7.3252 26.4951C7.32533 11.8622 19.1894 0 33.8223 0ZM54.1406 9.49316C57.9949 14.0945 60.3173 20.0232 60.3174 26.4951C60.3174 27.1758 60.2907 27.8507 60.2402 28.5186C59.7843 22.4814 57.3033 17.0106 53.4775 12.7793L54.1406 9.49316Z" fill="#101828"/>
+      </svg>
+    </a>
+    <nav class="main-nav" aria-label="Hlavní navigace">
+      <div class="nav-item">
+        <a class="nav-link" href="index.html#sluzby" aria-haspopup="true">Služby
+          <svg class="caret" width="10" height="7" viewBox="0 0 10 7" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="drop">
+          <a href="sluzby-rozdeleni-pozemku.html">Rozdělení pozemku</a>
+          <a href="sluzby-vytyceni-hranic.html">Vytyčení hranic pozemku</a>
+          <a href="sluzby-geometricky-plan-kolaudace.html" aria-current="page">Geometrický plán ke kolaudaci</a>
+          <a href="sluzby-pasport-stavby.html">Pasport stavby</a>
+          <a class="drop-all" href="index.html#sluzby">Přehled všech služeb →</a>
+        </div>
+      </div>
+      <a href="pro-firmy.html">Pro firmy a investory</a>
+      <a href="kariera.html">Kariéra</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </nav>
+    <div class="header-actions">
+      <a class="header-phone" href="tel:+420604206176">
+        <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" fill="currentColor"/></svg>
+        604 206 176
+      </a>
+      <a class="btn btn-primary header-cta" href="index.html#poptavka">Nezávazná poptávka</a>
+      <button class="burger" id="burger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobilní navigace">
+  <span class="menu-group">Služby pro soukromé klienty</span>
+  <a class="menu-sub" href="sluzby-rozdeleni-pozemku.html">Rozdělení pozemku</a>
+  <a class="menu-sub" href="sluzby-vytyceni-hranic.html">Vytyčení hranic pozemku</a>
+  <a class="menu-sub" href="sluzby-geometricky-plan-kolaudace.html" aria-current="page">Geometrický plán ke kolaudaci</a>
+  <a class="menu-sub" href="sluzby-pasport-stavby.html">Pasport stavby</a>
+  <a href="index.html#sluzby">Přehled všech služeb</a>
+  <span class="menu-group">Společnost</span>
+  <a href="pro-firmy.html">Pro firmy a investory</a>
+  <a href="kariera.html">Kariéra</a>
+  <a href="index.html#kontakt">Kontakt</a>
+  <a href="tel:+420604206176">Zavolat: 604 206 176</a>
+  <a class="btn btn-primary" href="index.html#poptavka">Nezávazná poptávka</a>
+</nav>
+
+<main>
+
+<section class="hero">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Drobečková navigace">
+      <a href="index.html">Delta G</a>
+      <svg width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="m1 1 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <a href="index.html#sluzby">Služby</a>
+      <svg width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="m1 1 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span>Geometrický plán ke kolaudaci</span>
+    </nav>
+    <h1>Geometrický plán ke kolaudaci</h1>
+    <p class="lead">Dostavěli jste dům, přístavbu nebo garáž? Zaměříme stavbu, vyhotovíme geometrický plán pro vyznačení budovy a připravíme vše pro zápis do katastru — bez něj nezkolaudujete, nedočerpáte hypotéku ani nedostanete číslo popisné.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="index.html#poptavka">Nezávazná poptávka</a>
+      <a class="btn btn-ghost" href="tel:+420604206176">Zavolejte: 604 206 176</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="kdy">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Kdy službu potřebujete</span>
+      <h2 class="h2">Typické situace našich klientů</h2>
+    </div>
+    <div class="kdy-grid">
+      <div class="kdy reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#0033FB" stroke-width="1.8"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#0033FB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Před kolaudací novostavby</h3><p>Geometrický plán je povinná příloha žádosti o kolaudační souhlas.</p></div></div>
+      <div class="kdy reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#0033FB" stroke-width="1.8"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#0033FB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Banka uvolňuje poslední tranši</h3><p>Hypotéka bývá vázána na zápis dokončené stavby do katastru.</p></div></div>
+      <div class="kdy reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#0033FB" stroke-width="1.8"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#0033FB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Přistavěli jste ke stávajícímu domu</h3><p>Přístavba, zimní zahrada či větší garáž se musí do katastru doznačit.</p></div></div>
+      <div class="kdy reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#0033FB" stroke-width="1.8"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#0033FB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Žádáte o číslo popisné</h3><p>Obec jej přidělí až stavbě zapsané v katastru nemovitostí.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section postup">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Jak to probíhá</span>
+      <h2 class="h2">Od poptávky k výsledku ve čtyřech krocích</h2>
+    </div>
+    <div class="steps-line">
+      <div class="step-item reveal"><h3>Poptávka a kalkulace</h3><p>Vyplníte formulář nebo zavoláte. Do 24 hodin máte konkrétní nabídku s cenou a termínem.</p></div>
+      <div class="step-item reveal"><h3>Smlouva s pevnou cenou</h3><p>Vše potvrdíme písemně. Cena ve smlouvě je konečná a v průběhu se nemění.</p></div>
+      <div class="step-item reveal"><h3>Měření v terénu</h3><p>Přijedeme v domluvený den, obvykle do 7–10 dnů. Vaše přítomnost většinou není nutná.</p></div>
+      <div class="step-item reveal"><h3>Úřady a předání</h3><p>Dokumentaci ověří ÚOZI, vyřídíme úřady a hlídáme vše až do předání.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cena">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Cena</span>
+      <h2 class="h2">Kolik to stojí</h2>
+    </div>
+    <!-- TODO: potvrdit cenu u majitele -->
+    <div class="price-box reveal">
+      <div>
+        <span class="label">Orientační cena</span>
+        <b>od 8 000 Kč</b>
+      </div>
+      <p class="pn">Orientační cena pro rodinný dům včetně vyhotovení geometrického plánu a ověření ÚOZI. Nabídku upřesníme do 24 hodin.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Časté dotazy</span>
+      <h2 class="h2">Na co se ptáte nejčastěji</h2>
+    </div>
+    <div class="faq reveal">
+      <details open><summary>Kdy mám geodeta objednat?</summary><p>Ideálně hned po dokončení hrubé stavby — obvod budovy už se nezmění a plán bude hotový dřív, než jej úřady budou chtít.</p></details>
+      <details><summary>Co od vás budu potřebovat?</summary><p>Číslo parcely a kontakt. Vše ostatní — podklady katastru, zaměření, ověření i součinnost s úřadem — zajistíme my.</p></details>
+      <details><summary>Jak dlouho trvá zápis stavby do katastru?</summary><p>Vyhotovení plánu trvá obvykle 2–3 týdny, katastr poté rozhoduje o vkladu do 30 dnů.</p></details>
+      <details><summary>Potřebuje geometrický plán i garáž nebo bazén?</summary><p>Stavby spojené se zemí pevným základem se do katastru zapisují zpravidla od výměry 16 m². Konkrétní případ posoudíme zdarma po telefonu.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-final">
+  <div class="wrap inner">
+    <span class="eyebrow" style="justify-content:center">Nezávazná poptávka</span>
+    <h2 class="h2">Pošlete nám pár řádků,<br>do 24 hodin máte nabídku</h2>
+    <div class="btns">
+      <a class="btn btn-primary" href="index.html#poptavka">Vyplnit poptávku</a>
+      <a class="btn btn-ghost" href="tel:+420604206176">604 206 176</a>
+    </div>
+    <div class="xlinks">
+      <a href="index.html#sluzby">← Všechny služby pro soukromé klienty</a>
+      <a href="pro-firmy.html">Služby pro firmy a investory →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>© 2004–2026 Delta G s.r.o. · IČO 02362538 · Praha 10</span>
+    <a href="index.html">Hlavní stránka</a>
+    <a href="pro-firmy.html">Pro firmy a investory</a>
+    <a href="kariera.html">Kariéra</a>
+    <a href="zasady-ochrany-osobnich-udaju.html">Zásady ochrany osobních údajů</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+'use strict';
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasGsap = typeof gsap !== 'undefined';
+if (hasGsap && typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}));
+if (hasGsap && !prefersReduced) {
+  ScrollTrigger.batch('.reveal', {
+    start: 'top 88%', once: true,
+    onEnter: els => gsap.to(els, {opacity:1, y:0, duration:.8, stagger:.12, ease:'power3.out'})
+  });
+} else {
+  document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+}
+</script>
+</body>
+</html>

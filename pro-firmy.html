@@ -84,9 +84,27 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .logo-mark{height:40px;width:auto}
 .logo-swoosh{transform-box:fill-box;transform-origin:center;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
 .logo:hover .logo-swoosh{transform:translate(2px,-3px) rotate(-5deg)}
-.main-nav{display:none;gap:1.8rem;font-weight:600;color:var(--ink-2)}
-.main-nav a{padding:.4rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
-.main-nav a:hover{color:var(--blue);border-color:var(--yellow)}
+.main-nav{display:none;gap:1.6rem;font-weight:600;color:var(--ink-2);white-space:nowrap;align-items:center}
+.main-nav > a,.main-nav .nav-link{padding:.4rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.main-nav > a:hover,.main-nav .nav-link:hover{color:var(--blue);border-color:var(--yellow)}
+.main-nav a[aria-current=page]{color:var(--blue)}
+.nav-item{position:relative}
+.nav-item::after{content:"";position:absolute;top:100%;left:-1rem;right:-1rem;height:.7rem}
+.nav-link{display:inline-flex;align-items:center;gap:.45rem;cursor:pointer}
+.nav-link .caret{transition:transform .25s}
+.nav-item:hover .caret,.nav-item:focus-within .caret{transform:rotate(180deg)}
+.drop{
+  position:absolute;top:calc(100% + .6rem);left:-1rem;min-width:300px;z-index:70;
+  background:#fff;border:1px solid var(--g100);border-radius:12px;padding:.55rem;
+  box-shadow:0 28px 60px -24px rgba(16,24,40,.3);
+  display:grid;gap:.1rem;
+  opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .22s,transform .22s,visibility .22s;
+}
+.nav-item:hover .drop,.nav-item:focus-within .drop{opacity:1;visibility:visible;transform:translateY(0)}
+.drop a{padding:.55rem .85rem;border-radius:8px;font-weight:600;color:var(--ink-2);border:none}
+.drop a:hover{background:var(--g100);color:var(--blue)}
+.drop .drop-all{margin-top:.35rem;border-top:1px solid var(--g100);border-radius:0 0 8px 8px;color:var(--blue);font-size:.95rem}
 .header-actions{display:flex;align-items:center;gap:1.4rem}
 .header-phone{display:none;font-weight:700;align-items:center;gap:.45rem}
 .header-phone:hover{color:var(--blue)}
@@ -105,11 +123,16 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .mobile-menu.open{transform:translateY(0)}
 .mobile-menu a{padding:.7rem 0;font-weight:600;font-size:1.15rem;border-bottom:1px solid var(--g100)}
 .mobile-menu .btn{margin-top:.9rem}
-@media(min-width:920px){
+.mobile-menu .menu-group{
+  padding:1rem 0 .25rem;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--g500);font-weight:600;
+}
+.mobile-menu a.menu-sub{padding-left:1rem;font-size:1.02rem;color:var(--ink-2)}
+@media(min-width:980px){
   .main-nav,.header-cta{display:inline-flex}
   .burger,.mobile-menu{display:none}
 }
-@media(min-width:1140px){.header-phone{display:inline-flex}}
+@media(min-width:1240px){.header-phone{display:inline-flex}}
 
 /* hero */
 .hero{
@@ -118,12 +141,12 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 }
 .hero-grid-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
 .hero-grid-bg svg{width:100%;height:100%}
-.hero-inner{position:relative;z-index:1;max-width:840px}
+.hero-inner{position:relative;z-index:1;max-width:840px;margin-inline:auto;text-align:center}
 .hero h1{font-size:clamp(2.3rem,5.4vw,3.9rem);margin:1.1rem 0 1.2rem}
 .hero h1 em{font-style:normal;color:var(--blue)}
-.hero .lead{margin-bottom:2.2rem}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:2.2rem}
-.cred-strip{display:flex;flex-wrap:wrap;gap:.6rem}
+.hero .lead{margin-bottom:2.2rem;margin-inline:auto}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:2.2rem;justify-content:center}
+.cred-strip{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
 .cred-chip{
   display:inline-flex;align-items:center;gap:.5rem;
   border:1px solid var(--g300);border-radius:99px;padding:.35rem .9rem;
@@ -152,10 +175,10 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .cat-head .ico{flex:none;width:52px;height:52px;border-radius:12px;background:var(--blue);display:grid;place-items:center}
 .cat-card h3{font-size:clamp(1.35rem,2vw,1.6rem)}
 .cat-card ul{list-style:none;display:grid;gap:.6rem;color:var(--ink-2);font-size:1.02rem}
-.cat-card li{display:flex;gap:.65rem;align-items:flex-start}
+.cat-card li{position:relative;padding-left:1.15rem}
 .cat-card li::before{
-  content:"";flex:none;width:7px;height:7px;border-radius:50%;
-  background:var(--blue);margin-top:.55rem;
+  content:"";position:absolute;left:0;top:.55rem;
+  width:7px;height:7px;border-radius:50%;background:var(--blue);
 }
 .cat-card li b{color:var(--ink)}
 
@@ -195,18 +218,40 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
   .logo-set + .logo-set{display:none}
 }
 
-/* CTA band */
+/* CTA band + form */
 .cta-band{background:var(--ink);color:#fff}
 .cta-band .eyebrow{color:var(--yellow)}
 .cta-band .eyebrow::before{background:var(--yellow)}
 .cta-band .lead{color:#aeb6c6}
-.cta-inner{display:grid;gap:2rem;align-items:center}
-@media(min-width:900px){.cta-inner{grid-template-columns:1.2fr 1fr}}
-.cta-contacts{display:grid;gap:1.1rem}
-.cta-contacts a{font-weight:700;font-size:clamp(1.3rem,2.4vw,1.7rem);color:#fff}
+.cta-inner{display:grid;gap:2.5rem;align-items:start}
+@media(min-width:980px){.cta-inner{grid-template-columns:1fr 1.1fr;gap:4rem}}
+.cta-contacts{display:grid;gap:1.1rem;margin-top:2rem}
+.cta-contacts a{font-weight:700;font-size:clamp(1.2rem,2.2vw,1.5rem);color:#fff}
 .cta-contacts a:hover{color:var(--yellow)}
 .cta-contacts .label{display:block;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#7c8598;font-weight:600;margin-bottom:.1rem}
-.cta-actions{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:1.6rem}
+.form-card{
+  background:#fff;color:var(--ink);border-radius:18px;
+  padding:clamp(1.4rem,3vw,2.2rem);
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.5);
+}
+.lead-form{display:grid;gap:.9rem}
+@media(min-width:640px){.lead-form{grid-template-columns:1fr 1fr}.lead-form .full{grid-column:1/-1}}
+.lead-form label{display:grid;gap:.3rem;font-weight:600;font-size:.92rem;color:var(--ink-2)}
+.lead-form input[type=text],.lead-form input[type=tel],.lead-form input[type=email],.lead-form textarea{
+  font:inherit;padding:.8rem 1rem;border:1.5px solid var(--g300);border-radius:10px;outline:none;
+  transition:border-color .2s,box-shadow .2s;width:100%;background:#fff;color:var(--ink);
+}
+.lead-form textarea{resize:vertical;min-height:110px}
+.lead-form :is(input,textarea):focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,51,251,.12)}
+.lead-form label.consent{display:flex;gap:.6rem;align-items:center;font-size:.86rem;color:var(--g500);font-weight:500}
+.consent input{accent-color:var(--blue);width:16px;height:16px;flex:none}
+.consent a{color:var(--blue);text-decoration:underline}
+.form-note{font-size:.85rem;color:var(--g500)}
+.hp-field{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+.form-success{text-align:center;padding:2rem 0 1rem}
+.form-success .ico{width:64px;height:64px;border-radius:50%;background:var(--blue);margin:0 auto 1.2rem;display:grid;place-items:center}
+.form-success p:first-of-type{font-size:1.5rem;font-weight:700}
+.form-success .hint{color:var(--g500);margin-top:.4rem}
 
 /* footer */
 .site-footer{border-top:1px solid var(--g100);padding:2.2rem 0;color:var(--g500);font-size:.92rem}
@@ -229,17 +274,28 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
       </svg>
     </a>
     <nav class="main-nav" aria-label="Hlavní navigace">
-      <a href="#sluzby">Služby</a>
-      <a href="#zpusobilost">Způsobilost</a>
-      <a href="#reference">Reference</a>
-      <a href="index.html">Pro soukromé klienty</a>
+      <div class="nav-item">
+        <a class="nav-link" href="index.html#sluzby" aria-haspopup="true">Služby
+          <svg class="caret" width="10" height="7" viewBox="0 0 10 7" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="drop">
+          <a href="sluzby-rozdeleni-pozemku.html">Rozdělení pozemku</a>
+          <a href="sluzby-vytyceni-hranic.html">Vytyčení hranic pozemku</a>
+          <a href="sluzby-geometricky-plan-kolaudace.html">Geometrický plán ke kolaudaci</a>
+          <a href="sluzby-pasport-stavby.html">Pasport stavby</a>
+          <a class="drop-all" href="index.html#sluzby">Přehled všech služeb →</a>
+        </div>
+      </div>
+      <a href="pro-firmy.html" aria-current="page">Pro firmy a investory</a>
+      <a href="kariera.html">Kariéra</a>
+      <a href="index.html#kontakt">Kontakt</a>
     </nav>
     <div class="header-actions">
       <a class="header-phone" href="tel:+420604206176">
         <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" fill="currentColor"/></svg>
         604 206 176
       </a>
-      <a class="btn btn-primary header-cta" href="#kontakt">Nezávazná poptávka</a>
+      <a class="btn btn-primary header-cta" href="#poptavka">Nezávazná poptávka</a>
       <button class="burger" id="burger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
@@ -247,12 +303,18 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
   </div>
 </header>
 <nav class="mobile-menu" id="mobileMenu" aria-label="Mobilní navigace">
-  <a href="#sluzby">Služby</a>
-  <a href="#zpusobilost">Způsobilost</a>
-  <a href="#reference">Reference</a>
-  <a href="index.html">Pro soukromé klienty</a>
+  <span class="menu-group">Služby pro soukromé klienty</span>
+  <a class="menu-sub" href="sluzby-rozdeleni-pozemku.html">Rozdělení pozemku</a>
+  <a class="menu-sub" href="sluzby-vytyceni-hranic.html">Vytyčení hranic pozemku</a>
+  <a class="menu-sub" href="sluzby-geometricky-plan-kolaudace.html">Geometrický plán ke kolaudaci</a>
+  <a class="menu-sub" href="sluzby-pasport-stavby.html">Pasport stavby</a>
+  <a href="index.html#sluzby">Přehled všech služeb</a>
+  <span class="menu-group">Společnost</span>
+  <a href="pro-firmy.html" aria-current="page">Pro firmy a investory</a>
+  <a href="kariera.html">Kariéra</a>
+  <a href="index.html#kontakt">Kontakt</a>
   <a href="tel:+420604206176">Zavolat: 604 206 176</a>
-  <a class="btn btn-primary" href="#kontakt">Nezávazná poptávka</a>
+  <a class="btn btn-primary" href="#poptavka">Nezávazná poptávka</a>
 </nav>
 
 <main>
@@ -293,7 +355,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
     Více než 20 let dodáváme geodetické výkony pro železnici, metro, vodohospodářské
     celky i pozemní stavby — v termínech a kvalitě ISO 9001.</p>
     <div class="hero-ctas">
-      <a class="btn btn-primary" href="#kontakt">Poptat výkon</a>
+      <a class="btn btn-primary" href="#poptavka">Poptat výkon</a>
       <a class="btn btn-ghost" href="#sluzby">Katalog služeb</a>
     </div>
     <div class="cred-strip" aria-label="Odborná oprávnění">
@@ -462,32 +524,59 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
   </div>
 </section>
 
-<!-- ===================== CTA ===================== -->
-<section class="section cta-band" id="kontakt">
+<!-- ===================== CTA + FORM ===================== -->
+<section class="section cta-band" id="poptavka">
   <div class="wrap cta-inner">
     <div class="reveal">
       <span class="eyebrow">Nezávazná poptávka</span>
       <h2 class="h2">Pošlete podklady,<br>nabídku připravíme do 24 hodin</h2>
       <p class="lead">Projektová dokumentace, rozsah prací a termín stačí.
       Kapacity plánujeme týdny dopředu — ozvěte se včas.</p>
-      <div class="cta-actions">
-        <a class="btn btn-primary" href="index.html#poptavka">Poptávkový formulář</a>
-        <a class="btn btn-inverse" href="mailto:posta@deltag.cz">posta@deltag.cz</a>
+      <div class="cta-contacts">
+        <div>
+          <span class="label">Telefon</span>
+          <a href="tel:+420604206176">+420 604 206 176</a>
+        </div>
+        <div>
+          <span class="label">E-mail</span>
+          <a href="mailto:posta@deltag.cz">posta@deltag.cz</a>
+        </div>
+        <div>
+          <span class="label">Kancelář</span>
+          <span style="font-weight:600;font-size:1.1rem;color:#cfd5e1">Polygrafická 262/3, 108 00 Praha 10</span>
+        </div>
       </div>
     </div>
-    <div class="cta-contacts reveal">
-      <div>
-        <span class="label">Telefon</span>
-        <a href="tel:+420604206176">+420 604 206 176</a>
-      </div>
-      <div>
-        <span class="label">E-mail</span>
-        <a href="mailto:posta@deltag.cz">posta@deltag.cz</a>
-      </div>
-      <div>
-        <span class="label">Kancelář</span>
-        <span style="font-weight:600;font-size:1.1rem;color:#cfd5e1">Polygrafická 262/3, 108 00 Praha 10</span>
-      </div>
+    <div class="form-card reveal" id="formCard">
+      <form class="lead-form" id="b2bForm" novalidate>
+        <label>Jméno a příjmení
+          <input type="text" name="name" autocomplete="name" required placeholder="Jan Novák">
+        </label>
+        <label>Firma / IČO <span style="color:var(--g500);font-weight:500">(nepovinné)</span>
+          <input type="text" name="firm" autocomplete="organization" placeholder="Stavby s.r.o.">
+        </label>
+        <label>Telefon
+          <input type="tel" name="phone" autocomplete="tel" required placeholder="+420 …" pattern="[0-9+ ]{9,16}">
+        </label>
+        <label>E-mail
+          <input type="email" name="email" autocomplete="email" required placeholder="jan.novak@firma.cz">
+        </label>
+        <label class="full">Popis zakázky
+          <textarea name="message" rows="4" required placeholder="Rozsah prací, lokalita, termín, odkaz na dokumentaci…"></textarea>
+        </label>
+        <div class="hp-field" aria-hidden="true">
+          <input type="text" name="company" tabindex="-1" autocomplete="off">
+        </div>
+        <label class="consent full">
+          <input type="checkbox" name="gdpr" required>
+          <span>Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky.
+          Více v <a href="zasady-ochrany-osobnich-udaju.html" target="_blank">zásadách ochrany osobních údajů</a>.</span>
+        </label>
+        <div class="full" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+          <button type="submit" class="btn btn-primary">Odeslat poptávku</button>
+          <span class="form-note">Odpovídáme do 24 hodin.</span>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -601,6 +690,48 @@ if (hasGsap && !prefersReduced) {
     });
   });
 }
+
+/* B2B lead form — submits in place, no redirect */
+// POST endpoint pro leady (Formspree / Make / vlastní API). Prázdné = demo režim.
+const FORM_ENDPOINT = '';
+
+document.getElementById('b2bForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target;
+  if (!form.reportValidity()) return;
+  if (form.company.value) return; // honeypot
+  const btn = form.querySelector('[type=submit]');
+  btn.disabled = true; btn.textContent = 'Odesílám…';
+  const payload = {
+    name: form.name.value.trim(),
+    firm: form.firm.value.trim(),
+    phone: form.phone.value.trim(),
+    email: form.email.value.trim(),
+    message: form.message.value.trim(),
+    source: 'pro-firmy',
+    page: location.href
+  };
+  try {
+    if (FORM_ENDPOINT) {
+      await fetch(FORM_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)});
+    } else {
+      console.info('[Delta G] B2B poptávka (demo režim, nastavte FORM_ENDPOINT):', payload);
+      await new Promise(r => setTimeout(r, 600));
+    }
+    document.getElementById('formCard').innerHTML = `
+      <div class="form-success">
+        <span class="ico">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <p>Děkujeme, poptávka dorazila!</p>
+        <p class="hint">Ozveme se do 24 hodin.<br>
+        Spěcháte? Volejte <a href="tel:+420604206176" style="color:var(--blue);font-weight:700">604 206 176</a>.</p>
+      </div>`;
+  } catch (err) {
+    btn.disabled = false; btn.textContent = 'Odeslat poptávku';
+    alert('Odeslání se nepovedlo. Napište nám prosím na posta@deltag.cz.');
+  }
+});
 </script>
 </body>
 </html>
