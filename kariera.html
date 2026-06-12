@@ -184,7 +184,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 }
 .lead-form{display:grid;gap:.9rem}
 @media(min-width:640px){.lead-form{grid-template-columns:1fr 1fr}.lead-form .full{grid-column:1/-1}}
-.lead-form label{display:grid;gap:.3rem;font-weight:600;font-size:.92rem;color:var(--ink-2)}
+.lead-form label{display:grid;gap:.3rem;align-content:start;font-weight:600;font-size:.92rem;color:var(--ink-2)}
 .lead-form input[type=text],.lead-form input[type=tel],.lead-form input[type=email],
 .lead-form select,.lead-form textarea{
   font:inherit;padding:.8rem 1rem;border:1.5px solid var(--g300);border-radius:10px;outline:none;
@@ -206,6 +206,33 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .site-footer{border-top:1px solid var(--g100);padding:2.2rem 0;color:var(--g500);font-size:.92rem}
 .footer-inner{display:flex;flex-wrap:wrap;gap:1rem 2.5rem;justify-content:space-between;align-items:center}
 .footer-inner a:hover{color:var(--blue)}
+
+
+/* hero orbit — drobná animace vpravo */
+.hero{position:relative;overflow:hidden}
+.hero-orbit{display:none;position:absolute;top:50%;right:max(3%,calc((100vw - 1180px)/2));transform:translateY(-52%);width:330px;height:330px;pointer-events:none}
+@media(min-width:1180px){.hero-orbit{display:block}}
+.orbit-ring{position:absolute;border:1.5px dashed var(--g300);border-radius:50%}
+.orbit-ring.r1{inset:0}
+.orbit-ring.r2{inset:58px}
+.orbit-station{position:absolute;left:50%;top:50%;width:86px;height:86px;transform:translate(-50%,-50%)}
+.orb{position:absolute;inset:0;animation:orbitSpin 28s linear infinite}
+.orb.o2{animation-delay:-9.33s}
+.orb.o3{animation-delay:-18.66s}
+.orbit-chip{
+  position:absolute;left:50%;top:0;transform:translate(-50%,-50%);
+  display:inline-flex;align-items:center;gap:.45rem;white-space:nowrap;
+  background:#fff;border:1px solid var(--g300);border-radius:99px;
+  padding:.32rem .85rem;font-weight:700;font-size:.85rem;color:var(--ink-2);
+  box-shadow:0 12px 26px -16px rgba(16,24,40,.35);
+  animation:orbitSpinRev 28s linear infinite;
+}
+.orbit-chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.orb.o2 .orbit-chip{animation-delay:-9.33s}
+.orb.o3 .orbit-chip{animation-delay:-18.66s}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}
+@keyframes orbitSpinRev{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(-360deg)}}
+@media(prefers-reduced-motion:reduce){.orb,.orbit-chip{animation:none}}
 
 .reveal{opacity:0;transform:translateY(28px)}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
@@ -333,6 +360,21 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
       <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#0033FB" stroke-width="1.8"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#0033FB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Flexibilní úvazek dle dohody</li>
       <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#0033FB" stroke-width="1.8"/><path d="m7.5 12.5 3 3 6-6.5" stroke="#0033FB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Odpovídající ohodnocení</li>
     </ul>
+  </div>
+  <div class="hero-orbit" aria-hidden="true">
+    <div class="orbit-ring r1"></div>
+    <div class="orbit-ring r2"></div>
+    <svg class="orbit-station" viewBox="0 0 80 80" fill="none">
+      <circle cx="40" cy="33" r="24" stroke="#0033FB" stroke-width="1" stroke-dasharray="4 5" opacity=".45"/>
+      <line x1="40" y1="44" x2="28" y2="70" stroke="#667085" stroke-width="3" stroke-linecap="round"/>
+      <line x1="40" y1="44" x2="52" y2="70" stroke="#667085" stroke-width="3" stroke-linecap="round"/>
+      <line x1="40" y1="44" x2="40" y2="72" stroke="#667085" stroke-width="3" stroke-linecap="round"/>
+      <rect x="30" y="25" width="20" height="17" rx="4" fill="#FBED51" stroke="#101828" stroke-width="1.6"/>
+      <circle cx="40" cy="33.5" r="3.6" fill="#101828"/>
+    </svg>
+    <div class="orb o1"><span class="orbit-chip">Geodet / geodetka</span></div>
+    <div class="orb o2"><span class="orbit-chip">Zpracovatel dat</span></div>
+    <div class="orb o3"><span class="orbit-chip">Student — brigádník</span></div>
   </div>
 </section>
 
@@ -505,6 +547,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
     <div class="footer-bottom">
       <span>© 2004–2026 Delta G s.r.o. Všechna práva vyhrazena.</span>
       <span>Úředně oprávněný zeměměřický inženýr (ÚOZI)</span>
+      <a href="index.html#cookies">Nastavení cookies</a>
     </div>
   </div>
 </footer>

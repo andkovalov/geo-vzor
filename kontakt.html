@@ -132,6 +132,16 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .site-footer{border-top:1px solid var(--g100);padding:2.2rem 0;color:var(--g500);font-size:.92rem}
 .footer-inner{display:flex;flex-wrap:wrap;gap:1rem 2.5rem;justify-content:space-between;align-items:center}
 .footer-inner a:hover{color:var(--blue)}
+
+/* live stav otevírací doby */
+.open-chip{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.6rem;background:#fff;border:1px solid var(--g300);border-radius:99px;padding:.45rem 1.1rem .45rem .85rem;font-weight:600}
+.open-chip i{width:10px;height:10px;border-radius:50%;background:#12B76A;animation:pulseDot 1.8s ease-in-out infinite}
+.open-chip.closed i{background:var(--g500);animation:none}
+.open-chip b{font-size:.98rem}
+.open-chip span{color:var(--g500);font-size:.88rem;font-weight:600}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(18,183,106,.45)}50%{box-shadow:0 0 0 7px rgba(18,183,106,0)}}
+@media(prefers-reduced-motion:reduce){.open-chip i{animation:none}}
+
 .reveal{opacity:0;transform:translateY(28px)}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
 
@@ -251,6 +261,9 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
     <h1>Spojte se s námi</h1>
     <p class="lead">Telefon zvedáme v pracovní dny, na e-maily a poptávky odpovídáme
     do 24 hodin. Kancelář najdete v Praze 10 — po domluvě se rádi sejdeme osobně.</p>
+    <div class="open-chip" id="openChip" aria-live="polite">
+      <i></i><b id="openText">Právě máme otevřeno</b><span>po–pá 8:00–17:00</span>
+    </div>
   </div>
 </section>
 
@@ -360,6 +373,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
     <div class="footer-bottom">
       <span>© 2004–2026 Delta G s.r.o. Všechna práva vyhrazena.</span>
       <span>Úředně oprávněný zeměměřický inženýr (ÚOZI)</span>
+      <a href="index.html#cookies">Nastavení cookies</a>
     </div>
   </div>
 </footer>
@@ -383,6 +397,21 @@ mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
   burger.classList.remove('open');
   burger.setAttribute('aria-expanded', 'false');
 }));
+
+// živý stav otevírací doby (Europe/Prague, po–pá 8–17)
+(function openNow(){
+  const chip = document.getElementById('openChip');
+  if (!chip) return;
+  try {
+    const now = new Date(new Date().toLocaleString('en-US', {timeZone: 'Europe/Prague'}));
+    const d = now.getDay(), h = now.getHours();
+    if (!(d >= 1 && d <= 5 && h >= 8 && h < 17)) {
+      chip.classList.add('closed');
+      document.getElementById('openText').textContent = 'Teď máme zavřeno — napište nám';
+    }
+  } catch(e){}
+})();
+
 if (hasGsap && !prefersReduced) {
   ScrollTrigger.batch('.reveal', {
     start: 'top 88%', once: true,

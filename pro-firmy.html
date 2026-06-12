@@ -147,6 +147,10 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .hero .lead{margin-bottom:2.2rem;margin-inline:auto}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:2.2rem;justify-content:center}
 .cred-strip{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
+@media(min-width:860px){
+  .hero .lead:has(.line){max-width:none}
+  .hero .lead .line{display:block}
+}
 .cred-chip{
   display:inline-flex;align-items:center;gap:.5rem;
   border:1px solid var(--g300);border-radius:99px;padding:.35rem .9rem;
@@ -236,7 +240,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 }
 .lead-form{display:grid;gap:.9rem}
 @media(min-width:640px){.lead-form{grid-template-columns:1fr 1fr}.lead-form .full{grid-column:1/-1}}
-.lead-form label{display:grid;gap:.3rem;font-weight:600;font-size:.92rem;color:var(--ink-2)}
+.lead-form label{display:grid;gap:.3rem;align-content:start;font-weight:600;font-size:.92rem;color:var(--ink-2)}
 .lead-form input[type=text],.lead-form input[type=tel],.lead-form input[type=email],.lead-form textarea{
   font:inherit;padding:.8rem 1rem;border:1.5px solid var(--g300);border-radius:10px;outline:none;
   transition:border-color .2s,box-shadow .2s;width:100%;background:#fff;color:var(--ink);
@@ -403,9 +407,9 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
   <div class="wrap hero-inner">
     <span class="eyebrow">Pro firmy a investory</span>
     <h1>Geodézie pro velké stavby,<br>projektanty a <em>veřejnou správu</em></h1>
-    <p class="lead">Od vytyčovacích sítí liniových staveb po monitoring deformací.
-    Více než 20 let dodáváme geodetické výkony pro železnici, metro, vodohospodářské
-    celky i pozemní stavby — v termínech a kvalitě ISO 9001.</p>
+    <p class="lead"><span class="line">Od vytyčovacích sítí liniových staveb po monitoring deformací.</span>
+    <span class="line">Více než 20 let dodáváme geodetické výkony pro železnici, metro,</span>
+    <span class="line">vodohospodářské celky i pozemní stavby — v termínech a kvalitě ISO 9001.</span></p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="#poptavka">Poptat výkon</a>
       <a class="btn btn-ghost" href="#sluzby">Katalog služeb</a>
@@ -677,6 +681,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
     <div class="footer-bottom">
       <span>© 2004–2026 Delta G s.r.o. Všechna práva vyhrazena.</span>
       <span>Úředně oprávněný zeměměřický inženýr (ÚOZI)</span>
+      <a href="index.html#cookies">Nastavení cookies</a>
     </div>
   </div>
 </footer>

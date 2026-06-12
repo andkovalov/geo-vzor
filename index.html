@@ -258,7 +258,6 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
   width:2.1rem;height:2.1rem;border-radius:8px;margin-bottom:1rem;
   background:var(--blue);color:#fff;font-weight:700;
 }
-.svc-step.is-active .num{background:var(--yellow);color:var(--ink)}
 .svc-step h3{font-size:1.45rem;margin-bottom:.45rem}
 .svc-step p{color:var(--ink-2)}
 .svc-step .svc-price{
@@ -472,7 +471,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
   .lead-form{grid-template-columns:1fr 1fr}
   .lead-form .full{grid-column:1/-1}
 }
-.lead-form label{display:grid;gap:.3rem;font-weight:600;font-size:.92rem;color:var(--ink-2)}
+.lead-form label{display:grid;gap:.3rem;align-content:start;font-weight:600;font-size:.92rem;color:var(--ink-2)}
 .lead-form input[type=text],.lead-form input[type=tel],.lead-form input[type=email],.lead-form textarea{
   font:inherit;padding:.8rem 1rem;border:1.5px solid var(--g300);border-radius:10px;outline:none;
   transition:border-color .2s,box-shadow .2s;width:100%;
@@ -1888,6 +1887,9 @@ const SUCCESS_HTML = `
   try { saved = localStorage.getItem(KEY); } catch(e){}
   if (saved === 'all') loadAnalytics();
   else if (saved !== 'necessary') setTimeout(() => banner.classList.add('visible'), 900);
+
+  // odkazy "Nastavení cookies" z ostatních stránek vedou na index.html#cookies
+  if (location.hash === '#cookies') banner.classList.add('visible');
 })();
 </script>
 </body>
