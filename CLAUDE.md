@@ -12,7 +12,7 @@ Live: https://deltag.vercel.app/ (auto-deploys from GitHub `andkovalov/deltag`, 
 | `index.html` | B2C landing (hero, services scroll-stack, why-us, process, tech scanner, partners marquee, B2C reviews, lead form + quiz modal, contact, cookie banner) |
 | `pro-firmy.html` | B2B catalog page (industry terminology allowed), own inline lead form (#poptavka) |
 | `kariera.html` | Careers page + application form |
-| `sluzby-*.html` | 4 B2C SEO service pages (rozdeleni-pozemku, vytyceni-hranic, geometricky-plan-kolaudace, pasport-stavby) — shared compact template: breadcrumb, H1=query, kdy-grid, 4 steps, price-box (TODO prices), FAQ + FAQPage JSON-LD, CTA to index.html#poptavka |
+| `sluzby-*.html` | 6 B2C SEO service pages (rozdeleni-pozemku, vytyceni-hranic, zamereni-pro-projekt, vytyceni-stavby, geometricky-plan-kolaudace, pasport-stavby) — shared compact template: breadcrumb, H1=query, kdy-grid, 4 steps, price-box (TODO prices), FAQ + FAQPage JSON-LD, CTA to index.html#poptavka. Regenerate all via one script when the template changes. |
 | `kontakt.html` | Contact page (header "Kontakt" points here on every page): contact cards, ÚOZI badge, B2C/B2B CTA cards, map |
 | `zasady-ochrany-osobnich-udaju.html` | GDPR privacy policy (noindex, excluded from sitemap, disallowed in robots.txt) |
 | `sitemap.xml`, `robots.txt` | 8 indexable URLs on vercel domain; regenerate when adding pages |
@@ -87,6 +87,7 @@ Plot figure: light `--g100` panel, faint grid strokes `#D0D5DD/#EDF0F4`, parcel/
 - Unique `<title>` + `meta description`; `<link rel="canonical" href="https://deltag.vercel.app/...">`; OG (`og:url`, `og:image` → absolute vercel URLs, locale `cs_CZ`) + `twitter:card summary_large_image`. Never use github.io URLs.
 - JSON-LD: `LocalBusiness` (@id `…/#firma`, IČO, geo 50.078833/14.522639) on every page; service pages add `Service` with `provider:{"@id":"…#firma"}`. New page → add to sitemap.xml.
 - Nav hover = selection style: `background:var(--yellow);color:var(--ink)` on `.main-nav` links and `.drop` items (no underline).
+- **Footer (corporate, identical on every page incl. privacy)**: bg `#E4E7EC` (one step darker than `--g100`), 4 columns ≥1000px — logo+about / Služby (all 6 service pages) / Společnost / Kontakt — plus `.footer-bottom` bar (©, ÚOZI, index also keeps `#cookieSettingsLink`). When adding a service page: update footer Služby column, header dropdown + mobile menu on ALL pages, and sitemap.xml.
 - favicon links: `favicon.svg` + `apple-touch-icon.png`. Privacy page: `noindex,follow`.
 
 ## New page checklist
