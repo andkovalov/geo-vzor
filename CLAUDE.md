@@ -37,7 +37,7 @@ Each page is **self-contained**: own `<style>` block (copy tokens + needed compo
 }
 ```
 
-- Font: **Rajdhani** (Google Fonts, weights 400;500;600;700). Body 18px, line-height 1.55.
+- Font: **Rajdhani** 400/500/600/700 — **self-hosted** in `assets/fonts/` (8 woff2: latin + latin-ext per weight). Every page: 4 `<link rel="preload" as="font" crossorigin>` (400/700 × latin/latin-ext) + inline `@font-face` block with unicode-range at the top of `<style>`. Never link fonts.googleapis.com (render-blocking, was a PSI finding). Body 18px, line-height 1.55.
 - `::selection{background:var(--yellow);color:var(--ink)}` on every page.
 - Sections alternate white / `--g100`. Section padding `clamp(3.5rem,9vh,6.5rem)` (more for hero-like).
 - Container: `.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}`.
