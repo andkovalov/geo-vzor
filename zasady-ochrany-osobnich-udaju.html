@@ -6,6 +6,8 @@
 <title>Zásady ochrany osobních údajů | Delta G s.r.o.</title>
 <meta name="description" content="Zásady ochrany osobních údajů společnosti Delta G s.r.o. — jaké údaje zpracováváme, proč a jaká máte práva.">
 <meta name="robots" content="noindex, follow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +24,7 @@
   --g100:#F2F4F7;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--yellow);color:var(--ink)}
 body{
   font-family:'Rajdhani',system-ui,sans-serif;color:var(--ink);
   background:#fff;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;
@@ -32,6 +35,8 @@ header{
 }
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem}
 .logo svg{height:38px;width:auto;display:block}
+.logo path:last-child{transition:fill .25s ease}
+.logo:hover path:last-child{fill:var(--yellow)}
 .back{
   font-weight:700;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;
   color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;
