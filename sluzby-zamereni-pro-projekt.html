@@ -226,6 +226,21 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .cta-final .xlinks{margin-top:2rem;display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;font-weight:600;color:var(--g500)}
 .cta-final .xlinks a{color:var(--blue)}
 .cta-final .xlinks a:hover{text-decoration:underline}
+
+/* hero figure — výřez výkresu dané služby */
+.hero-grid{display:grid;gap:2.5rem;align-items:center}
+@media(min-width:1024px){.hero-grid{grid-template-columns:1.05fr 1fr;gap:3.5rem}}
+.hero-figure{margin:0}
+.plot-panel{background:var(--g100);border:1px solid var(--g300);border-radius:var(--radius);padding:clamp(1rem,2.5vw,1.6rem)}
+.hero-figure figcaption{display:flex;justify-content:space-between;gap:1rem;margin-top:.8rem;font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g500)}
+#plot .draw{fill:none;stroke-linecap:round}
+#plot text{font-family:'Rajdhani',sans-serif;font-weight:600}
+#plot .dim{font-size:15px;fill:#344054;letter-spacing:.04em}
+#plot .dim-blue{fill:var(--blue)}
+.pulse-pt{transform-origin:center;transform-box:fill-box;animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.4);opacity:.9}70%{transform:scale(2.6);opacity:0}100%{transform:scale(2.6);opacity:0}}
+@media(prefers-reduced-motion:reduce){.pulse-pt{animation:none}}
+
 .reveal{opacity:0;transform:translateY(28px)}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
 /* ---------- corporate footer ---------- */
@@ -307,7 +322,8 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 <main>
 
 <section class="hero">
-  <div class="wrap">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
     <nav class="breadcrumb" aria-label="Drobečková navigace">
       <a href="index.html">Delta G</a>
       <svg width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="m1 1 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -321,6 +337,41 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
       <a class="btn btn-primary" href="index.html#poptavka">Nezávazná poptávka</a>
       <a class="btn btn-ghost" href="tel:+420604206176">Zavolejte: 604 206 176</a>
     </div>
+    </div>
+    <figure class="hero-figure" aria-hidden="true">
+      <div class="plot-panel">
+        <svg id="plot" viewBox="10 10 545 540" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#344054"/>
+              </marker>
+            </defs>
+          <g stroke="#D0D5DD" stroke-width=".6" opacity=".55">
+              <path d="M80 40V520M180 40V520M280 40V520M380 40V520M480 40V520"/>
+              <path d="M40 100H520M40 200H520M40 300H520M40 400H520M40 500H520"/>
+            </g>
+          <g id="svc-base">
+              <polygon class="draw" points="80,100 480,80 510,440 110,500" stroke="#101828" stroke-width="2.5"/>
+              <text x="86" y="86" class="dim">parc. č. 412/7</text>
+            </g>
+          <g id="svc-g2">
+              <path class="draw" d="M100 430 C 200 380, 330 470, 495 400" stroke="#667085" stroke-width="1.4" stroke-dasharray="4 5"/>
+              <path class="draw" d="M95 350 C 210 300, 340 390, 500 320" stroke="#667085" stroke-width="1.4" stroke-dasharray="4 5"/>
+              <path class="draw" d="M90 270 C 220 220, 350 310, 505 240" stroke="#667085" stroke-width="1.4" stroke-dasharray="4 5"/>
+              <g stroke="#0033FB" stroke-width="1.8">
+                <path d="M170 330v14M163 337h14"/>
+                <path d="M340 250v14M333 257h14"/>
+                <path d="M420 380v14M413 387h14"/>
+              </g>
+              <circle class="pulse-pt" cx="340" cy="257" r="8" fill="none" stroke="#0033FB" stroke-width="1.6"/>
+              <text x="184" y="332" class="dim dim-blue">+0,42</text>
+              <text x="354" y="252" class="dim dim-blue">+1,15</text>
+              <text x="434" y="382" class="dim dim-blue">+0,87</text>
+            </g>
+        </svg>
+      </div>
+      <figcaption><span>Polohopis a výškopis</span><span>S-JTSK · Bpv</span></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -470,6 +521,31 @@ mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
   burger.classList.remove('open');
   burger.setAttribute('aria-expanded', 'false');
 }));
+
+/* prorýsování výkresu při načtení */
+(function plotAnim(){
+  const svg = document.getElementById('plot');
+  if (!svg || !hasGsap || prefersReduced) return;
+  const paths = [...svg.querySelectorAll('.draw')];
+  paths.forEach(p => {
+    if (p.getAttribute('stroke-dasharray')) return; // čárkované čáry necháme na fade
+    let len = 0; try { len = p.getTotalLength(); } catch(e){}
+    if (len) { p.style.strokeDasharray = len; p.style.strokeDashoffset = len; }
+  });
+  const texts = svg.querySelectorAll('text');
+  gsap.set(texts, {opacity:0, y:6});
+  ScrollTrigger.create({
+    trigger: svg, start: 'top 88%', once: true,
+    onEnter: () => {
+      paths.forEach((p, i) => {
+        if (p.style.strokeDashoffset) gsap.to(p, {strokeDashoffset:0, duration:1.1, delay:.15 + i*.12, ease:'power2.inOut'});
+        else gsap.fromTo(p, {opacity:0}, {opacity:1, duration:.9, delay:.25 + i*.12});
+      });
+      gsap.to(texts, {opacity:1, y:0, duration:.5, stagger:.12, delay:.9});
+    }
+  });
+})();
+
 if (hasGsap && !prefersReduced) {
   ScrollTrigger.batch('.reveal', {
     start: 'top 88%', once: true,
