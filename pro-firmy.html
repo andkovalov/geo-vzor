@@ -833,8 +833,9 @@ if (hasGsap && !prefersReduced) {
 }
 
 /* B2B lead form — submits in place, no redirect */
-// POST endpoint pro leady (Formspree / Make / vlastní API). Prázdné = demo režim.
-const FORM_ENDPOINT = '';
+// Web3Forms access key (vázaný na e-mail andkovalov@gmail.com).
+// Prázdné = demo režim (jen log do konzole). Vyplňte klíč z web3forms.com.
+const WEB3FORMS_KEY = '';
 
 document.getElementById('b2bForm').addEventListener('submit', async e => {
   e.preventDefault();
@@ -853,10 +854,16 @@ document.getElementById('b2bForm').addEventListener('submit', async e => {
     page: location.href
   };
   try {
-    if (FORM_ENDPOINT) {
-      await fetch(FORM_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)});
+    if (WEB3FORMS_KEY) {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify({access_key: WEB3FORMS_KEY, subject: 'Delta G — B2B poptávka', from_name: 'Delta G web', ...payload})
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || 'Web3Forms error');
     } else {
-      console.info('[Delta G] B2B poptávka (demo režim, nastavte FORM_ENDPOINT):', payload);
+      console.info('[Delta G] B2B poptávka (demo režim, nastavte WEB3FORMS_KEY):', payload);
       await new Promise(r => setTimeout(r, 600));
     }
     document.getElementById('formCard').innerHTML = `

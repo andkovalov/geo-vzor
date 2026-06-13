@@ -1618,18 +1618,26 @@ if (hasGsap && !prefersReduced) {
 /* =========================================================
    4) LEADS — shared delivery, main form, quiz modal
    ========================================================= */
-// POST endpoint pro leady (Formspree / Make / vlastní API). Prázdné = demo režim.
-const FORM_ENDPOINT = '';
+// Web3Forms access key (vázaný na e-mail andkovalov@gmail.com).
+// Prázdné = demo režim (jen log do konzole). Vyplňte klíč z web3forms.com.
+const WEB3FORMS_KEY = '';
 
 async function sendLead(payload){
-  if (FORM_ENDPOINT) {
-    await fetch(FORM_ENDPOINT, {
+  if (WEB3FORMS_KEY) {
+    const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload)
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: 'Delta G — nová poptávka (' + (payload.source || 'web') + ')',
+        from_name: 'Delta G web',
+        ...payload
+      })
     });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message || 'Web3Forms error');
   } else {
-    console.info('[Delta G] Lead (demo režim, nastavte FORM_ENDPOINT):', payload);
+    console.info('[Delta G] Lead (demo režim, nastavte WEB3FORMS_KEY):', payload);
     await new Promise(r => setTimeout(r, 600));
   }
 }

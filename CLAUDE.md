@@ -58,7 +58,7 @@ Each page is **self-contained**: own `<style>` block (copy tokens + needed compo
 - **Cards**: 1px `--g300` border, `--radius`, white bg. No hover lift on info cards (user removed it).
 - **Icon chips**: 46–48px rounded square, blue bg, white strokes only (no yellow strokes inside icons).
 - **Forms** (`.lead-form`): 2-col grid ≥640px, `.full` spans; inputs 1.5px border, focus blue ring `0 0 0 3px rgba(0,51,251,.12)`; consent checkbox `align-items:center`; honeypot `.hp-field` input name="company"; success block `.quiz-success`/`.form-success`.
-- **Lead delivery**: `const FORM_ENDPOINT = ''` → demo mode logs payload to console; real endpoint goes there. Always `preventDefault`, `reportValidity`, honeypot check.
+- **Lead delivery**: Web3Forms. `const WEB3FORMS_KEY = ''` on each form-bearing page (index shared `sendLead`, pro-firmy `b2bForm`, kariera `careerForm`) → empty = demo mode (logs payload to console); paste the access key (from web3forms.com, tied to andkovalov@gmail.com) into all three to go live. POST JSON to `https://api.web3forms.com/submit` with `{access_key, subject, from_name, ...payload}`, expect `data.success`. Always `preventDefault`, `reportValidity`, honeypot check (`company` field).
 - **Cookie banner**: opt-in GDPR; analytics load ONLY inside `loadAnalytics()` after consent; localStorage key `dg-cookie-consent` = `all|necessary`; footer link reopens it.
 - **Partners marquee**: `.logo-track` = two identical `.logo-set`s (set has `padding-right` equal to gap, track gap 0) animated `translateX(-50%)` 40s linear; imgs uniform cells `clamp(120px,14vw,150px)×60`, `object-fit:contain`, grayscale→color, `loading="eager"`; no pause on hover; reduced-motion → static wrap, second set hidden.
 
