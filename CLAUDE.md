@@ -29,7 +29,7 @@ Each page is **self-contained**: own `<style>` block (copy tokens + needed compo
   --yellow:#FBED51;   /* hover/highlight accent, ::selection */
   --ink:#101828;      /* primary text */
   --ink-2:#344054;    /* secondary text */
-  --g500:#667085;     /* muted text, labels */
+  --g500:#586272;     /* muted text, labels — darkened for WCAG AA on footer #E4E7EC */
   --g300:#D0D5DD;     /* borders */
   --g100:#F2F4F7;     /* section/page tint backgrounds */
   --radius:14px;
@@ -38,7 +38,8 @@ Each page is **self-contained**: own `<style>` block (copy tokens + needed compo
 ```
 
 - Font: **Rajdhani** 400/500/600/700 — **self-hosted** in `assets/fonts/` (8 woff2: latin + latin-ext per weight). Every page: 4 `<link rel="preload" as="font" crossorigin>` (400/700 × latin/latin-ext) + inline `@font-face` block with unicode-range at the top of `<style>`. Never link fonts.googleapis.com (render-blocking, was a PSI finding). Body 18px, line-height 1.55.
-- `::selection{background:var(--yellow);color:var(--ink)}` on every page.
+- `::selection{background:var(--yellow);color:var(--ink)}` on every page, plus `a/button/.btn/summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}` for keyboard a11y.
+- **No side-stripe borders** (`border-left:>1px` accent) — AI tell, banned. Branded callouts use full 1px border + tint (e.g. price-box: `border:1.5px solid rgba(0,51,251,.22);background:rgba(0,51,251,.04)`).
 - Sections alternate white / `--g100`. Section padding `clamp(3.5rem,9vh,6.5rem)` (more for hero-like).
 - Container: `.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}`.
 
@@ -46,7 +47,7 @@ Each page is **self-contained**: own `<style>` block (copy tokens + needed compo
 
 - h1 hero: `clamp(2.4rem,5.6–6.6vw,4–4.6rem)`; accent word wrapped in `<em>` colored `--blue`.
 - `.h2`: `clamp(1.9rem,4vw,2.8rem)` (landing uses up to 3.1rem).
-- `.eyebrow`: uppercase 0.82rem, letter-spacing .22em, blue, with 26px dash `::before`.
+- `.eyebrow`: uppercase 0.82rem, letter-spacing .22em, blue, with 26px dash `::before`. **Use only in the hero** (one deliberate kicker per page) — NOT above every section heading (that's an AI-grammar tell; removed in the design audit). Section heads = `.h2` (+ `.lead`) alone.
 - `.lead`: `clamp(1.05rem,1.6vw,1.25rem)`, color `--ink-2`, max-width ~46–52ch.
 - Forced line breaks in leads: wrap lines in `<span class="line">` + `@media(min-width:860px){.lead:has(.line){max-width:none}.lead .line{display:block}}` (mobile falls back to natural wrap).
 

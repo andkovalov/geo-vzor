@@ -70,7 +70,7 @@
   --yellow:#FBED51;
   --ink:#101828;
   --ink-2:#344054;
-  --g500:#667085;
+  --g500:#586272;
   --g300:#D0D5DD;
   --g100:#F2F4F7;
   --radius:14px;
@@ -78,6 +78,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 ::selection{background:var(--yellow);color:var(--ink)}
+a:focus-visible,button:focus-visible,.btn:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:3px}
 html{scroll-behavior:smooth}
 body{
   font-family:'Rajdhani',system-ui,sans-serif;background:#fff;color:var(--ink);
@@ -143,7 +144,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .drop a{padding:.55rem .85rem;border-radius:8px;font-weight:600;color:var(--ink-2);border:none}
 .drop a:hover{background:var(--yellow);color:var(--ink)}
 .drop .drop-all{margin-top:.35rem;border-top:1px solid var(--g100);border-radius:0 0 8px 8px;color:var(--blue);font-size:.95rem}
-.burger{display:flex;flex-direction:column;gap:5px;padding:.6rem}
+.burger{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:44px;min-height:44px;padding:.5rem}
 .burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
 .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
@@ -293,14 +294,14 @@ body.menu-open{overflow:hidden}
 @media(min-width:1000px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1.2fr}}
 .f-col{display:grid;gap:.5rem;align-content:start;justify-items:start}
 .f-title{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g500);font-weight:600;margin-bottom:.3rem}
-.f-col a{font-weight:600;color:var(--ink-2)}
+.f-col a{font-weight:600;color:var(--ink-2);display:inline-block;padding:.25rem 0}
 .f-col a:hover{color:var(--blue)}
 .f-col span{color:var(--g500)}
 .f-about p{color:var(--g500);font-size:.95rem;max-width:36ch}
 .f-about .logo svg{height:36px;width:auto}
 .f-about .logo{margin-bottom:.9rem}
 .footer-bottom{border-top:1px solid var(--g300);padding:1.2rem 0 1.4rem;display:flex;flex-wrap:wrap;gap:.6rem 2.5rem;justify-content:space-between;color:var(--g500);font-size:.88rem}
-.footer-bottom a{color:var(--g500)}
+.footer-bottom a{color:var(--g500);display:inline-block;padding:.35rem 0}
 .footer-bottom a:hover{color:var(--blue)}
 .footer-author{color:var(--g500)}
 .footer-author a{color:var(--ink-2);font-weight:600;text-decoration:none}
@@ -434,7 +435,6 @@ body.menu-open{overflow:hidden}
 <section class="section" id="pozice">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Volné pozice</span>
       <h2 class="h2">Koho právě hledáme</h2>
       <p class="lead">Vyberte si pozici a pošlete nám pár řádků o sobě.
       Životopis stačí přiložit později — ozveme se vám do dvou pracovních dnů.</p>
@@ -480,7 +480,6 @@ body.menu-open{overflow:hidden}
 <section class="section benefits">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Proč k nám</span>
       <h2 class="h2">Co u nás dostanete</h2>
     </div>
     <div class="benefit-grid">
@@ -511,7 +510,6 @@ body.menu-open{overflow:hidden}
 <section class="section" id="formular">
   <div class="wrap">
     <div class="section-head reveal" style="text-align:center;margin-inline:auto">
-      <span class="eyebrow" style="justify-content:center">Žádost o pozici</span>
       <h2 class="h2">Napište nám pár řádků</h2>
       <p class="lead" style="margin-inline:auto">Žádné formality. Stačí kontakt a pozice,
       o kterou máte zájem — ozveme se do dvou pracovních dnů.</p>

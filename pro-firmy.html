@@ -72,7 +72,7 @@
   --yellow:#FBED51;
   --ink:#101828;
   --ink-2:#344054;
-  --g500:#667085;
+  --g500:#586272;
   --g300:#D0D5DD;
   --g100:#F2F4F7;
   --radius:14px;
@@ -80,6 +80,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 ::selection{background:var(--yellow);color:var(--ink)}
+a:focus-visible,button:focus-visible,.btn:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:3px}
 html{scroll-behavior:smooth}
 body{
   font-family:'Rajdhani',system-ui,sans-serif;background:#fff;color:var(--ink);
@@ -151,7 +152,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .header-phone{display:none;font-weight:700;align-items:center;gap:.45rem}
 .header-phone:hover{color:var(--blue)}
 .header-cta{display:none}
-.burger{display:flex;flex-direction:column;gap:5px;padding:.6rem}
+.burger{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:44px;min-height:44px;padding:.5rem}
 .burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
 .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
@@ -315,14 +316,14 @@ body.menu-open{overflow:hidden}
 @media(min-width:1000px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1.2fr}}
 .f-col{display:grid;gap:.5rem;align-content:start;justify-items:start}
 .f-title{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g500);font-weight:600;margin-bottom:.3rem}
-.f-col a{font-weight:600;color:var(--ink-2)}
+.f-col a{font-weight:600;color:var(--ink-2);display:inline-block;padding:.25rem 0}
 .f-col a:hover{color:var(--blue)}
 .f-col span{color:var(--g500)}
 .f-about p{color:var(--g500);font-size:.95rem;max-width:36ch}
 .f-about .logo svg{height:36px;width:auto}
 .f-about .logo{margin-bottom:.9rem}
 .footer-bottom{border-top:1px solid var(--g300);padding:1.2rem 0 1.4rem;display:flex;flex-wrap:wrap;gap:.6rem 2.5rem;justify-content:space-between;color:var(--g500);font-size:.88rem}
-.footer-bottom a{color:var(--g500)}
+.footer-bottom a{color:var(--g500);display:inline-block;padding:.35rem 0}
 .footer-bottom a:hover{color:var(--blue)}
 .footer-author{color:var(--g500)}
 .footer-author a{color:var(--ink-2);font-weight:600;text-decoration:none}
@@ -480,7 +481,6 @@ body.menu-open{overflow:hidden}
 <section class="section" id="sluzby">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Katalog služeb</span>
       <h2 class="h2">Kompletní geodetické výkony pro výstavbu</h2>
       <p class="lead">Čtyři oblasti, které pokrývají celý životní cyklus stavby —
       od přípravy území přes realizaci až po dokumentaci skutečného provedení a katastr.</p>
@@ -553,7 +553,6 @@ body.menu-open{overflow:hidden}
 <section class="section quals" id="zpusobilost">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Odborná způsobilost</span>
       <h2 class="h2">Oprávnění, o která se můžete opřít</h2>
       <p class="lead">Výstupy ověřujeme vlastními oprávněními — bez subdodávek
       a bez nejistoty, zda dokumentace u správce infrastruktury obstojí.</p>
@@ -587,7 +586,6 @@ body.menu-open{overflow:hidden}
 <section class="section partners" id="reference">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Reference</span>
       <h2 class="h2">Měříme pro lídry české infrastruktury</h2>
       <p class="lead">Branický most, GSM-R, vestibuly pražského metra, povodí Berounky,
       Vltavy a Labe — výběr z projektů posledních let.</p>
@@ -631,7 +629,6 @@ body.menu-open{overflow:hidden}
 <section class="section cta-band" id="poptavka">
   <div class="wrap cta-inner">
     <div class="reveal">
-      <span class="eyebrow">Nezávazná poptávka</span>
       <h2 class="h2">Pošlete podklady,<br>nabídku připravíme do 24 hodin</h2>
       <p class="lead">Projektová dokumentace, rozsah prací a termín stačí.
       Kapacity plánujeme týdny dopředu — ozvěte se včas.</p>

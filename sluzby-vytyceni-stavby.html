@@ -167,10 +167,11 @@
 
 :root{
   --blue:#0033FB;--yellow:#FBED51;--ink:#101828;--ink-2:#344054;
-  --g500:#667085;--g300:#D0D5DD;--g100:#F2F4F7;--radius:14px;--header-h:72px;
+  --g500:#586272;--g300:#D0D5DD;--g100:#F2F4F7;--radius:14px;--header-h:72px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 ::selection{background:var(--yellow);color:var(--ink)}
+a:focus-visible,button:focus-visible,.btn:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:3px}
 html{scroll-behavior:smooth}
 body{font-family:'Rajdhani',system-ui,sans-serif;background:#fff;color:var(--ink);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
 img,svg{display:block;max-width:100%}
@@ -213,7 +214,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .header-phone{display:none;font-weight:700;align-items:center;gap:.45rem}
 .header-phone:hover{color:var(--blue)}
 .header-cta{display:none}
-.burger{display:flex;flex-direction:column;gap:5px;padding:.6rem}
+.burger{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:44px;min-height:44px;padding:.5rem}
 .burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
 .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
@@ -251,7 +252,7 @@ body.menu-open{overflow:hidden}
 .step-item h3{font-size:1.25rem;margin-bottom:.25rem}
 .step-item p{color:var(--ink-2);font-size:.98rem}
 @media(min-width:900px){.steps-line{grid-template-columns:repeat(4,1fr);gap:2rem}.step-item{padding-left:0;padding-top:3.2rem}.step-item::before{top:0;left:0}.step-item::after{left:3.4rem;right:-1.6rem;top:.8rem;bottom:auto;width:auto;height:1px}}
-.price-box{border:1px solid var(--g300);border-left:5px solid var(--blue);border-radius:var(--radius);background:#fff;padding:1.8rem 1.8rem;display:flex;flex-wrap:wrap;gap:1.5rem 3rem;align-items:center}
+.price-box{border:1.5px solid rgba(0,51,251,.22);border-radius:var(--radius);background:rgba(0,51,251,.04);padding:1.8rem 1.8rem;display:flex;flex-wrap:wrap;gap:1.5rem 3rem;align-items:center}
 .price-box b{font-size:clamp(2rem,4vw,2.8rem);color:var(--blue);line-height:1.05}
 .price-box .pn{color:var(--ink-2);max-width:48ch;font-size:1rem}
 .price-box .label{display:block;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g500);font-weight:600;margin-bottom:.2rem}
@@ -293,14 +294,14 @@ body.menu-open{overflow:hidden}
 @media(min-width:1000px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1.2fr}}
 .f-col{display:grid;gap:.5rem;align-content:start;justify-items:start}
 .f-title{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g500);font-weight:600;margin-bottom:.3rem}
-.f-col a{font-weight:600;color:var(--ink-2)}
+.f-col a{font-weight:600;color:var(--ink-2);display:inline-block;padding:.25rem 0}
 .f-col a:hover{color:var(--blue)}
 .f-col span{color:var(--g500)}
 .f-about p{color:var(--g500);font-size:.95rem;max-width:36ch}
 .f-about .logo svg{height:36px;width:auto}
 .f-about .logo{margin-bottom:.9rem}
 .footer-bottom{border-top:1px solid var(--g300);padding:1.2rem 0 1.4rem;display:flex;flex-wrap:wrap;gap:.6rem 2.5rem;justify-content:space-between;color:var(--g500);font-size:.88rem}
-.footer-bottom a{color:var(--g500)}
+.footer-bottom a{color:var(--g500);display:inline-block;padding:.35rem 0}
 .footer-bottom a:hover{color:var(--blue)}
 .footer-author{color:var(--g500)}
 .footer-author a{color:var(--ink-2);font-weight:600;text-decoration:none}
@@ -428,7 +429,6 @@ body.menu-open{overflow:hidden}
 <section class="section" id="kdy">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Kdy službu potřebujete</span>
       <h2 class="h2">Typické situace našich klientů</h2>
     </div>
     <div class="kdy-grid">
@@ -443,7 +443,6 @@ body.menu-open{overflow:hidden}
 <section class="section postup">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Jak to probíhá</span>
       <h2 class="h2">Od poptávky k výsledku ve čtyřech krocích</h2>
     </div>
     <div class="steps-line">
@@ -458,7 +457,6 @@ body.menu-open{overflow:hidden}
 <section class="section" id="cena">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Cena</span>
       <h2 class="h2">Kolik to stojí</h2>
     </div>
     <!-- TODO: potvrdit cenu u majitele -->
@@ -475,7 +473,6 @@ body.menu-open{overflow:hidden}
 <section class="section" id="faq" style="padding-top:0">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Časté dotazy</span>
       <h2 class="h2">Na co se ptáte nejčastěji</h2>
     </div>
     <div class="faq reveal">
@@ -490,7 +487,6 @@ body.menu-open{overflow:hidden}
 
 <section class="section cta-final">
   <div class="wrap inner">
-    <span class="eyebrow" style="justify-content:center">Nezávazná poptávka</span>
     <h2 class="h2">Pošlete nám pár řádků,<br>do 24 hodin máte nabídku</h2>
     <div class="btns">
       <a class="btn btn-primary" href="index.html#poptavka">Vyplnit poptávku</a>

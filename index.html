@@ -112,7 +112,7 @@
   --bg:#FFFFFF;
   --ink:#101828;
   --ink-2:#344054;
-  --g500:#667085;
+  --g500:#586272;
   --g300:#D0D5DD;
   --g100:#F2F4F7;
   --radius:14px;
@@ -205,7 +205,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .header-cta{display:none}
 .header-phone{display:none;font-weight:700;color:var(--ink);align-items:center;gap:.45rem}
 .header-phone:hover{color:var(--blue)}
-.burger{display:flex;flex-direction:column;gap:5px;padding:.6rem}
+.burger{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:44px;min-height:44px;padding:.5rem}
 .burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
 .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
@@ -564,7 +564,7 @@ body.modal-open{overflow:hidden}
 .contact-list .label{display:block;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g500);font-weight:600;margin-bottom:.15rem}
 .uozi-badge{
   display:flex;gap:1rem;align-items:flex-start;margin-top:2rem;
-  border:1px solid var(--g300);border-left:4px solid var(--blue);border-radius:10px;
+  border:1px solid var(--g300);border-radius:10px;
   padding:1.1rem 1.2rem;background:var(--g100);
 }
 .uozi-badge p{font-size:.95rem;color:var(--ink-2)}
@@ -598,6 +598,7 @@ body.modal-open{overflow:hidden}
 
 /* ---------- selection & reveal ---------- */
 ::selection{background:var(--yellow);color:var(--ink)}
+a:focus-visible,button:focus-visible,.btn:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:3px}
 .reveal{opacity:0;transform:translateY(28px)}
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none}
@@ -613,14 +614,14 @@ body.modal-open{overflow:hidden}
 @media(min-width:1000px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1.2fr}}
 .f-col{display:grid;gap:.5rem;align-content:start;justify-items:start}
 .f-title{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g500);font-weight:600;margin-bottom:.3rem}
-.f-col a{font-weight:600;color:var(--ink-2)}
+.f-col a{font-weight:600;color:var(--ink-2);display:inline-block;padding:.25rem 0}
 .f-col a:hover{color:var(--blue)}
 .f-col span{color:var(--g500)}
 .f-about p{color:var(--g500);font-size:.95rem;max-width:36ch}
 .f-about .logo svg{height:36px;width:auto}
 .f-about .logo{margin-bottom:.9rem}
 .footer-bottom{border-top:1px solid var(--g300);padding:1.2rem 0 1.4rem;display:flex;flex-wrap:wrap;gap:.6rem 2.5rem;justify-content:space-between;color:var(--g500);font-size:.88rem}
-.footer-bottom a{color:var(--g500)}
+.footer-bottom a{color:var(--g500);display:inline-block;padding:.35rem 0}
 .footer-bottom a:hover{color:var(--blue)}
 .footer-author{color:var(--g500)}
 .footer-author a{color:var(--ink-2);font-weight:600;text-decoration:none}
@@ -771,7 +772,6 @@ body.modal-open{overflow:hidden}
 <section class="section" id="sluzby">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">S čím vám pomůžeme</span>
       <h2 class="h2">Situace, které za vás vyřešíme</h2>
       <p class="lead"><span class="line">Žádné odborné termíny navíc. Řekněte nám, co potřebujete —</span>
       <span class="line">měření v terénu, výkresy i jednání s úřady už jsou naše práce.</span></p>
@@ -949,7 +949,6 @@ body.modal-open{overflow:hidden}
 <section class="section why" id="proc">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Proč Delta G</span>
       <h2 class="h2">Geodet, kterému nemusíte rozumět.<br>Stačí mu důvěřovat.</h2>
       <p class="lead">Víme, že katastr, geometrické plány a razítka jsou pro většinu lidí džungle.
       Proto jsme proces nastavili tak, abyste se o nic nemuseli starat.</p>
@@ -995,7 +994,6 @@ body.modal-open{overflow:hidden}
 <section class="section" id="postup">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Jak to probíhá</span>
       <h2 class="h2">Od poptávky k zápisu ve čtyřech krocích</h2>
     </div>
     <div class="steps-line">
@@ -1023,7 +1021,6 @@ body.modal-open{overflow:hidden}
 <section class="section tech" id="technologie">
   <div class="wrap tech-layout">
     <div>
-      <span class="eyebrow">Technologie</span>
       <h2 class="h2">Milimetrová přesnost,<br>o které se nediskutuje</h2>
       <p class="lead">Váš pozemek měříme stejnou technikou, kterou používáme na dálnicích
       a železnicích: GNSS aparatury a robotické totální stanice Trimble.</p>
@@ -1075,7 +1072,6 @@ body.modal-open{overflow:hidden}
 <section class="section partners" id="reference">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Reference</span>
       <h2 class="h2">Důvěřují nám největší stavby v Česku</h2>
       <p class="lead"><span class="line">Měřili jsme pro pražské metro, železnici i povodí Vltavy.</span>
       <span class="line">Stejnou přesnost a péči dostanete i vy — na zahradě rodinného domu.</span></p>
@@ -1119,7 +1115,6 @@ body.modal-open{overflow:hidden}
 <section class="section" id="reference-b2c">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Co říkají klienti</span>
       <h2 class="h2">Majitelé pozemků a domů o nás</h2>
       <p class="lead">Velké stavby jsou naše vizitka, ale většinu týdne trávíme
       na zahradách a u rodinných domů — u lidí, jako jste vy.</p>
@@ -1172,7 +1167,6 @@ body.modal-open{overflow:hidden}
 <section class="section quiz" id="poptavka">
   <div class="wrap">
     <div class="section-head reveal" style="text-align:center;margin-inline:auto">
-      <span class="eyebrow" style="justify-content:center">Nezávazná poptávka</span>
       <h2 class="h2">Napište nám, co řešíte</h2>
       <p class="lead" style="margin-inline:auto">Do 24 hodin se vám ozveme s konkrétní nabídkou
       a termínem. Odesláním nevzniká žádný závazek.</p>
@@ -1219,7 +1213,6 @@ body.modal-open{overflow:hidden}
 <section class="section" id="kontakt">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Kontakt</span>
       <h2 class="h2">Raději rovnou zavoláte? Jsme tu.</h2>
     </div>
     <div class="contact-grid">
