@@ -157,12 +157,13 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .mobile-menu{
-  position:fixed;top:var(--header-h);left:0;right:0;z-index:55;background:#fff;
+  position:fixed;top:var(--header-h);left:0;right:0;z-index:55;bottom:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:#fff;
   border-bottom:1px solid var(--g100);display:grid;gap:.2rem;padding:1rem 1.4rem 1.4rem;
   transform:translateY(-110%);transition:transform .35s cubic-bezier(.4,0,.2,1);
   box-shadow:0 20px 40px -20px rgba(16,24,40,.25);
 }
 .mobile-menu.open{transform:translateY(0)}
+body.menu-open{overflow:hidden}
 .mobile-menu a{padding:.7rem 0;font-weight:600;font-size:1.15rem;border-bottom:1px solid var(--g100)}
 .mobile-menu .btn{margin-top:.9rem}
 .mobile-menu .menu-group{
@@ -750,11 +751,13 @@ burger.addEventListener('click', () => {
   const open = mobileMenu.classList.toggle('open');
   burger.classList.toggle('open', open);
   burger.setAttribute('aria-expanded', open);
+  document.body.classList.toggle('menu-open', open);
 });
 mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   mobileMenu.classList.remove('open');
   burger.classList.remove('open');
   burger.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('menu-open');
 }));
 
 /* reveal */
