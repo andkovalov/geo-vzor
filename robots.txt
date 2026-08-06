@@ -1,5 +1,6 @@
+# Web je dočasně vyřazen z indexace (noindex na všech stránkách).
+# Procházení zůstává povoleno záměrně — jinak by roboti noindex neviděli.
 User-agent: *
 Allow: /
-Disallow: /zasady-ochrany-osobnich-udaju.html
 
 Sitemap: https://deltag.vercel.app/sitemap.xml
