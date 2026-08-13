@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://deltag.vercel.app/sitemap.xml
+Sitemap: https://geo-vzor.vercel.app/sitemap.xml

@@ -1,7 +1,10 @@
-# Delta G — design system & project conventions
+# GEO VZOR — design system & project conventions
 
-B2C/B2B web for Delta G s.r.o. (geodetická firma, Praha). Static HTML/CSS/vanilla JS, no build step.
-Live: https://deltag.vercel.app/ (auto-deploys from GitHub `andkovalov/deltag`, branch `main`).
+**Demo/sales template** for a Czech surveying company's B2C/B2B site. Static HTML/CSS/vanilla JS, no build step.
+Live: https://geo-vzor.vercel.app/ (auto-deploys from GitHub `andkovalov/geo-vzor`, branch `main`).
+
+All company data on the site is **fictional placeholder** — brand `Geodézie VZOR s.r.o.`, invented partner logos,
+anonymised reviews. There must be no reference to any real firm anywhere in the repo. Site is `noindex` site-wide.
 
 **After every change: `git add -A && git commit && git push`** (user's standing instruction; commit messages in English + Claude co-author line).
 
@@ -16,8 +19,8 @@ Live: https://deltag.vercel.app/ (auto-deploys from GitHub `andkovalov/deltag`, 
 | `kontakt.html` | Contact page (header "Kontakt" points here on every page): contact cards, ÚOZI badge, B2C/B2B CTA cards, map |
 | `zasady-ochrany-osobnich-udaju.html` | GDPR privacy policy (noindex, excluded from sitemap, disallowed in robots.txt) |
 | `sitemap.xml`, `robots.txt` | 8 indexable URLs on vercel domain; regenerate when adding pages |
-| `favicon.svg`, `apple-touch-icon.png`, `og-image.png` | brand assets (white swoosh on blue #0033FB) |
-| `assets/logos/*` | partner logos (12, used in marquee) |
+| `favicon.svg`, `apple-touch-icon.png`, `og-image.png` | brand assets (white contour-curve mark; favicon/touch icon on blue #0033FB, og-image on ink #101828) |
+| `assets/logos/*` | 12 **invented** partner logos, hand-authored SVG 150×60 (mark + wordmark, one accent colour each). No real company logos may ever go here. |
 
 Each page is **self-contained**: own `<style>` block (copy tokens + needed components), own `<script>`. No shared CSS file — keep it that way unless the user asks.
 
@@ -55,11 +58,11 @@ Each page is **self-contained**: own `<style>` block (copy tokens + needed compo
 
 - **Buttons**: `.btn` uppercase 700; `.btn-primary` blue→**yellow bg + ink text** on hover (no shadows!); `.btn-ghost` 1.5px `--g300` border.
 - **Header (corporate, identical on every page)**: fixed, 72px, `rgba(255,255,255,.86)` + backdrop blur. Nav: `Služby ▾` (dropdown with the 4 service pages + "Přehled všech služeb →"), `Pro firmy a investory`, `Kariéra`, `Kontakt`; current page gets `aria-current="page"` (blue). Dropdown: CSS-only `:hover/:focus-within`, invisible bridge via `.nav-item::after`. `.header-actions` = phone (filled icon, ≥1240px) + page-appropriate CTA. Burger <980px; mobile menu uses `.menu-group` headers + indented `.menu-sub` links.
-- **Logo**: inline SVG, 3 paths — wordmark `#101828`, swoosh `class="logo-swoosh"` `#0033FB`, arc `#101828`. Hover: springy flick `translate(2px,-3px) rotate(-5deg)`, cubic-bezier(.34,1.56,.64,1). Never recolor swoosh to yellow on white.
+- **Logo**: inline SVG `viewBox="0 0 118 44"` — mark = 5 nested contour/strata curves `class="logo-swoosh"` stroke `#101828` 1.5px; wordmark lowercase `vzor` Rajdhani 600 / 27px `#101828`, descriptor `geodézie` Rajdhani 600 / 9px letter-spacing 2.4 `#0033FB` right under it. Hover: springy flick on the whole mark group, `translate(2px,-3px) rotate(-5deg)`, cubic-bezier(.34,1.56,.64,1). 22 copies (2 per page) — replace all when the brand changes.
 - **Cards**: 1px `--g300` border, `--radius`, white bg. No hover lift on info cards (user removed it).
 - **Icon chips**: 46–48px rounded square, blue bg, white strokes only (no yellow strokes inside icons).
 - **Forms** (`.lead-form`): 2-col grid ≥640px, `.full` spans; inputs 1.5px border, focus blue ring `0 0 0 3px rgba(0,51,251,.12)`; consent checkbox `align-items:center`; honeypot `.hp-field` input name="company"; success block `.quiz-success`/`.form-success`.
-- **Lead delivery**: Web3Forms. `const WEB3FORMS_KEY = ''` on each form-bearing page (index shared `sendLead`, pro-firmy `b2bForm`, kariera `careerForm`) → empty = demo mode (logs payload to console); paste the access key (from web3forms.com, tied to andkovalov@gmail.com) into all three to go live. POST JSON to `https://api.web3forms.com/submit` with `{access_key, subject, from_name, ...payload}`, expect `data.success`. Always `preventDefault`, `reportValidity`, honeypot check (`company` field).
+- **Lead delivery**: Web3Forms. `const WEB3FORMS_KEY = ''` on each form-bearing page (index shared `sendLead`, pro-firmy `b2bForm`, kariera `careerForm`) → empty = demo mode (logs payload to console); paste the access key (from web3forms.com, tied to the template owner's inbox) into all three to go live — demo enquiries land with the template owner, not with any client. POST JSON to `https://api.web3forms.com/submit` with `{access_key, subject, from_name, ...payload}`, expect `data.success`. Always `preventDefault`, `reportValidity`, honeypot check (`company` field).
 - **Cookie banner**: opt-in GDPR; analytics load ONLY inside `loadAnalytics()` after consent; localStorage key `dg-cookie-consent` = `all|necessary`; footer link reopens it.
 - **Partners marquee**: `.logo-track` = two identical `.logo-set`s (set has `padding-right` equal to gap, track gap 0) animated `translateX(-50%)` 40s linear; imgs uniform cells `clamp(120px,14vw,150px)×60`, `object-fit:contain`, grayscale→color, `loading="eager"`; no pause on hover; reduced-motion → static wrap, second set hidden.
 
@@ -80,13 +83,13 @@ Plot figure: light `--g100` panel, faint grid strokes `#D0D5DD/#EDF0F4`, parcel/
 ## Copy & tone
 
 - Czech, natural business language. B2C pages: no jargon, benefits-first, fears addressed (úřady, ceny). B2B (`pro-firmy.html`): industry terminology OK (AZI, DTMŽ, vytyčovací sítě…).
-- Facts: Delta G s.r.o., od 2004, IČO 02362538, DIČ CZ02362538, sídlo Tiskařská 10 / kancelář Polygrafická 262/3, Praha 10; +420 604 206 176; posta@deltag.cz; ÚOZI; map pin 50.078833,14.522639 (Google embed with `hl=cs`).
+- Facts (**all placeholder — never replace with a real firm's data without that firm's consent**): Geodézie VZOR s.r.o., od 2010, IČO 12345678, DIČ CZ12345678, Ukázková 123/4, 100 00 Praha 10; +420 123 456 789; info@geo-vzor.cz; ÚOZI; map pin 50.0755,14.4378 = Prague centre (Google embed with `hl=cs`).
 - Placeholders must be marked `<!-- TODO: ... -->` (prices to confirm, real reviews).
 
 ## SEO / meta (every page)
 
-- Unique `<title>` + `meta description`; `<link rel="canonical" href="https://deltag.vercel.app/...">`; OG (`og:url`, `og:image` → absolute vercel URLs, locale `cs_CZ`) + `twitter:card summary_large_image`. Never use github.io URLs.
-- JSON-LD: `LocalBusiness` (@id `…/#firma`, IČO, geo 50.078833/14.522639) on every page; service pages add `Service` with `provider:{"@id":"…#firma"}`. New page → add to sitemap.xml.
+- Unique `<title>` + `meta description`; `<link rel="canonical" href="https://geo-vzor.vercel.app/...">`; every page carries `<meta name="robots" content="noindex, nofollow">` and `vercel.json` adds `X-Robots-Tag`; OG (`og:url`, `og:image` → absolute vercel URLs, locale `cs_CZ`) + `twitter:card summary_large_image`. Never use github.io URLs.
+- JSON-LD: `LocalBusiness` (@id `…/#firma`, IČO, geo 50.0755/14.4378) on every page; service pages add `Service` with `provider:{"@id":"…#firma"}`. New page → add to sitemap.xml.
 - Nav hover = selection style: `background:var(--yellow);color:var(--ink)` on `.main-nav` links and `.drop` items (no underline).
 - **Footer (corporate, identical on every page incl. privacy)**: bg `#E4E7EC` (one step darker than `--g100`), 4 columns ≥1000px — logo+about / Služby (all 6 service pages) / Společnost / Kontakt — plus `.footer-bottom` bar (©, ÚOZI, index also keeps `#cookieSettingsLink`). When adding a service page: update footer Služby column, header dropdown + mobile menu on ALL pages, and sitemap.xml.
 - favicon links: `favicon.svg` + `apple-touch-icon.png`. Privacy page: `noindex,follow`.
@@ -94,7 +97,7 @@ Plot figure: light `--g100` panel, faint grid strokes `#D0D5DD/#EDF0F4`, parcel/
 ## New page checklist
 
 1. Copy head boilerplate (fonts, favicon, meta) + tokens + needed component CSS from index.html.
-2. Header with logo (full inline SVG + swoosh hover), `.header-actions`, back/nav links; footer with © line, Kariéra / Pro firmy / Zásady links as relevant.
+2. Header with logo (full inline SVG + dot hover), `.header-actions`, back/nav links; footer with © line, Kariéra / Pro firmy / Zásady links as relevant.
 3. GSAP CDN + guards + `.reveal` batch.
 4. Forms → FORM_ENDPOINT pattern + GDPR consent linking to zásady.
 5. Verify: no horizontal overflow at 375/768/1024/1440; header fits at ~920–1140; console clean.
