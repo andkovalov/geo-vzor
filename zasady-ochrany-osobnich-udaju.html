@@ -64,6 +64,8 @@
   --g500:#586272;
   --g300:#D0D5DD;
   --g100:#F2F4F7;
+  --radius:14px;
+  --header-h:72px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 ::selection{background:var(--yellow);color:var(--ink)}
@@ -73,18 +75,62 @@ body{
   background:#fff;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;
 }
 .wrap{width:min(820px,100% - 2.5rem);margin-inline:auto}
-header{
-  height:72px;display:flex;align-items:center;border-bottom:1px solid var(--g100);
+.site-header .wrap,.site-footer .wrap{width:min(1180px,100% - 2.5rem)}
+
+/* buttons + chrome link reset (header/footer only — body links keep their underline) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.95rem 1.9rem;border-radius:10px;font-weight:700;font-size:1.02rem;letter-spacing:.04em;text-transform:uppercase;transition:background .25s,color .25s,transform .15s,border-color .25s;white-space:nowrap}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--yellow);color:var(--ink)}
+.btn-ghost{border:1.5px solid var(--g300);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);background:var(--g100)}
+.site-header a,.mobile-menu a,.site-footer a{text-decoration:none}
+.site-header a,.mobile-menu a{color:inherit}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+.site-header{
+  position:fixed;inset:0 0 auto 0;z-index:60;height:var(--header-h);display:flex;align-items:center;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,box-shadow .3s;
 }
+.site-header.scrolled{border-color:var(--g100);box-shadow:0 8px 30px -18px rgba(16,24,40,.25)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{display:flex;align-items:center;flex:none}
+.logo-mark{height:40px;width:auto;flex:none}
+.main-nav{display:none;gap:1.6rem;font-weight:600;color:var(--ink-2);white-space:nowrap;align-items:center}
+.main-nav > a,.main-nav .nav-link{padding:.35rem .55rem;border-radius:3px;transition:background .15s,color .15s}
+.main-nav > a:hover,.main-nav .nav-link:hover{background:var(--yellow);color:var(--ink)}
+.main-nav a[aria-current=page]{color:var(--blue)}
+.nav-item{position:relative}
+.nav-item::after{content:"";position:absolute;top:100%;left:-1rem;right:-1rem;height:.7rem}
+.nav-link{display:inline-flex;align-items:center;gap:.45rem;cursor:pointer}
+.nav-link .caret{transition:transform .25s}
+.nav-item:hover .caret,.nav-item:focus-within .caret{transform:rotate(180deg)}
+.drop{position:absolute;top:calc(100% + .6rem);left:-1rem;min-width:300px;z-index:70;background:#fff;border:1px solid var(--g100);border-radius:12px;padding:.55rem;box-shadow:0 28px 60px -24px rgba(16,24,40,.3);display:grid;gap:.1rem;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .22s,transform .22s,visibility .22s}
+.nav-item:hover .drop,.nav-item:focus-within .drop{opacity:1;visibility:visible;transform:translateY(0)}
+.drop a{padding:.55rem .85rem;border-radius:8px;font-weight:600;color:var(--ink-2);border:none}
+.drop a:hover{background:var(--yellow);color:var(--ink)}
+.drop .drop-all{margin-top:.35rem;border-top:1px solid var(--g100);border-radius:0 0 8px 8px;color:var(--blue);font-size:.95rem}
+.header-actions{display:flex;align-items:center;gap:1.4rem}
+.header-phone{display:none;font-weight:700;color:var(--ink);align-items:center;gap:.45rem}
+.header-phone:hover{color:var(--blue)}
+.header-cta{display:none}
+.burger{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:44px;min-height:44px;padding:.5rem}
+.burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{position:fixed;top:var(--header-h);left:0;right:0;z-index:55;bottom:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:#fff;border-bottom:1px solid var(--g100);display:grid;gap:.2rem;padding:1rem 1.4rem 1.4rem;transform:translateY(-110%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:0 20px 40px -20px rgba(16,24,40,.25)}
+.mobile-menu.open{transform:translateY(0)}
+body.menu-open{overflow:hidden}
+.mobile-menu a{padding:.7rem 0;font-weight:600;font-size:1.15rem;border-bottom:1px solid var(--g100)}
+.mobile-menu .btn{margin-top:.9rem}
+.mobile-menu .menu-group{padding:1rem 0 .25rem;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g500);font-weight:600}
+.mobile-menu a.menu-sub{padding-left:1rem;font-size:1.02rem;color:var(--ink-2)}
+@media(min-width:980px){.main-nav,.header-cta{display:inline-flex}.burger,.mobile-menu{display:none}}
+@media(min-width:1240px){.header-phone{display:inline-flex}}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.logo svg{height:38px;width:auto;display:block}
-.logo:hover
-.back{
-  font-weight:700;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;
-  color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;
-}
 .back:hover{text-decoration:underline}
-main{padding:3.5rem 0 5rem}
+main{padding:calc(var(--header-h) + 3.5rem) 0 5rem}
 h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin-bottom:.6rem}
 .updated{color:var(--g500);font-weight:600;font-size:.95rem;margin-bottom:2.5rem}
 h2{font-size:1.45rem;margin:2.4rem 0 .7rem}
@@ -156,8 +202,8 @@ footer{border-top:1px solid var(--g100);padding:2rem 0;color:var(--g500);font-si
 </head>
 <body>
 
-<header>
-  <div class="wrap">
+<header class="site-header" id="header">
+  <div class="wrap header-inner">
     <a class="logo" href="index.html" aria-label="Geo Vzor — úvod">
       <svg class="logo-mark" viewBox="0 0 239 107" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Geo Vzor">
         <g>
@@ -171,9 +217,53 @@ footer{border-top:1px solid var(--g100);padding:2rem 0;color:var(--g500);font-si
         <path d="M136.456 101C135.462 98.8943 134.449 96.6296 133.416 94.206C132.383 91.7824 131.37 89.2595 130.377 86.6372C129.384 84.015 128.43 81.3331 127.516 78.5917C126.642 75.8105 125.847 72.9896 125.132 70.129H129.84C130.476 72.8704 131.271 75.8304 132.224 79.0089C133.218 82.1476 134.27 85.2268 135.383 88.2463C136.535 91.2262 137.628 93.8484 138.661 96.1131C139.455 94.4444 140.27 92.5373 141.104 90.3918C141.939 88.2463 142.753 86.0214 143.548 83.717C144.342 81.3729 145.077 79.0486 145.753 76.7442C146.428 74.4001 147.004 72.195 147.481 70.129H151.951C151.236 72.9896 150.421 75.8105 149.507 78.5917C148.633 81.3331 147.7 84.015 146.706 86.6372C145.713 89.2595 144.7 91.7824 143.667 94.206C142.674 96.6296 141.66 98.8943 140.627 101H136.456ZM155.423 101V97.901C156.416 96.0336 157.648 93.9875 159.118 91.7625C160.588 89.4979 162.137 87.2332 163.766 84.9685C165.435 82.7039 167.004 80.618 168.474 78.7109C169.984 76.7641 171.275 75.155 172.348 73.8836H156.257V70.129H177.831V73.5856C176.957 74.5789 175.785 75.9695 174.315 77.7574C172.885 79.5055 171.335 81.4921 169.666 83.717C168.037 85.9022 166.408 88.1669 164.779 90.511C163.19 92.8551 161.8 95.0999 160.608 97.2454H178.308V101H155.423ZM197.39 101.715C194.649 101.715 192.205 101.06 190.06 99.7485C187.914 98.3976 186.226 96.5104 184.994 94.0868C183.802 91.6632 183.206 88.8224 183.206 85.5645C183.206 82.3066 183.802 79.4856 184.994 77.1018C186.226 74.6782 187.914 72.791 190.06 71.4401C192.205 70.0893 194.649 69.4138 197.39 69.4138C200.172 69.4138 202.635 70.0893 204.78 71.4401C206.926 72.791 208.594 74.6782 209.786 77.1018C211.018 79.4856 211.634 82.3066 211.634 85.5645C211.634 88.8224 211.018 91.6632 209.786 94.0868C208.594 96.5104 206.926 98.3976 204.78 99.7485C202.675 101.06 200.211 101.715 197.39 101.715ZM197.39 97.7222C199.377 97.7222 201.085 97.2256 202.516 96.2323C203.946 95.239 205.039 93.8285 205.793 92.0009C206.588 90.1733 206.985 88.0278 206.985 85.5645C206.985 83.1012 206.588 80.9557 205.793 79.1281C205.039 77.3004 203.946 75.89 202.516 74.8967C201.085 73.9034 199.377 73.4068 197.39 73.4068C195.444 73.4068 193.755 73.9034 192.325 74.8967C190.894 75.89 189.782 77.3004 188.987 79.1281C188.232 80.9557 187.855 83.1012 187.855 85.5645C187.855 88.0278 188.232 90.1733 188.987 92.0009C189.782 93.8285 190.894 95.239 192.325 96.2323C193.755 97.2256 195.444 97.7222 197.39 97.7222ZM219.856 101V71.5593C220.889 71.1223 222.299 70.6852 224.087 70.2482C225.915 69.7714 228.1 69.533 230.643 69.533C231.477 69.533 232.292 69.5926 233.086 69.7118C233.921 69.7913 234.656 69.9105 235.291 70.0694C235.967 70.1886 236.463 70.3078 236.781 70.427L235.887 74.2412C235.53 74.0822 234.854 73.9233 233.861 73.7644C232.868 73.5657 231.596 73.4664 230.047 73.4664C228.537 73.4664 227.286 73.5856 226.292 73.824C225.299 74.0226 224.643 74.2014 224.326 74.3603V101H219.856Z" fill="black" fill-opacity="0.8"/>
       </svg>
     </a>
-    <a class="back" href="index.html">← Zpět na hlavní stránku</a>
+    <nav class="main-nav" aria-label="Hlavní navigace">
+      <div class="nav-item">
+        <a class="nav-link" href="index.html#sluzby" aria-haspopup="true">Služby
+          <svg class="caret" width="10" height="7" viewBox="0 0 10 7" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="drop">
+          <a href="sluzby-rozdeleni-pozemku.html">Rozdělení pozemku</a>
+          <a href="sluzby-vytyceni-hranic.html">Vytyčení hranic pozemku</a>
+          <a href="sluzby-zamereni-pro-projekt.html">Zaměření pro projekt domu</a>
+          <a href="sluzby-vytyceni-stavby.html">Vytyčení stavby</a>
+          <a href="sluzby-geometricky-plan-kolaudace.html">Geometrický plán ke kolaudaci</a>
+          <a href="sluzby-pasport-stavby.html">Pasport stavby</a>
+          <a class="drop-all" href="index.html#sluzby">Přehled všech služeb →</a>
+        </div>
+      </div>
+      <a href="pro-firmy.html">Pro firmy a investory</a>
+      <a href="kariera.html">Kariéra</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+    <div class="header-actions">
+      <a class="header-phone" href="tel:+420123456789">
+        <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" fill="currentColor"/></svg>
+        123 456 789
+      </a>
+      <a class="btn btn-primary header-cta" href="index.html#poptavka">Nezávazná poptávka</a>
+      <button class="burger" id="burger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobilní navigace">
+  <span class="menu-group">Služby pro soukromé klienty</span>
+  <a class="menu-sub" href="sluzby-rozdeleni-pozemku.html">Rozdělení pozemku</a>
+  <a class="menu-sub" href="sluzby-vytyceni-hranic.html">Vytyčení hranic pozemku</a>
+  <a class="menu-sub" href="sluzby-zamereni-pro-projekt.html">Zaměření pro projekt domu</a>
+  <a class="menu-sub" href="sluzby-vytyceni-stavby.html">Vytyčení stavby</a>
+  <a class="menu-sub" href="sluzby-geometricky-plan-kolaudace.html">Geometrický plán ke kolaudaci</a>
+  <a class="menu-sub" href="sluzby-pasport-stavby.html">Pasport stavby</a>
+  <a href="index.html#sluzby">Přehled všech služeb</a>
+  <span class="menu-group">Společnost</span>
+  <a href="pro-firmy.html">Pro firmy a investory</a>
+  <a href="kariera.html">Kariéra</a>
+  <a href="kontakt.html">Kontakt</a>
+  <a href="tel:+420123456789">Zavolat: 123 456 789</a>
+  <a class="btn btn-primary" href="index.html#poptavka">Nezávazná poptávka</a>
+</nav>
 
 <main>
   <div class="wrap">
@@ -189,7 +279,7 @@ footer{border-top:1px solid var(--g100);padding:2rem 0;color:var(--g500);font-si
     <h2>1. Jaké údaje zpracováváme a proč</h2>
     <p>Osobní údaje zpracováváme v souladu s nařízením (EU) 2016/679 (GDPR) a zákonem
     č. 110/2019 Sb., o zpracování osobních údajů.</p>
-    <table>
+    <div class="table-scroll"><table>
       <tr><th>Údaje</th><th>Účel</th><th>Právní základ</th><th>Doba uložení</th></tr>
       <tr>
         <td>Jméno, telefon, e‑mail, popis poptávky</td>
@@ -209,7 +299,7 @@ footer{border-top:1px solid var(--g100);padding:2rem 0;color:var(--g500);font-si
         <td>Souhlas (čl. 6 odst. 1 písm. a GDPR)</td>
         <td>Dle nastavení prohlížeče, max. 13 měsíců</td>
       </tr>
-    </table>
+    </table></div>
 
     <h2>2. Cookies</h2>
     <p>Web používá pouze dva typy cookies:</p>
@@ -305,6 +395,27 @@ footer{border-top:1px solid var(--g100);padding:2rem 0;color:var(--g500);font-si
     </div>
   </div>
 </footer>
+
+<script>
+'use strict';
+const header = document.getElementById('header');
+addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10), {passive:true});
+
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+  document.body.classList.toggle('menu-open', open);
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('menu-open');
+}));
+</script>
 
 </body>
 </html>

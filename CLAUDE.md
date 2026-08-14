@@ -17,7 +17,7 @@ anonymised reviews. There must be no reference to any real firm anywhere in the 
 | `kariera.html` | Careers page + application form |
 | `sluzby-*.html` | 6 B2C SEO service pages (rozdeleni-pozemku, vytyceni-hranic, zamereni-pro-projekt, vytyceni-stavby, geometricky-plan-kolaudace, pasport-stavby) — shared compact template: breadcrumb, H1=query, kdy-grid, 4 steps, price-box (TODO prices), FAQ + FAQPage JSON-LD, CTA to index.html#poptavka. Regenerate all via one script when the template changes. |
 | `kontakt.html` | Contact page (header "Kontakt" points here on every page): contact cards, ÚOZI badge, B2C/B2B CTA cards, map |
-| `zasady-ochrany-osobnich-udaju.html` | GDPR privacy policy (noindex, excluded from sitemap, disallowed in robots.txt) |
+| `zasady-ochrany-osobnich-udaju.html` | GDPR privacy policy (noindex, excluded from sitemap). Carries the same corporate header/footer as every other page; its own `.wrap` is 820px for reading measure, tables wrapped in `.table-scroll`. |
 | `sitemap.xml`, `robots.txt` | 8 indexable URLs on vercel domain; regenerate when adding pages |
 | `assets/logo.svg`, `favicon.svg`, `apple-touch-icon.png`, `og-image.png` | brand assets, all derived from `assets/logo.svg` (favicon simplifies the mark to 3 thick strokes for 16px legibility; touch icon uses all 5 on blue #0033FB; og-image is the full lockup in white on ink #101828, accent line switched to yellow for contrast) |
 | `assets/logos/*` | 12 **invented** partner logos, hand-authored SVG 150×60 (mark + wordmark, one accent colour each). No real company logos may ever go here. |
@@ -43,8 +43,9 @@ Each page is **self-contained**: own `<style>` block (copy tokens + needed compo
 - Font: **Rajdhani** 400/500/600/700 — **self-hosted** in `assets/fonts/` (8 woff2: latin + latin-ext per weight). Every page: 4 `<link rel="preload" as="font" crossorigin>` (400/700 × latin/latin-ext) + inline `@font-face` block with unicode-range at the top of `<style>`. Never link fonts.googleapis.com (render-blocking, was a PSI finding). Body 18px, line-height 1.55.
 - `::selection{background:var(--yellow);color:var(--ink)}` on every page, plus `a/button/.btn/summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}` for keyboard a11y.
 - **No side-stripe borders** (`border-left:>1px` accent) — AI tell, banned. Branded callouts use full 1px border + tint (e.g. price-box: `border:1.5px solid rgba(0,51,251,.22);background:rgba(0,51,251,.04)`).
-- Sections alternate white / `--g100`. Section padding `clamp(3.5rem,9vh,6.5rem)` (more for hero-like).
-- Container: `.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}`.
+- Sections alternate white / `--g100`. Section padding is `clamp(3.5rem,9vh,6.5rem)` on **every page except `index.html`**, which uses the roomier landing rhythm `clamp(4rem,10vh,7.5rem)`. Do not invent a third scale — four had drifted in and were unified.
+- Container: `.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}`. Pages may narrow `.wrap` for reading measure (service pages 1080px, privacy 820px), so **every page must also carry**
+  `.site-header .wrap,.site-footer .wrap{width:min(1180px,100% - 2.5rem)}` — otherwise the logo and footer jump horizontally from page to page.
 
 ## Type scale
 
@@ -57,7 +58,7 @@ Each page is **self-contained**: own `<style>` block (copy tokens + needed compo
 ## Components (copy from index.html)
 
 - **Buttons**: `.btn` uppercase 700; `.btn-primary` blue→**yellow bg + ink text** on hover (no shadows!); `.btn-ghost` 1.5px `--g300` border.
-- **Header (corporate, identical on every page)**: fixed, 72px, `rgba(255,255,255,.86)` + backdrop blur. Nav: `Služby ▾` (dropdown with the 4 service pages + "Přehled všech služeb →"), `Pro firmy a investory`, `Kariéra`, `Kontakt`; current page gets `aria-current="page"` (blue). Dropdown: CSS-only `:hover/:focus-within`, invisible bridge via `.nav-item::after`. `.header-actions` = phone (filled icon, ≥1240px) + page-appropriate CTA. Burger <980px; mobile menu uses `.menu-group` headers + indented `.menu-sub` links.
+- **Header (corporate, byte-identical on all 11 pages — verified by measuring logo x, CTA right edge and header height at 1440px)**: fixed, 72px, `<header class="site-header" id="header">` + a scroll listener toggling `.scrolled` (border + shadow appear past 10px), `rgba(255,255,255,.86)` + backdrop blur. Nav: `Služby ▾` (dropdown with the 4 service pages + "Přehled všech služeb →"), `Pro firmy a investory`, `Kariéra`, `Kontakt`; current page gets `aria-current="page"` (blue). Dropdown: CSS-only `:hover/:focus-within`, invisible bridge via `.nav-item::after`. `.header-actions` = phone (filled icon, ≥1240px) + page-appropriate CTA. Burger <980px; mobile menu uses `.menu-group` headers + indented `.menu-sub` links.
 - **Logo**: inline SVG `viewBox="0 0 239 107"`, source of truth `assets/logo.svg` — mark = 5 nested contour strokes (vertical bar + 4 curves; the 2nd is the accent, `#0033FB`, stroke-width 4, rest `black`/0.8 at 2.5) wrapped in a plain `<g>`; wordmark `Geo` / `vzor` as outlined paths (no font dependency). Renders 89×40 in the header, 80×36 in the footer. 22 copies (2 per page) — regenerate all from `assets/logo.svg` when the brand changes. **The root `<svg>` carries `fill="none"`** — paths extracted without it render as filled blobs.
 - **Cards**: 1px `--g300` border, `--radius`, white bg. No hover lift on info cards (user removed it).
 - **Icon chips**: 46–48px rounded square, blue bg, white strokes only (no yellow strokes inside icons).
@@ -102,3 +103,9 @@ Plot figure: light `--g100` panel, faint grid strokes `#D0D5DD/#EDF0F4`, parcel/
 4. Forms → FORM_ENDPOINT pattern + GDPR consent linking to zásady.
 5. Verify: no horizontal overflow at 375/768/1024/1440; header fits at ~920–1140; console clean.
 6. Commit + push (auto-deploy).
+
+## Gotchas learned the hard way
+
+- Every page defines its own tokens; `zasady` was missing `--header-h`, so `var(--header-h)` silently invalidated the header height, the mobile-menu offset and the content top padding. When copying a component between pages, copy the tokens it depends on too.
+- `.logo svg{height:38px}` (0,1,1) outranks `.logo-mark{height:40px}` (0,1,0). Watch specificity when leaving old rules behind.
+- Never strip a CSS rule with a regex that matches only part of a compound selector: removing `.logo-swoosh{...}` out of `.logo:hover .logo-swoosh{...}` left an orphan `.logo:hover` that silently merged with the next rule and killed `.header-actions` layout on all 11 pages.

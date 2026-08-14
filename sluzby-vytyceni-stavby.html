@@ -180,6 +180,7 @@ a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:none;background:none}
 section{scroll-margin-top:calc(var(--header-h) + 16px)}
 .wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+.site-header .wrap,.site-footer .wrap{width:min(1180px,100% - 2.5rem)}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-weight:600;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
 .eyebrow::before{content:"";width:26px;height:2px;background:var(--blue)}
 h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
@@ -191,11 +192,16 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .btn-primary:hover{background:var(--yellow);color:var(--ink)}
 .btn-ghost{border:1.5px solid var(--g300);color:var(--ink)}
 .btn-ghost:hover{border-color:var(--ink);background:var(--g100)}
-.site-header{position:fixed;inset:0 0 auto 0;z-index:60;height:var(--header-h);display:flex;align-items:center;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--g100)}
+.site-header{
+  position:fixed;inset:0 0 auto 0;z-index:60;height:var(--header-h);display:flex;align-items:center;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,box-shadow .3s;
+}
+.site-header.scrolled{border-color:var(--g100);box-shadow:0 8px 30px -18px rgba(16,24,40,.25)}
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
 .logo{display:flex;align-items:center;flex:none}
-.logo-mark{height:40px;width:auto}
-.logo:hover
+.logo-mark{height:40px;width:auto;flex:none}
 .main-nav{display:none;gap:1.6rem;font-weight:600;color:var(--ink-2);white-space:nowrap;align-items:center}
 .main-nav > a,.main-nav .nav-link{padding:.35rem .55rem;border-radius:3px;transition:background .15s,color .15s}
 .main-nav > a:hover,.main-nav .nav-link:hover{background:var(--yellow);color:var(--ink)}
@@ -211,7 +217,7 @@ h1,h2,h3{line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .drop a:hover{background:var(--yellow);color:var(--ink)}
 .drop .drop-all{margin-top:.35rem;border-top:1px solid var(--g100);border-radius:0 0 8px 8px;color:var(--blue);font-size:.95rem}
 .header-actions{display:flex;align-items:center;gap:1.4rem}
-.header-phone{display:none;font-weight:700;align-items:center;gap:.45rem}
+.header-phone{display:none;font-weight:700;color:var(--ink);align-items:center;gap:.45rem}
 .header-phone:hover{color:var(--blue)}
 .header-cta{display:none}
 .burger{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:44px;min-height:44px;padding:.5rem}
@@ -235,7 +241,7 @@ body.menu-open{overflow:hidden}
 .hero h1{font-size:clamp(2.1rem,5vw,3.4rem);margin:.4rem 0 1.1rem;max-width:22ch}
 .hero .lead{margin-bottom:1.8rem}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem}
-.section{padding:clamp(3rem,8vh,5.5rem) 0}
+.section{padding:clamp(3.5rem,9vh,6.5rem) 0}
 .section-head{max-width:720px;margin-bottom:clamp(1.6rem,4vh,2.4rem)}
 .kdy-grid{display:grid;gap:1.1rem}
 @media(min-width:760px){.kdy-grid{grid-template-columns:repeat(2,1fr)}}
@@ -310,7 +316,7 @@ body.menu-open{overflow:hidden}
 </head>
 <body>
 
-<header class="site-header">
+<header class="site-header" id="header">
   <div class="wrap header-inner">
     <a class="logo" href="index.html" aria-label="Geo Vzor — úvod">
       <svg class="logo-mark" viewBox="0 0 239 107" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Geo Vzor">
@@ -568,6 +574,9 @@ body.menu-open{overflow:hidden}
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const hasGsap = typeof gsap !== 'undefined';
 if (hasGsap && typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
+const header = document.getElementById('header');
+addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10), {passive:true});
+
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
 burger.addEventListener('click', () => {
