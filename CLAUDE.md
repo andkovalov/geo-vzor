@@ -1,7 +1,7 @@
 # Geo Vzor — design system & project conventions
 
 **Demo/sales template** for a Czech surveying company's B2C/B2B site. Static HTML/CSS/vanilla JS, no build step.
-Live: https://geo-vzor.vercel.app/ (auto-deploys from GitHub `andkovalov/geo-vzor`, branch `main`).
+Live: https://geo-vzor.vercel.app/ (auto-deploys from GitHub `andkovalov/geovzor`, branch `main`).
 
 All company data on the site is **fictional placeholder** — brand `Geo Vzor s.r.o.`, invented partner logos,
 anonymised reviews. There must be no reference to any real firm anywhere in the repo. Site is `noindex` site-wide.
