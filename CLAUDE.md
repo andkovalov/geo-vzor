@@ -1,9 +1,9 @@
-# GEO VZOR — design system & project conventions
+# Geo Vzor — design system & project conventions
 
 **Demo/sales template** for a Czech surveying company's B2C/B2B site. Static HTML/CSS/vanilla JS, no build step.
 Live: https://geo-vzor.vercel.app/ (auto-deploys from GitHub `andkovalov/geo-vzor`, branch `main`).
 
-All company data on the site is **fictional placeholder** — brand `Geodézie VZOR s.r.o.`, invented partner logos,
+All company data on the site is **fictional placeholder** — brand `Geo Vzor s.r.o.`, invented partner logos,
 anonymised reviews. There must be no reference to any real firm anywhere in the repo. Site is `noindex` site-wide.
 
 **After every change: `git add -A && git commit && git push`** (user's standing instruction; commit messages in English + Claude co-author line).
@@ -19,7 +19,7 @@ anonymised reviews. There must be no reference to any real firm anywhere in the 
 | `kontakt.html` | Contact page (header "Kontakt" points here on every page): contact cards, ÚOZI badge, B2C/B2B CTA cards, map |
 | `zasady-ochrany-osobnich-udaju.html` | GDPR privacy policy (noindex, excluded from sitemap, disallowed in robots.txt) |
 | `sitemap.xml`, `robots.txt` | 8 indexable URLs on vercel domain; regenerate when adding pages |
-| `favicon.svg`, `apple-touch-icon.png`, `og-image.png` | brand assets (white contour-curve mark; favicon/touch icon on blue #0033FB, og-image on ink #101828) |
+| `assets/logo.svg`, `favicon.svg`, `apple-touch-icon.png`, `og-image.png` | brand assets, all derived from `assets/logo.svg` (favicon simplifies the mark to 3 thick strokes for 16px legibility; touch icon uses all 5 on blue #0033FB; og-image is the full lockup in white on ink #101828, accent line switched to yellow for contrast) |
 | `assets/logos/*` | 12 **invented** partner logos, hand-authored SVG 150×60 (mark + wordmark, one accent colour each). No real company logos may ever go here. |
 
 Each page is **self-contained**: own `<style>` block (copy tokens + needed components), own `<script>`. No shared CSS file — keep it that way unless the user asks.
@@ -58,7 +58,7 @@ Each page is **self-contained**: own `<style>` block (copy tokens + needed compo
 
 - **Buttons**: `.btn` uppercase 700; `.btn-primary` blue→**yellow bg + ink text** on hover (no shadows!); `.btn-ghost` 1.5px `--g300` border.
 - **Header (corporate, identical on every page)**: fixed, 72px, `rgba(255,255,255,.86)` + backdrop blur. Nav: `Služby ▾` (dropdown with the 4 service pages + "Přehled všech služeb →"), `Pro firmy a investory`, `Kariéra`, `Kontakt`; current page gets `aria-current="page"` (blue). Dropdown: CSS-only `:hover/:focus-within`, invisible bridge via `.nav-item::after`. `.header-actions` = phone (filled icon, ≥1240px) + page-appropriate CTA. Burger <980px; mobile menu uses `.menu-group` headers + indented `.menu-sub` links.
-- **Logo**: inline SVG `viewBox="0 0 118 44"` — mark = 5 nested contour/strata curves `class="logo-swoosh"` stroke `#101828` 1.5px; wordmark lowercase `vzor` Rajdhani 600 / 27px `#101828`, descriptor `geodézie` Rajdhani 600 / 9px letter-spacing 2.4 `#0033FB` right under it. Hover: springy flick on the whole mark group, `translate(2px,-3px) rotate(-5deg)`, cubic-bezier(.34,1.56,.64,1). 22 copies (2 per page) — replace all when the brand changes.
+- **Logo**: inline SVG `viewBox="0 0 239 107"`, source of truth `assets/logo.svg` — mark = 5 nested contour strokes (vertical bar + 4 curves; the 2nd is the accent, `#0033FB`, stroke-width 4, rest `black`/0.8 at 2.5) wrapped in `<g class="logo-swoosh">` for the hover flick; wordmark `Geo` / `vzor` as outlined paths (no font dependency). Renders 89×40 in the header, 80×36 in the footer. 22 copies (2 per page) — regenerate all from `assets/logo.svg` when the brand changes. **The root `<svg>` carries `fill="none"`** — paths extracted without it render as filled blobs.
 - **Cards**: 1px `--g300` border, `--radius`, white bg. No hover lift on info cards (user removed it).
 - **Icon chips**: 46–48px rounded square, blue bg, white strokes only (no yellow strokes inside icons).
 - **Forms** (`.lead-form`): 2-col grid ≥640px, `.full` spans; inputs 1.5px border, focus blue ring `0 0 0 3px rgba(0,51,251,.12)`; consent checkbox `align-items:center`; honeypot `.hp-field` input name="company"; success block `.quiz-success`/`.form-success`.
@@ -83,7 +83,7 @@ Plot figure: light `--g100` panel, faint grid strokes `#D0D5DD/#EDF0F4`, parcel/
 ## Copy & tone
 
 - Czech, natural business language. B2C pages: no jargon, benefits-first, fears addressed (úřady, ceny). B2B (`pro-firmy.html`): industry terminology OK (AZI, DTMŽ, vytyčovací sítě…).
-- Facts (**all placeholder — never replace with a real firm's data without that firm's consent**): Geodézie VZOR s.r.o., od 2010, IČO 12345678, DIČ CZ12345678, Ukázková 123/4, 100 00 Praha 10; +420 123 456 789; info@geo-vzor.cz; ÚOZI; map pin 50.0755,14.4378 = Prague centre (Google embed with `hl=cs`).
+- Facts (**all placeholder — never replace with a real firm's data without that firm's consent**): Geo Vzor s.r.o., od 2010, IČO 12345678, DIČ CZ12345678, Ukázková 123/4, 100 00 Praha 10; +420 123 456 789; info@geo-vzor.cz; ÚOZI; map pin 50.0755,14.4378 = Prague centre (Google embed with `hl=cs`).
 - Placeholders must be marked `<!-- TODO: ... -->` (prices to confirm, real reviews).
 
 ## SEO / meta (every page)
