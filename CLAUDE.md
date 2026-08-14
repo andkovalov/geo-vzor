@@ -58,7 +58,7 @@ Each page is **self-contained**: own `<style>` block (copy tokens + needed compo
 
 - **Buttons**: `.btn` uppercase 700; `.btn-primary` blue→**yellow bg + ink text** on hover (no shadows!); `.btn-ghost` 1.5px `--g300` border.
 - **Header (corporate, identical on every page)**: fixed, 72px, `rgba(255,255,255,.86)` + backdrop blur. Nav: `Služby ▾` (dropdown with the 4 service pages + "Přehled všech služeb →"), `Pro firmy a investory`, `Kariéra`, `Kontakt`; current page gets `aria-current="page"` (blue). Dropdown: CSS-only `:hover/:focus-within`, invisible bridge via `.nav-item::after`. `.header-actions` = phone (filled icon, ≥1240px) + page-appropriate CTA. Burger <980px; mobile menu uses `.menu-group` headers + indented `.menu-sub` links.
-- **Logo**: inline SVG `viewBox="0 0 239 107"`, source of truth `assets/logo.svg` — mark = 5 nested contour strokes (vertical bar + 4 curves; the 2nd is the accent, `#0033FB`, stroke-width 4, rest `black`/0.8 at 2.5) wrapped in `<g class="logo-swoosh">` for the hover flick; wordmark `Geo` / `vzor` as outlined paths (no font dependency). Renders 89×40 in the header, 80×36 in the footer. 22 copies (2 per page) — regenerate all from `assets/logo.svg` when the brand changes. **The root `<svg>` carries `fill="none"`** — paths extracted without it render as filled blobs.
+- **Logo**: inline SVG `viewBox="0 0 239 107"`, source of truth `assets/logo.svg` — mark = 5 nested contour strokes (vertical bar + 4 curves; the 2nd is the accent, `#0033FB`, stroke-width 4, rest `black`/0.8 at 2.5) wrapped in a plain `<g>`; wordmark `Geo` / `vzor` as outlined paths (no font dependency). Renders 89×40 in the header, 80×36 in the footer. 22 copies (2 per page) — regenerate all from `assets/logo.svg` when the brand changes. **The root `<svg>` carries `fill="none"`** — paths extracted without it render as filled blobs.
 - **Cards**: 1px `--g300` border, `--radius`, white bg. No hover lift on info cards (user removed it).
 - **Icon chips**: 46–48px rounded square, blue bg, white strokes only (no yellow strokes inside icons).
 - **Forms** (`.lead-form`): 2-col grid ≥640px, `.full` spans; inputs 1.5px border, focus blue ring `0 0 0 3px rgba(0,51,251,.12)`; consent checkbox `align-items:center`; honeypot `.hp-field` input name="company"; success block `.quiz-success`/`.form-success`.
@@ -97,7 +97,7 @@ Plot figure: light `--g100` panel, faint grid strokes `#D0D5DD/#EDF0F4`, parcel/
 ## New page checklist
 
 1. Copy head boilerplate (fonts, favicon, meta) + tokens + needed component CSS from index.html.
-2. Header with logo (full inline SVG + dot hover), `.header-actions`, back/nav links; footer with © line, Kariéra / Pro firmy / Zásady links as relevant.
+2. Header with logo (full inline SVG, static), `.header-actions`, back/nav links; footer with © line, Kariéra / Pro firmy / Zásady links as relevant.
 3. GSAP CDN + guards + `.reveal` batch.
 4. Forms → FORM_ENDPOINT pattern + GDPR consent linking to zásady.
 5. Verify: no horizontal overflow at 375/768/1024/1440; header fits at ~920–1140; console clean.
